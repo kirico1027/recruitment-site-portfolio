@@ -222,16 +222,21 @@
 .top-hero {
   position: relative;
   z-index: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  min-height: clamp(#{rem(480)}, 62.5vw, #{rem(1200)});
-  padding-top: rem(90);
-  padding-bottom: clamp(#{rem(64)}, 10vw, #{rem(100)});
+  // Figma: main y=90 + hero 840px = ページ上端から 930px（ヘッダー分は固定ヘッダーと重なる）
+  min-height: clamp(#{rem(570)}, 48.4375vw, #{rem(930)});
 }
 
 .top-hero__content {
-  position: relative;
+  position: absolute;
+  right: 0;
+  bottom: clamp(#{rem(48)}, 5.21vw, #{rem(100)});
+  left: 0;
+  width: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  box-sizing: border-box;
+  // Figma inner div (1:10): 1280px 幅・テキスト左 inset 40px
+  @include fluid-padding-inline(rem(16), 2.08vw, rem(40));
 }
 
 .top-hero__title {
@@ -239,62 +244,87 @@
   color: var(--color-white);
   font-family: var(--font-ja);
   font-weight: 900;
-  font-size: clamp(#{rem(36)}, 5vw, #{rem(78)});
-  line-height: 1.52;
-  letter-spacing: 0.06em;
+  // Figma text (1:11): 78.6px / line 119.2px / tracking 4.8px
+  font-size: clamp(#{rem(36)}, 4.09vw, #{rem(78.6)});
+  line-height: calc(119.2 / 78.6);
+  letter-spacing: 0.061em;
+}
+
+.top-hero__title-line {
+  display: block;
 }
 
 // ---- Mission ----
 .mission {
   position: relative;
   z-index: 1;
-  margin-top: clamp(#{rem(-120)}, -10vw, #{rem(-280)});
   background: rgba(36, 37, 40, 0.1);
   border-bottom: 1px solid var(--color-border);
   backdrop-filter: blur(5px);
+  // Figma div.appear (1:12): hero 直下 y=840、pt 100 / pb 101
+  @include fluid-spacing(padding-top, rem(64), 5.21vw, rem(100));
+  @include fluid-spacing(padding-bottom, rem(64), 5.26vw, rem(101));
 }
 
 .mission__inner {
   display: flex;
-  gap: clamp(#{rem(40)}, 6vw, #{rem(80)});
+  gap: clamp(#{rem(40)}, 4.17vw, #{rem(80)});
   align-items: flex-start;
+  width: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  box-sizing: border-box;
+  // Figma inner div (1:13): 1280px 幅・左右 inset 40px
+  @include fluid-padding-inline(rem(16), 2.08vw, rem(40));
 }
 
 .mission__content {
-  flex: 1 1 58%;
+  flex: 0 1 62.22%;
   min-width: 0;
 }
 
 .mission__text-block {
-  display: grid;
-  grid-template-columns: minmax(#{rem(80)}, 18%) 1fr;
-  gap: clamp(#{rem(24)}, 4vw, #{rem(40)});
-  align-items: start;
+  position: relative;
 }
 
 .mission__label {
+  position: absolute;
+  top: 0;
+  left: rem(-300);
+  width: rem(300);
   margin: 0;
   padding-top: rem(10);
+  padding-right: rem(30);
   color: var(--color-text-light);
   font-family: var(--font-en);
   font-size: rem(16);
   font-weight: 700;
+  line-height: calc(21.6 / 16);
   text-align: right;
+}
+
+.mission__copy {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(#{rem(24)}, 2.06vw, #{rem(39.5)});
 }
 
 .mission__lead {
   margin: 0;
   color: var(--color-white);
   font-family: var(--font-en);
-  font-size: clamp(#{rem(32)}, 4vw, #{rem(64)});
+  font-size: clamp(#{rem(32)}, 3.33vw, #{rem(64)});
   font-weight: 500;
   line-height: 1;
   letter-spacing: -0.06em;
 }
 
+.mission__lead-line {
+  display: block;
+}
+
 .mission__text {
   margin: 0;
-  margin-top: rem(40);
   color: var(--color-text-light);
   font-family: var(--font-body);
   @include section-copy-font-size;
@@ -303,10 +333,10 @@
 }
 
 .mission__figure {
-  flex: 0 1 29%;
+  flex: 0 0 31.11%;
   min-width: 0;
+  height: clamp(#{rem(280)}, 20.83vw, #{rem(400)});
   margin: 0;
-  aspect-ratio: 373 / 400;
   border-radius: rem(24);
   overflow: hidden;
 }
@@ -362,8 +392,24 @@
 
 // ---- Jobs ----
 .jobs {
-  background: var(--color-white);
-  border-bottom: 1px solid var(--color-border);
+  position: relative;
+  z-index: 2;
+  // Figma div.appear (1:23): bg-white
+  background-color: var(--color-bg-jobs);
+  border-bottom: 0;
+
+  // 直下が同背景の interviews — パララックス割れ防止
+  &:has(+ .interviews)::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: rem(-4);
+    left: 0;
+    z-index: 1;
+    height: rem(4);
+    background-color: var(--color-bg-jobs);
+    pointer-events: none;
+  }
 }
 
 .jobs .section-heading {
@@ -467,24 +513,122 @@
 
 // ---- Interviews ----
 .interviews {
-  background: var(--color-white);
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(#{rem(40)}, 4.17vw, #{rem(80)});
+  width: 100%;
+  margin-top: 0;
+  border-top: 0;
+  background-color: var(--color-bg-jobs);
   border-bottom: 1px solid var(--color-border);
-  padding-bottom: 0;
+  // Figma 1:411 — pt 100 / pb 101
+  @include fluid-spacing(padding-top, rem(64), 5.21vw, rem(100));
+  @include fluid-spacing(padding-bottom, rem(64), 5.26vw, rem(101));
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: rem(-4);
+    right: 0;
+    left: 0;
+    z-index: 1;
+    height: rem(4);
+    background-color: var(--color-bg-jobs);
+    pointer-events: none;
+  }
+
+  // 直下が welfare — 区切り線・パララックス割れ防止
+  &:has(+ .welfare) {
+    border-bottom: 0;
+
+    &::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      bottom: rem(-4);
+      left: 0;
+      z-index: 1;
+      height: rem(4);
+      // 半透明の welfare 背景だとパララックスが透けて隙間に見えるため不透明色を使用
+      background-color: var(--color-bg-light);
+      pointer-events: none;
+    }
+  }
 }
 
-.interviews .l-container {
-  padding-bottom: clamp(#{rem(32)}, 6vw, #{rem(48)});
+.interviews__header {
+  width: 100%;
+  max-width: var(--container-max);
+  box-sizing: border-box;
+  // Figma 1:412 — 1280px 幅・左右 inset 40px
+  @include fluid-padding-inline(rem(16), 2.08vw, rem(40));
+}
+
+.interviews .section-heading--row {
+  width: 100%;
+  max-width: rem(1200);
+  margin: 0 auto;
+  align-items: flex-end;
+}
+
+.interviews .section-heading__title {
+  line-height: calc(43.2 / 32);
+  margin-bottom: rem(-0.56);
+}
+
+.interviews .section-heading__subtitle {
+  margin-top: 0;
+  line-height: calc(24.5 / 14);
+}
+
+.interviews .section-heading__link {
+  font-family: var(--font-body);
+  font-weight: 400;
+  line-height: 1;
 }
 
 .interviews__slider {
   position: relative;
   overflow: hidden;
+  width: 100%;
+  max-width: rem(1920);
+  // Figma 1:422 — スライダー高 690px（ナビは y=600）
+  height: clamp(#{rem(500)}, 35.94vw, #{rem(690)});
+
+  // Figma 1:473 / 1:474 — 左右 250px、内側透明 → 76% で白
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    z-index: 3;
+    width: clamp(#{rem(125)}, 13.02vw, #{rem(250)});
+    pointer-events: none;
+  }
+
+  &::before {
+    left: 0;
+    background: linear-gradient(to left, rgba(255, 255, 255, 0) 0%, var(--color-bg-jobs) 76%);
+  }
+
+  &::after {
+    right: 0;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, var(--color-bg-jobs) 76%);
+  }
 }
 
 .interviews__track {
+  position: relative;
+  z-index: 0;
   display: flex;
-  gap: rem(20);
-  padding: rem(45) clamp(#{rem(16)}, 8vw, #{rem(40)});
+  gap: 0;
+  // Figma 1:423 — inset ±440px・px 40 / py 45
+  margin-inline: clamp(#{rem(-200)}, -22.92vw, #{rem(-440)});
+  padding: rem(45) clamp(#{rem(216)}, calc(2.08vw + 22.92vw), #{rem(480)}) 0;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
@@ -497,7 +641,10 @@
 }
 
 .interview-card {
-  flex: 0 0 clamp(#{rem(280)}, 28vw, #{rem(380)});
+  // Figma a.link (1:431) — 380×600、rounded 16px（スロット 400px は margin で確保）
+  flex: 0 0 clamp(#{rem(260)}, calc(20.83vw - #{rem(20)}), #{rem(380)});
+  height: clamp(#{rem(420)}, 31.25vw, #{rem(600)});
+  margin: 0 rem(10);
   scroll-snap-align: start;
   position: relative;
   display: block;
@@ -509,7 +656,13 @@
 
 .interview-card__media {
   margin: 0;
-  aspect-ratio: 380 / 600;
+  height: 100%;
+  border-radius: rem(16);
+  overflow: hidden;
+}
+
+.interview-card .figma-media--interview {
+  isolation: auto;
 }
 
 .interview-card__body {
@@ -517,33 +670,47 @@
   right: 0;
   bottom: 0;
   left: 0;
-  padding: rem(60) rem(30) rem(30);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: rem(10.1);
+  padding: rem(60) rem(30);
   background: linear-gradient(180deg, rgba(30, 30, 30, 0) 0%, rgba(30, 30, 30, 0.6) 100%);
 }
 
 .interview-card__category {
   margin: 0;
   text-align: center;
-  font-family: var(--font-ja);
+  font-family: var(--font-body);
   font-size: rem(14);
+  font-weight: 400;
+  line-height: calc(19.6 / 14);
 }
 
 .interview-card__title {
   margin: 0;
-  margin-top: rem(10);
   text-align: center;
   font-family: var(--font-ja);
-  font-size: rem(18);
-  font-weight: 500;
-  line-height: 1.55;
+  font-size: rem(20);
+  font-weight: 700;
+  line-height: calc(28 / 20);
+}
+
+.interview-card__title-line {
+  display: block;
 }
 
 .interviews__controls {
+  position: absolute;
+  top: calc(100% - #{rem(90)});
+  right: clamp(#{rem(16)}, 22.92vw, #{rem(440)});
+  left: clamp(#{rem(16)}, 22.92vw, #{rem(440)});
+  z-index: 4;
   display: flex;
   justify-content: center;
-  gap: 0;
-  margin-top: rem(20);
-  padding-bottom: rem(45);
+  height: rem(90);
+  margin: 0;
+  padding: 0;
 }
 
 .interviews__btn {
@@ -552,10 +719,19 @@
   justify-content: center;
   width: rem(90);
   height: rem(90);
-  border: 1px solid var(--color-border);
-  background: var(--color-white);
+  padding: 0;
+  border: 0;
+  background: var(--color-dark);
   cursor: pointer;
-  color: var(--color-text);
+  color: var(--color-white);
+}
+
+.interviews__btn--prev {
+  border-radius: rem(30) 0 0 rem(30);
+}
+
+.interviews__btn--next {
+  border-radius: 0 rem(30) rem(30) 0;
 }
 
 .interviews__btn .material-icons {
@@ -564,9 +740,43 @@
 
 // ---- Welfare ----
 .welfare {
-  background: var(--color-bg-welfare);
+  position: relative;
+  z-index: 4;
+  width: 100%;
+  margin-top: 0;
+  border-top: 0;
+  background-color: var(--color-bg-welfare);
   border-bottom: 1px solid var(--color-border);
   backdrop-filter: blur(5px);
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: rem(-4);
+    right: 0;
+    left: 0;
+    z-index: 1;
+    height: rem(4);
+    background-color: var(--color-bg-light);
+    pointer-events: none;
+  }
+
+  // 直下が blog — 区切り線・パララックス割れ防止
+  &:has(+ .blog) {
+    border-bottom: 0;
+
+    &::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      bottom: rem(-4);
+      left: 0;
+      z-index: 1;
+      height: rem(4);
+      background-color: var(--color-bg-jobs);
+      pointer-events: none;
+    }
+  }
 }
 
 .welfare .section-heading {
@@ -614,8 +824,25 @@
 
 // ---- Blog ----
 .blog {
-  background: var(--color-white);
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  margin-top: 0;
+  border-top: 0;
+  background-color: var(--color-bg-jobs);
   border-bottom: 1px solid var(--color-border);
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: rem(-4);
+    right: 0;
+    left: 0;
+    z-index: 1;
+    height: rem(4);
+    background-color: var(--color-bg-jobs);
+    pointer-events: none;
+  }
 }
 
 .blog .section-heading {
@@ -714,67 +941,118 @@
 
 // ---- FAQ ----
 .faq {
-  background: var(--color-white);
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  background-color: var(--color-bg-jobs);
   border-bottom: 1px solid var(--color-border);
+  // Figma 1:353 — pt 100 / pb 101
+  @include fluid-spacing(padding-top, rem(64), 5.21vw, rem(100));
+  @include fluid-spacing(padding-bottom, rem(64), 5.26vw, rem(101));
 }
 
 .faq__inner {
   display: flex;
-  gap: clamp(#{rem(32)}, 6vw, #{rem(80)});
+  gap: clamp(#{rem(40)}, 4.17vw, #{rem(80)});
   align-items: flex-start;
+  width: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  box-sizing: border-box;
+  // Figma 1:354 — 1280px 幅・左右 inset 40px
+  @include fluid-padding-inline(rem(16), 2.08vw, rem(40));
 }
 
 .faq .section-heading {
-  flex: 0 1 30%;
+  flex: 0 1 31.11%;
   min-width: 0;
 }
 
+.faq .section-heading__title {
+  line-height: calc(43.2 / 32);
+  margin-bottom: rem(-0.56);
+}
+
+.faq .section-heading__subtitle {
+  margin-top: 0;
+  line-height: calc(24.5 / 14);
+}
+
 .faq__list {
-  flex: 1 1 58%;
+  display: flex;
+  flex-direction: column;
+  gap: rem(10);
+  flex: 0 1 62.22%;
   min-width: 0;
 }
 
 .faq-item {
-  border: 1px solid var(--color-border);
-  border-radius: rem(8);
-  margin-top: rem(10);
-}
-
-.faq-item:first-child {
-  margin-top: 0;
+  background: var(--color-white);
+  border-radius: rem(12);
 }
 
 .faq-item__question {
   display: flex;
   align-items: center;
-  gap: rem(20);
+  justify-content: space-between;
+  gap: rem(16);
   padding: rem(16);
+  border: 1px solid transparent;
+  border-radius: rem(12);
   cursor: pointer;
   list-style: none;
-  font-family: var(--font-ja);
-  font-size: rem(16);
-  font-weight: 500;
 }
 
 .faq-item__question::-webkit-details-marker {
   display: none;
 }
 
+.faq-item__label {
+  display: flex;
+  flex: 1 1 auto;
+  gap: rem(20);
+  align-items: flex-start;
+  min-width: 0;
+}
+
 .faq-item__q {
   flex-shrink: 0;
+  color: var(--color-text);
   font-family: var(--font-en);
+  font-size: rem(28);
+  font-weight: 500;
+  line-height: 1;
+}
+
+.faq-item__text {
+  color: var(--color-text);
+  font-family: var(--font-ja);
   font-size: rem(18);
-  font-weight: 700;
+  font-weight: 500;
+  line-height: calc(33.3 / 18);
+}
+
+.faq-item__icon-wrap {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: rem(20);
+  height: rem(20);
+  border: 1px solid var(--color-text);
+  border-radius: 50%;
 }
 
 .faq-item__icon {
-  margin-left: auto;
   font-size: rem(14);
+  line-height: 1;
+  transform: rotate(90deg);
   transition: transform 0.2s;
 }
 
 .faq-item[open] .faq-item__icon {
-  transform: rotate(90deg);
+  transform: rotate(-90deg);
 }
 
 .faq-item__answer {
@@ -790,161 +1068,350 @@
 
 // ---- CTA ----
 .top-cta {
-  background: var(--color-bg-light);
-  border-bottom: 1px solid var(--color-border);
+  position: relative;
+  z-index: 6;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  // Figma 1:476
+  background-color: var(--color-bg-cta);
+
+  // 直下が footer — パララックス割れ防止
+  &::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: rem(-4);
+    left: 0;
+    z-index: 1;
+    height: rem(4);
+    background-color: var(--color-dark);
+    pointer-events: none;
+  }
+}
+
+.top-cta__inner {
+  width: 100%;
+  // Figma 1:477 — py 120 / px 100
+  @include fluid-spacing(padding-top, rem(64), 6.25vw, rem(120));
+  @include fluid-spacing(padding-bottom, rem(64), 6.25vw, rem(120));
+  @include fluid-padding-inline(rem(16), 5.21vw, rem(100));
 }
 
 .top-cta__grid {
   display: flex;
-  gap: clamp(#{rem(40)}, 6vw, #{rem(120)});
-  flex-wrap: wrap;
+  gap: clamp(#{rem(40)}, 4.17vw, #{rem(80)});
+  align-items: flex-start;
+  width: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  box-sizing: border-box;
+  // Figma 1:478 — 1280px 幅・左右 inset 40px
+  @include fluid-padding-inline(rem(16), 2.08vw, rem(40));
 }
 
 .top-cta__block {
-  flex: 1 1 40%;
-  min-width: rem(280);
+  display: flex;
+  flex-direction: column;
+  gap: rem(30);
+  align-items: flex-start;
+  min-width: 0;
+}
+
+.top-cta__block--casual {
+  flex: 0 1 31.11%;
+}
+
+.top-cta__block--entry {
+  flex: 0 1 62.22%;
+}
+
+.top-cta__icon-wrap {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: rem(60);
+  height: rem(60);
+  border: 1px solid var(--color-border-light);
+  border-radius: rem(64);
 }
 
 .top-cta__icon {
-  font-size: rem(36);
-  color: var(--color-text);
+  color: var(--color-white);
+  font-size: rem(24);
+  line-height: 1;
+}
+
+.top-cta__content {
+  display: flex;
+  flex-direction: column;
+  gap: rem(10);
 }
 
 .top-cta__title {
   margin: 0;
-  margin-top: rem(30);
+  color: var(--color-white);
   font-family: var(--font-ja);
-  font-size: rem(18);
+  font-size: rem(20);
   font-weight: 700;
+  line-height: calc(27 / 20);
 }
 
 .top-cta__text {
   margin: 0;
-  margin-top: rem(10);
-  @include section-copy-font-size;
-  color: var(--color-text-muted);
-  line-height: 1.75;
+  color: var(--color-border-light);
+  font-family: var(--font-body);
+  font-size: rem(14);
+  font-weight: 500;
+  line-height: calc(24.5 / 14);
 }
 
 .top-cta__btn {
   display: inline-flex;
-  align-items: center;
-  gap: rem(15);
-  margin-top: rem(30);
-  padding: rem(19) rem(25);
-  border: 1px solid var(--color-text);
+  padding-bottom: rem(3);
+  border-bottom: rem(3) solid transparent;
   border-radius: rem(128);
   text-decoration: none;
-  color: var(--color-text);
-  font-family: var(--font-ja);
-  font-size: rem(14);
-  font-weight: 500;
 }
 
-.top-cta__btn .material-icons {
+.top-cta__btn-inner {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: rem(10);
+  height: rem(56);
+  padding: 0 rem(25);
+  border: 1px solid var(--color-text-muted);
+  border-radius: rem(128);
+  background: var(--color-white);
+}
+
+.top-cta__block--casual .top-cta__btn-inner {
+  min-width: rem(207);
+}
+
+.top-cta__block--entry .top-cta__btn-inner {
+  min-width: rem(226);
+}
+
+.top-cta__btn-text {
+  color: var(--color-text);
+  font-family: var(--font-ja);
+  font-size: rem(18);
+  font-weight: 500;
+  line-height: 1;
+}
+
+.top-cta__btn-icon-wrap {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: rem(20);
+  height: rem(20);
+  border: 1px solid var(--color-text);
+  border-radius: 50%;
+}
+
+.top-cta__btn-icon {
   font-size: rem(14);
+  line-height: 1;
+  color: var(--color-text);
 }
 
 // ---- Footer ----
 .top-footer {
-  background: var(--color-dark);
+  position: relative;
+  z-index: 7;
+  width: 100%;
+  margin-top: 0;
+  border-top: 0;
   color: var(--color-white);
-  @include fluid-padding-y(rem(64), 8vw, rem(80));
+  // Figma 1:510 — bg #242528 / pt 80 / pb 100 / px 100
+  background-color: var(--color-dark);
+  @include fluid-spacing(padding-top, rem(64), 4.17vw, rem(80));
+  @include fluid-spacing(padding-bottom, rem(64), 5.21vw, rem(100));
+  @include fluid-padding-inline(rem(16), 5.21vw, rem(100));
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: rem(-4);
+    right: 0;
+    left: 0;
+    z-index: 1;
+    height: rem(4);
+    background-color: var(--color-dark);
+    pointer-events: none;
+  }
 }
 
-.top-footer__top {
+.top-footer__inner {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: rem(1720);
+  margin: 0 auto;
+}
+
+.top-footer__main {
+  display: flex;
+  gap: rem(60);
   align-items: flex-start;
-  gap: rem(40);
+  width: 100%;
+  max-width: var(--container-max);
+  box-sizing: border-box;
+  // Figma 1:512 — 1280px 幅・左右 inset 40px
+  @include fluid-padding-inline(rem(16), 2.08vw, rem(40));
 }
 
 .top-footer__nav {
   display: flex;
-  gap: clamp(#{rem(40)}, 8vw, #{rem(90)});
-  padding-top: rem(80);
+  flex: 1 1 auto;
+  gap: rem(90);
+  min-width: 0;
+  // Figma 1:513 — nav 上 inset 160px
+  padding-top: clamp(#{rem(48)}, 8.33vw, #{rem(160)});
 }
 
 .top-footer__nav-primary,
 .top-footer__nav-secondary {
+  display: flex;
+  flex-direction: column;
+  gap: rem(30);
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.top-footer__nav-primary li,
-.top-footer__nav-secondary li {
-  margin-top: rem(30);
-}
-
-.top-footer__nav-primary li:first-child,
-.top-footer__nav-secondary li:first-child {
-  margin-top: 0;
+.top-footer__nav-primary a,
+.top-footer__nav-link {
+  font-family: var(--font-body);
+  font-weight: 500;
+  color: var(--color-white);
+  text-decoration: none;
 }
 
 .top-footer__nav-primary a {
-  font-family: var(--font-body);
   font-size: rem(18);
-  font-weight: 500;
-  color: var(--color-white);
-  text-decoration: none;
+  line-height: 1;
 }
 
-.top-footer__nav-secondary a {
-  font-family: var(--font-body);
+.top-footer__nav-link {
   font-size: rem(14);
-  font-weight: 500;
-  color: var(--color-white);
-  text-decoration: none;
+  line-height: 1;
 }
 
-.top-footer__external {
-  margin-left: rem(5);
-  font-size: rem(12);
-  opacity: 0.8;
+.top-footer__nav-link--external {
+  display: inline-flex;
+  gap: rem(5);
+  align-items: center;
+}
+
+.top-footer__external-icon {
+  display: block;
+  flex-shrink: 0;
+  width: rem(12);
+  height: rem(12);
 }
 
 .top-footer__sns {
   display: flex;
+  flex-shrink: 0;
   gap: rem(10);
+  align-items: center;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.top-footer__sns a {
+.top-footer__sns-item {
+  // Figma 1:558 / 1:562 / 1:568 — margin wrapper pt 1px
+  padding-top: rem(1);
+}
+
+.top-footer__sns-link {
   display: flex;
   align-items: center;
   justify-content: center;
   width: rem(48);
   height: rem(48);
   border-radius: rem(8);
-  color: var(--color-text-light);
+  line-height: 0;
   text-decoration: none;
-  font-size: rem(20);
+}
+
+.top-footer__sns-link--x {
+  padding: rem(12);
+  box-sizing: border-box;
+}
+
+.top-footer__sns-icon {
+  display: block;
+  flex-shrink: 0;
+}
+
+.top-footer__sns-icon--x {
+  width: rem(24);
+  height: rem(24);
+}
+
+.top-footer__sns-icon--facebook {
+  width: rem(11.44);
+  height: rem(20);
+}
+
+.top-footer__sns-icon--youtube {
+  width: rem(20);
+  height: rem(20);
+}
+
+.top-footer__brand {
+  width: 100%;
+  max-width: var(--container-max);
+  box-sizing: border-box;
+  // Figma 1:575 — ロゴ上 inset 100px
+  padding-top: clamp(#{rem(48)}, 5.21vw, #{rem(100)});
+  @include fluid-padding-inline(rem(16), 2.08vw, rem(40));
 }
 
 .top-footer__logo {
-  margin-top: clamp(#{rem(48)}, 8vw, #{rem(100)});
+  line-height: 0;
 }
 
 .top-footer__logo img {
+  display: block;
   width: rem(350);
   max-width: 100%;
   height: auto;
+  aspect-ratio: 350 / 58.33;
 }
 
 .top-footer__copy {
+  width: 100%;
+  max-width: var(--container-max);
   margin: 0;
-  margin-top: rem(40);
+  box-sizing: border-box;
   text-align: right;
   font-family: var(--font-body);
   font-size: rem(14);
+  font-weight: 400;
+  line-height: 1;
   color: rgba(255, 255, 255, 0.95);
+  @include fluid-padding-inline(rem(16), 2.08vw, rem(40));
 }
 
 // ---- Responsive ----
 @include mq-md {
+  .mission__label {
+    position: static;
+    width: auto;
+    padding-right: 0;
+    text-align: left;
+  }
+
   .job-card {
     flex: 0 1 calc(50% - #{rem(15)});
   }
@@ -959,6 +1426,15 @@
 
   .faq__inner {
     flex-direction: column;
+  }
+
+  .top-cta__grid {
+    flex-direction: column;
+  }
+
+  .top-cta__block--casual,
+  .top-cta__block--entry {
+    flex: 0 1 100%;
   }
 }
 
@@ -1034,16 +1510,15 @@
     flex-direction: column;
   }
 
-  .mission__text-block {
-    grid-template-columns: 1fr;
-  }
-
-  .mission__label {
-    text-align: left;
+  .mission__content {
+    flex: 0 1 100%;
   }
 
   .mission__figure {
+    flex: 0 1 100%;
     width: 100%;
+    height: auto;
+    aspect-ratio: 373 / 400;
   }
 
   .job-card,
@@ -1059,7 +1534,7 @@
     flex: 0 1 50%;
   }
 
-  .top-footer__top {
+  .top-footer__main {
     flex-direction: column;
   }
 

@@ -52,6 +52,14 @@ function initInterviewSlider() {
     return card ? card.offsetWidth + 20 : 400;
   };
 
+  const setInitialScroll = () => {
+    // Figma 1:423 — トラック x=-440 でビューポート左端が 440px 位置
+    const offset = Math.min(slider.offsetWidth * 0.2292, 440);
+    track.scrollLeft = offset;
+  };
+
+  setInitialScroll();
+
   prev.addEventListener("click", () => {
     track.scrollBy({ left: -scrollAmount(), behavior: "smooth" });
   });
