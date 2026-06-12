@@ -1,0 +1,7 @@
+{
+  "source": "get_design_context",
+  "nodeId": "1:2",
+  "page": "services",
+  "fetchedAt": "2026-05-06T01:08:00+09:00",
+  "note": "Figma MCP は React+Tailwind 参照コードを返却。本プロジェクトでは静的 HTML/SCSS に移植。画像は取得指示なしのためローカル保存は行わず、MCP の localhost アセット URL を参照して実装。"
+}

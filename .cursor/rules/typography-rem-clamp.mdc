@@ -1,0 +1,121 @@
+---
+description: タイポ・見出し clamp・セクション説明 PC16/SP14。margin/padding は clamp(rem, vw, rem) + fluid-spacing ミックスイン
+globs: src/sass/**/*.scss,src/**/*.html
+alwaysApply: true
+---
+
+# タイポグラフィ・縦余白（rem 段階 + 見出し／大きな間隔は fluid）
+
+## カンプ通り → その値を基準に `clamp`（運用の順番）
+
+1. **まずカンプどおりに仕上げる**  
+   SP フレーム・PC フレーム（または該当ブレークポイント）で、**固定の `rem()`** やレイアウトをカンプに合わせて確定する。
+2. **カンプで決まった px を `rem()` に落とす**  
+   `src/sass/foundation/_functions.scss` の **`rem()`**（ルート 16px 前提）を使う。
+3. **`clamp` にするときは、カンプの値を min / max に据える**  
+   - **狭い方のフレームの指定** → **`clamp` の最小**  
+   - **広い方のフレームの指定** → **`clamp` の最大**  
+   見出し階層など **論理が崩れないよう**、必要なら min/max をカンプよりわずかに調整してよい（ただし理由をコメントに残す）。
+4. **中間（推奨値）を決める**  
+   サイト内で既に使っている **`vw` の語感**（例: セクション英字と揃える `5vw`）に寄せるか、**2 点をつなぐ式**（例: `rem(A) + Nvw`）で決める。カンプが与えるのは通常「2点」なので、**3つ目は実装側で滑らかにつなぐ係数**として選ぶ。
+
+## margin / padding は「中央を `vw`」（font-size は現状ルールのまま）
+
+- **`font-size` はこれまでのルール**（見出しは `clamp`、説明文は `section-copy-font-size`、その他 `rem`）を変えない。
+- **`margin` と `padding` は、基準とする間隔を「幅に追従する `vw`」で持ちたい**。実装の型は **`clamp(最小 rem, ○vw, 最大 rem)`**：  
+  - **最小・最大** … カンプの SP / PC を `rem()` で固定  
+  - **中央** … サイト幅に比例させたい量を **`vw`**（必要なら `rem + vw` の線形でも可）
+- **裸の `margin: 3vw` のように下限なしの `vw` だけ**は避け、**はみ出し・タッチ領域不足**を防ぐ。
+- **実装**: `src/sass/foundation/_mixins.scss` の **`@mixin fluid-spacing`**（任意プロパティ）と **`@mixin fluid-padding-inline`**（左右パディングの定番）。
+
+```scss
+@include fluid-spacing(padding-top, rem(48), 10vw, rem(96));
+@include fluid-spacing(margin-top, rem(32), 8vw, rem(48));
+@include fluid-padding-inline(rem(24), 6vw, rem(48));
+@include fluid-padding-y(rem(64), 12vw, rem(120)); // 上下同一
+@include fluid-padding-all(rem(28), 6vw, rem(48)); // 四辺同一
+@include fluid-gap(rem(32), 8vw, rem(64));
+```
+
+既存の **`rem` だけの余白**は、触るタイミングで上記に寄せてよい（一括必須ではない）。
+
+### 例外：テキストを包む UI の内側余白は `em`
+
+- **レイアウト用の余白**（セクション外周・カードの外枠・ブロック間の `fluid-spacing` / `fluid-padding-*` など）は上記どおり **`clamp(rem, vw, rem)`** でよい。**フォントサイズとは切り離す**。
+- **ラベル行・ボタン・バッジ／チップ・送信ボタンなど、文字そのものを囲んで見た目が「文字サイズ × 箱」になるパーツ**の **`padding`（と必要なら同種の `gap`）** は、**フォントが一段小さくなっても比率が保てるよう、その要素の `font-size` を基準にした `em`** で指定する。
+- **`em` の基準**はそのボックス自身の `font-size`。**親だけが `section-copy-font-size` で小さくなる場合**など、`padding` の見え方をラベル文字に合わせたいときは、行ラッパに **ラベルと同じ段階の `font-size`** を明示してから `padding` を `em` にする。
+- **最小タッチ領域**が必要なボタンは、`min-height` / `min-width` を **`rem` で確保**してよい（アクセシビリティはルート基準で見ることが多い）。
+
+## ブロック間の縦方向（`margin-top` のみ）
+
+- **要素同士の間隔**は **後続要素側の `margin-top`** で取る。**正の `margin-bottom` で間を開けない**。
+- **`margin-bottom` は基本的に書かない**。`p` / `h1` など **ブラウザ既定マージンを消す**ときは **`margin: 0`** とし、間隔は **`margin-top` だけ**指定する（例: `margin: 0; margin-top: rem(24);`）。
+- **`margin-bottom: 0` を単独で並べる書き方は避ける**（ルールと見た目がずれるため）。リセットが必要なら `margin: 0` にまとめる。
+- **セクション外周の上下余白**は **`padding`**（`.section` の `padding-top` / `padding-bottom` など）でとることがあり、これは「下マージンで詰める」こととは別物。
+
+## 縦余白の fluid（`clamp`）
+
+- **margin / padding** は上記どおり **中央項を `vw`** とするのを標準とする（**font-size とは切り離す**）。
+- **狭い幅で「間が広すぎ」に感じるブロック間**は、いきなり `rem` だけで詰めず、**カンプの SP・PC を min/max にした `clamp`** を検討する。
+- **サイト内で既に使っている語感**に寄せる（実装の一例）:
+  - **48px 相当の区切り** → `clamp(rem(32), 8vw, rem(48))`
+  - **64px 相当の区切り** → `clamp(rem(40), 10vw, rem(64))`
+  - **24px 相当の区切り** → `clamp(rem(16), 4vw, rem(24))`
+- **12px 未満のリズム**（サブタイトル直下など）は **`rem` のまま**でよいことが多い。
+- **親がすでに `gap` で縦間隔を管理**しているスタックでは、子に `margin-top` を重ねすぎない。
+
+## セクション説明文（PC 16px / SP 14px）
+
+- **ページ見出し・セクション英字タイトル・サブタイトル行・ヒーローリード**には適用しない。
+- **各セクションの説明・段落**（見出しの後ろで読む本文）には **`src/sass/foundation/_mixins.scss` の `@mixin section-copy-font-size`** を使う。**広い画面では `rem(16)`、`@include mq`（max-width 768px）以下では `rem(14)`** で、狭い幅の読みにくい改行を緩和する。
+- **適用のしかた**: 該当セレクタで `font-size: rem(16)` の直書きをやめ、**`@include section-copy-font-size;`** とする。ユーティリティ **`section-body`** を付ける段落が増える場合は **`.section-body` にミックスインを集約**し、個別セレクタと二重に指定しない。
+- **除外の例**: ナビ・ボタン・フォームの入力値／ラベル・ニュースカードタイトル・「ページヒーロー直下リード」・サービス一覧の **見出し横リード**（`.services-overview__lead` など設計でリード扱いのもの）・極小ラベル（`rem(13)` 以下に決めたもの）。
+
+```scss
+@use "../../foundation/mixins" as *;
+
+.what-we-do__text {
+  @include section-copy-font-size;
+}
+```
+
+## ボタンラベル（PC 16px / SP 14px）
+
+- **`.btn` の標準ラベル**や **ヒーロー CTA（`.section-actions--hero .btn.btn--dark` / `.btn.btn--light` の共通指定）**は、本文と同じ **`@include mq`（max-width 768px）** で **`rem(14)`** に落とす。実装は **`@mixin button-label-font-size`**（`_mixins.scss`）。
+- **`.btn--dark`**（サービス CTA・コンタクト送信など）は **もともと `rem(14)` 固定**のため、このミックスインは当てない。
+- **`.btn--light` に矢印があるとき**は、SP でラベルが `14px` に合わせ **` › ` アイコンをわずかに縮める**（`.btn:not(.btn--dark) .btn__arrow` の `@include mq`）。
+
+## 二本柱（タイポグラフィ）
+
+1. **固定的なタイポスケール（`rem()`）**  
+   **セクション説明文**以外の UI・ラベル・注釈・フッター細字などは **`rem()` で段階指定**する（例: `rem(14)`, `rem(16)`）。**説明段落は上記 `@include section-copy-font-size`** で統一する。
+
+2. **見出しだけ fluid（`clamp()`）**  
+   **ヒーロー見出し・セクション英字タイトル（`.section-title` など）・ページヒーローのディスプレイ見出し**のように、**画面幅に応じてサイズ幅が大きいもの**だけ `font-size: clamp(...)` を使う。  
+   `clamp()` の **最小・最大は必ず `rem()` で書く**（ルートフォント前提を崩さない）。
+
+```scss
+// ✅ 見出し（fluid）
+.section-title {
+  font-size: clamp(#{rem(28)}, 5vw, #{rem(48)});
+}
+
+// ✅ 本文・UI（固定段階）
+.contact-field__label {
+  font-size: rem(14);
+}
+```
+
+## やらないこと
+
+- **すべてのテキストを `clamp` にしない**（再現性・保守・階層設計が崩れやすい）。
+- ボタン・入力・チェックボックスラベルなどを、ブレークポイントなしで無意味に `vw` だけで動かさない。
+
+## 見出し階層（重要）
+
+- **親より子の `font-size` が大きく見えない**ようにする。  
+  例: `.section-title`（h2）が狭い幅で `clamp` の下限に張り付くとき、直下の h3 が **`rem` 固定で常に大きい**と、h2 より h3 が目立つ。**必要なら子側も `clamp`** で下限を親以下に抑える。
+
+## 実装メモ
+
+- Sass（`src/sass/**/*.scss`）がソース。**コンパイル後の `src/public/assets/css/*.css` は手編集しない**。変更後は `npm run build`。

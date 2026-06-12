@@ -1,0 +1,10 @@
+@use "../foundation/functions" as *;
+@use "../foundation/mixins" as *;
+
+.l-container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding-top: 0;
+  padding-bottom: 0;
+  @include fluid-padding-inline(rem(16), 4vw, rem(24));
+}

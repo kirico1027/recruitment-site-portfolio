@@ -1,0 +1,51 @@
+---
+description: セクションBEM・見出し幅・スタイルの単一ソース（静的HTML/SCSS）
+globs: src/**/*.html,src/**/*.ejs,src/sass/**/*.scss
+alwaysApply: true
+---
+
+# マークアップとスタイルの慣習
+
+## タイポグラフィ・縦余白
+
+- **タイポ（rem + 見出しの clamp）**、**セクション説明文の PC16 / SP14（`section-copy-font-size`）**、**margin/padding は `clamp(rem, vw, rem)` と `fluid-spacing`**（**テキストを包む UI の内側余白は `em`** と役割分担）、**ブロック間の `margin-top`** は **`typography-rem-clamp.mdc`** にまとめる。
+
+## セクション単位の BEM（親子が名前で分かること）
+
+- セクションに付与する識別子（例: `careers`）をブロック名として、その中の要素は **`{block}__{element}`** に揃える（例: `careers__content`, `careers__media`）。
+- そのセクションでしか使わない要素に、別ブロック名＋修飾子（例: `img-card img-card--careers`）を付けない。汎用ブロックにするなら **2箇所以上で本当に共通化**しているときだけ。
+- 背景画像の `div` などに `img` を含むクラス名は避け、実装に近い語（`__media`, `__visual`, `__figure` など）を使う。
+
+## 狭いカラム内の見出し・テキスト
+
+- `display: flex` の子やパーセント幅のカラム内では、はみ出し防止に **`min-width: 0`** を親方針で検討する。
+- 見出し（`.section-title` など `clamp()` で大きくなる文字）に **任意の狭い `width: N%` / `max-width: N%` を単独で当てない**。カラムいっぱいに使うなら `width: 100%; max-width: 100%; box-sizing: border-box;` を基本とする。
+
+## カラム幅（2カラム/グリッド）の指定
+
+- 2カラムやカードグリッドなど、**横並びの列幅は原則 `%` 指定**で管理する（`width` / `flex-basis` / `max-width` を含む）。
+- **禁止**: 列幅の主指定として `flex: 0 0 rem(...)` や固定 `px` 幅を使うこと（レイアウト崩れ対応で一時的に入れても最終的に `%` へ戻す）。
+- 例外として固定値を許可するのは、`border`、1pxライン、アイコンサイズ、影、微調整オフセットなど **幅そのものを決めない値**に限定する。
+- カラム幅を `%` で指定する場合でも、はみ出し防止に **`min-width: 0`** を併用し、必要なら `gap` で残余スペースを吸収する。
+
+## スタイルの単一ソース
+
+- このプロジェクトでは Sass（`src/sass/pages/**/*.scss` など）を編集し、**コンパイル後の `src/public/assets/css/*.css` を手編集しない**（緊急時を除く）。変更後は `npm run build`（`gulp styles`）で CSS を再生成する。
+
+## ヘッダー（`.top-header`）
+
+- スタイルは **`src/sass/pages/top/_top.scss`** が単一ソース（複数ページのエントリー SCSS から読み込まれる）。
+- **ナビ幅**: `.top-header__nav` を **`flex-grow` で横いっぱいに伸ばしたうえで**、内側だけ **`justify-content: flex-end`** にすると、**ナビボックス左側に無駄な余白**ができる。ナビは **コンテンツ幅に収める（伸ばさない）** のが基本。ロゴとナビの配置は親 `.top-header__inner` の **`justify-content: space-between`** に任せる。
+- **ロゴのマークアップ**: `<a class="top-header__logo">` と `<img>` の **間に改行・インデントだけのテキストノードを置かない**（`display: flex` の匿名子として隙間になる）。**1行にまとめる**か、意図したラッパで空白ノードを作らない。
+- **ロゴ SVG**: 埋め込み用はルートを **`width` / `height` の `100%` のみに頼らない**。**`viewBox` に沿った明示サイズ**など、置換要素として intrinsic 幅が安定する形にする。
+- **ロゴリンクのボックス**: 親を画像幅に寄せるときは **`display: inline-block`** と **`line-height: 0`**（ベースライン隙間対策）を検討する。
+
+## 画像のアスペクト比
+
+- 原則として、**画像の表示枠には `aspect-ratio` を指定**する（`figure` / `__media` / `__figure` などのラッパー要素）。
+- 原則として `img` 直指定ではなく、`figure` や `__media` / `__figure` などのラッパー要素に `aspect-ratio` を指定する。
+- 比率は Figma 指定値（例: `480 / 447`）に合わせる。併せて `img` 側は `width: 100%; height: 100%; object-fit: cover;` を基本とする。
+- 次のケースは例外として、このルールの対象外とする。
+  - 比率が事前に確定しない画像（外部由来・ユーザー投稿など）
+  - ロゴ、アイコン、小さな装飾画像（サイト内で固定比率の表示枠を持たないもの）
+  - ヒーロー等で `min-height` 主体のレイアウト制御が必要で、`aspect-ratio` を主軸にしない設計

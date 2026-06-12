@@ -1,0 +1,7 @@
+{
+  "source": "get_screenshot",
+  "nodeId": "1:2",
+  "page": "company",
+  "fetchedAt": "2026-05-05T00:35:00+09:00",
+  "note": "Playwright フルページ出力例（2026-05-05）: coding-md/mcp-log/company/screenshots/company_fullpage_pc_20260505_003850.png / company_fullpage_sp_20260505_003850.png。Figma 比較は MCP get_screenshot（node 1:2）と並べて確認。"
+}

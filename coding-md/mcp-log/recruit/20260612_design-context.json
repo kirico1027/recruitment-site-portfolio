@@ -1,0 +1,19 @@
+{
+  "source": "get_design_context",
+  "nodeId": "1:2",
+  "fetchedAt": "2026-06-12",
+  "page": "recruit",
+  "sections": ["1:580", "1:9", "1:12", "1:23", "1:178", "1:242", "1:353", "1:475", "1:510"],
+  "fonts": {
+    "ja": "Noto Sans JP",
+    "en": "Inter",
+    "body": "Lato",
+    "icons": "Material Icons"
+  },
+  "colors": {
+    "text": "#242528",
+    "textMuted": "rgba(36, 37, 40, 0.7)",
+    "bgLight": "#f8f8f9",
+    "dark": "#242528"
+  }
+}

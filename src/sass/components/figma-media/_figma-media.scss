@@ -1,0 +1,126 @@
+@use "../../foundation/functions" as *;
+
+// Figma の absolute 配置画像を再現する共通フレーム
+.figma-media {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate; // オーバーレイの blend がページ背景と合成されないようにする
+}
+
+.figma-media__img {
+  position: absolute;
+  max-width: none;
+}
+
+.figma-media__overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.figma-media__overlay--saturation {
+  background-color: rgba(255, 255, 255, 0.2);
+  mix-blend-mode: saturation;
+}
+
+.figma-media__overlay--gallery-saturation {
+  background: rgba(255, 255, 255, 0.5);
+  mix-blend-mode: saturation;
+}
+
+// ヒーロー暖色補正（赤みのみ、彩度は上げない）
+.figma-media__overlay--hero-warm {
+  background: linear-gradient(
+    180deg,
+    rgba(190, 60, 40, 0.08) 0%,
+    rgba(155, 40, 28, 0.11) 100%
+  );
+  mix-blend-mode: soft-light;
+}
+
+// ヒーロー（1:6）— h-full, left -0.98%, w 101.96%
+.figma-media--hero .figma-media__img {
+  top: 0;
+  left: -0.98%;
+  width: 101.96%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  filter: hue-rotate(-4deg);
+}
+
+// ミッション（1:22）— h 140%, top -20%
+.figma-media--mission .figma-media__img {
+  top: -20%;
+  left: 0;
+  width: 100%;
+  height: 140%;
+}
+
+// 職種カード標準（1:33 等）— h 126.32%, top -13.16%
+.figma-media--job .figma-media__img {
+  top: -13.16%;
+  left: 0;
+  width: 100%;
+  height: 126.32%;
+}
+
+// カスタマーサクセス（1:97）— h 124.74%, top -12.37%
+.figma-media--job-cs .figma-media__img {
+  top: -12.37%;
+  left: 0;
+  width: 100%;
+  height: 124.74%;
+}
+
+// インタビュー — w 236.84%, left -68.42%
+.figma-media--interview .figma-media__img {
+  top: 0;
+  left: -68.42%;
+  width: 236.84%;
+  height: 100%;
+}
+
+// ブログ — size 150.52%, left/top -25.26%
+.figma-media--blog .figma-media__img {
+  top: -25.26%;
+  left: -25.26%;
+  width: 150.52%;
+  height: 150.52%;
+}
+
+// ギャラリー個別クロップ
+// ギャラリー01 — h 106.8%, top -3.4%
+.figma-media--gallery-01 .figma-media__img {
+  top: -3.4%;
+  left: 0;
+  width: 100%;
+  height: 106.8%;
+}
+
+// ギャラリー02 — h-full, left -5.52%, w 111.03%
+.figma-media--gallery-02 .figma-media__img {
+  top: 0;
+  left: -5.52%;
+  width: 111.03%;
+  height: 100%;
+}
+
+.figma-media--gallery-03 .figma-media__img,
+.figma-media--gallery-04 .figma-media__img,
+.figma-media--gallery-05 .figma-media__img,
+.figma-media--gallery-06 .figma-media__img,
+.figma-media--gallery-08 .figma-media__img,
+.figma-media--gallery-09 .figma-media__img {
+  top: -3.33%;
+  left: 0;
+  width: 100%;
+  height: 106.65%;
+}
+
+.figma-media--gallery-07 .figma-media__img {
+  top: -75.91%;
+  left: 0;
+  width: 100%;
+  height: 251.82%;
+}

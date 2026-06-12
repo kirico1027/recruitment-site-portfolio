@@ -1,0 +1,17 @@
+# dependencies
+node_modules/
+
+# macOS
+.DS_Store
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# build cache / temp
+.sass-cache/
+.cache/
+
+# generated css source maps
+src/public/assets/css/*.map

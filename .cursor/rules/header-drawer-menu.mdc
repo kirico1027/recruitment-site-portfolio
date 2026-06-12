@@ -1,0 +1,24 @@
+---
+description: ハンバーガーメニューとドロワーの共通実装ルール
+globs: src/**/*.html,src/public/assets/js/**/*.js,src/sass/**/*.scss
+alwaysApply: true
+---
+
+# Header Drawer Rule
+
+- ヘッダー開閉は `top-header__menu-toggle` を主ボタンとして実装する。
+- メニュー開閉状態は `top-header--menu-open` クラスで統一管理する。
+- 3本線→2本線バツは `top-header__menu-toggle-bar` 自体の `top/rotate/opacity` 変形で作る（別要素で代替しない）。
+- `top-header__drawer-close` は補助ボタン。表示する場合でも、アニメーションの主役は `top-header__menu-toggle` とする。
+- ドロワー表示中のバツ表示は `top-header__menu-toggle` を前面表示できる `z-index` と配置基準で管理する。
+- モバイル開閉トリガーは `toggle click / backdrop click / Escape / nav link click` を `script.js` で共通化する。
+- JS は `src/public/assets/js/script.js` に集約し、ページ個別のインライン script は追加しない。
+- ヘッダースタイルは `src/sass/pages/top/_top.scss` を単一ソースとし、生成済み CSS を直接編集しない。
+
+## Example
+
+```js
+header.classList.toggle("top-header--menu-open", open);
+toggle.setAttribute("aria-expanded", open ? "true" : "false");
+```
+

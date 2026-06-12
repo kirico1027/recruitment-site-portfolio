@@ -1,0 +1,8 @@
+<frame id="1:9" name="div" x="1804.4100341796875" y="0" width="115.58999633789062" height="896.8900146484375">
+  <frame id="1:10" name="p.text:margin" x="48" y="442.8700256347656" width="19.59000015258789" height="95">
+    <frame id="1:11" name="p.text" x="0" y="0" width="19.59000015258789" height="71">
+      <text id="1:12" name="SCROLL" x="17.59000015258789" y="0" width="20" height="69" />
+    </frame>
+  </frame>
+  <rounded-rectangle id="1:13" name="div.appear" x="57.29499816894531" y="537.8699951171875" width="1" height="359.0199890136719" />
+</frame>

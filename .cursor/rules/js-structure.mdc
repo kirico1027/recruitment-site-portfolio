@@ -1,0 +1,13 @@
+---
+description: JS配置と読み込みの運用（script.js集約）
+globs: src/**/*.html,src/public/assets/js/**/*.js
+alwaysApply: false
+---
+
+# JS構成ルール（このプロジェクト）
+
+- JavaScript は原則 `src/public/assets/js/script.js` に集約する。
+- ページごとの新規 JS ファイル（例: `top.js`, `about.js`）は、ユーザーの明示指示がある場合のみ作成する。
+- HTML にインライン `<script>...</script>` を書かず、外部ファイル読み込みを使う。
+- 読み込みパスは `./public/assets/js/script.js` を基準にし、必要に応じてクエリ文字列でキャッシュ更新する。
+- 既存の分割JSを統合する場合は、挙動を変えずに `script.js` へ移し、HTML側の参照先も合わせて更新する。

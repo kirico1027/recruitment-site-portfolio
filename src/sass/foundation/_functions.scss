@@ -1,0 +1,8 @@
+@use "sass:math";
+
+// Figma px を rem に換算（ルート 16px 前提）
+$rem-base: 16 !default;
+
+@function rem($px) {
+  @return math.div($px, $rem-base) * 1rem;
+}

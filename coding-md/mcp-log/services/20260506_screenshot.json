@@ -1,0 +1,7 @@
+{
+  "source": "get_screenshot",
+  "nodeId": "1:2",
+  "page": "services",
+  "fetchedAt": "2026-05-06T01:08:00+09:00",
+  "note": "Figma MCP の get_screenshot で services ページ全体を取得して比較に利用。Playwright 側は coding-md/mcp-log/services/screenshots/services_fullpage_pc_20260506_011154.png と services_fullpage_sp_20260506_011154.png を出力済み。"
+}

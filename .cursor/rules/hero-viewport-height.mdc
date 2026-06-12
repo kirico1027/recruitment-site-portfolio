@@ -1,0 +1,39 @@
+---
+description: トップページFVヒーローをビューポート高さいっぱいにする実装ルールと例外
+globs: src/index.html,src/sass/pages/top/_top.scss
+alwaysApply: false
+---
+
+# Hero Viewport Height（トップ `.hero`）
+
+## 適用範囲
+
+- **対象**: トップページ（`src/index.html`）の `<section class="hero">` のみ。
+- **対象外**: `company.html` / `services.html` などの **ページヒーロー**（`.page-hero` 等）はデザインごとに高さが異なるため、このルールで縛らない。新規で「トップと同じFV」を追加する場合のみ明示的に踏襲する。
+
+## 実装の型（CSS）
+
+- **最小高さ**: `min-height: 100vh` に続けて `min-height: 100dvh` を書く（`dvh` 対応ブラウザでは動的ビューポートに追従）。固定の `height: 100vh` だけにしない（本文が長いときはセクションが伸びられるように `min-height` を使う）。
+- **縦位置**: ビューポートいっぱいにすると本文が上に寄りやすいので、`.hero` は `display: flex` とし **`align-items: center`** で `.hero__content` を縦方向にまとめる。
+- **上下パディング**: 以前のような大きな fluid の `padding-top` / `padding-bottom` のみに頼らない。次を確保する：
+  - **上**: 固定ヘッダー（`.top-header`）と重ならない程度（概ね `rem(88)`〜`rem(104)` ＋ `env(safe-area-inset-top)`）。
+  - **下**: 右下の `.hero__scroll-indicator` と干渉しにくい程度（概ね `rem(96)`〜`rem(112)` ＋ `env(safe-area-inset-bottom)`）。
+- **背景・パララックス**: CTA と同じ **`background-attachment: fixed`** を `.hero__media-bg` に使う。グラデは `.hero__media::after`。開場ズームは **`transform` にしない**。画像の自然サイズから **`cover` と同等の幅・高さ（px）** を算出し、`background-size` を GSAP で変える（`% auto` だけだと縦長ビューポートで隙間が出る）。`data-hero-bg-src` で画像 URL を渡し、リサイズ後は zoom 完了時のみ px を更新。`prefers-reduced-motion: reduce` では CSS の `cover` + `scroll` のみ。
+
+## 注意点（ブレや不具合のもと）
+
+- **`vw` だけで高さを決めない**: ビューポート高さは `vh` / `dvh` 系が原則。
+- **モバイル**: `100vh` 単独ではアドレスバー起因のジャンプが出やすいので **`100dvh` の併記を維持**する。
+- **コンテンツ過多**: ヒーロー内テキストやボタンが極端に増えた場合は、`min-height` によりセクションは縦に伸びる。`overflow: hidden` と競合しないか確認する。
+- **単一ソース**: スタイルは `src/sass/pages/top/_top.scss` に書き、`src/public/assets/css/*.css` はビルド生成物として直接編集しない。
+
+## 変更時のチェック
+
+- 768px 以下のレイアウト（`.hero` 周りの `mq`）と干渉しないか。
+- 固定ヘッダー高さや SCROLL インジケータ位置を変えたら、`.hero` の `padding-top` / `padding-bottom` を再確認する。
+
+## 初回描画（FOUC）
+
+- トップの `<head>` 先頭付近で `document.documentElement.classList.add('js')` を実行する。
+- `prefers-reduced-motion: no-preference` かつ `html.js` のとき、`.hero` 内の `.js-fadeUp` / `.js-fadeIn` を CSS で初期 `opacity: 0`（タイトルは GSAP に合わせ `translateY`）とし、GSAP より前のチラ見えを防ぐ。
+- ヒーロー背景画像は `rel="preload" as="image"` で先読みしてデコードを早める。

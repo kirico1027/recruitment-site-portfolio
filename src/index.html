@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>採用情報 | FRACTAL</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Lato:wght@400;500;700&family=Material+Icons&family=Noto+Sans+JP:wght@400;500;700;900&display=swap"
+    />
+    <link rel="stylesheet" href="./public/assets/css/main.css" />
+  </head>
+  <body class="top-page">
+    <header class="top-header">
+      <div class="top-header__inner">
+        <a class="top-header__logo" href="#"><img src="./public/assets/img/recruit/logo.png" alt="FRACTAL" width="160" height="27" />採用サイト</a>
+        <button class="top-header__menu-toggle" type="button" aria-expanded="false" aria-controls="top-nav" aria-label="メニューを開く">
+          <span class="top-header__menu-toggle-bar"></span>
+          <span class="top-header__menu-toggle-bar"></span>
+          <span class="top-header__menu-toggle-bar"></span>
+        </button>
+        <nav class="top-header__nav" id="top-nav" aria-label="グローバルナビゲーション">
+          <ul class="top-header__nav-list">
+            <li class="top-header__nav-item top-header__nav-item--has-dropdown">
+              <a class="top-header__nav-link" href="#jobs">募集職種<span class="material-icons top-header__nav-icon" aria-hidden="true">arrow_drop_down</span></a>
+              <ul class="top-header__dropdown">
+                <li><a href="#">デザイナー</a></li>
+                <li><a href="#">エンジニア</a></li>
+                <li><a href="#">プロダクトマネージャー</a></li>
+                <li><a href="#">カスタマーサクセス</a></li>
+                <li><a href="#">コーポレート</a></li>
+              </ul>
+            </li>
+            <li class="top-header__nav-item"><a class="top-header__nav-link" href="#">会社情報</a></li>
+            <li class="top-header__nav-item top-header__nav-item--has-dropdown">
+              <a class="top-header__nav-link" href="#blog">ブログ<span class="material-icons top-header__nav-icon" aria-hidden="true">arrow_drop_down</span></a>
+              <ul class="top-header__dropdown">
+                <li><a href="#">ニュース</a></li>
+                <li><a href="#">社員紹介</a></li>
+                <li><a href="#">インタビュー</a></li>
+              </ul>
+            </li>
+          </ul>
+          <a class="top-header__cta" href="#entry">応募・エントリー</a>
+        </nav>
+      </div>
+      <div class="top-header__backdrop" hidden></div>
+    </header>
+
+    <main class="top-main">
+      <div class="top-visual">
+        <div class="top-visual__bg figma-media figma-media--hero" aria-hidden="true">
+          <img class="figma-media__img" src="./public/assets/img/recruit/hero-bg.png" alt="" width="1920" height="1200" />
+          <span class="figma-media__overlay figma-media__overlay--hero-warm" aria-hidden="true"></span>
+        </div>
+        <section class="top-hero">
+          <div class="top-hero__content l-container">
+            <h1 class="top-hero__title">ビジネスの挑戦を<br />支援し、革新的な<br />社会を築く</h1>
+          </div>
+        </section>
+
+        <section class="mission section">
+          <div class="l-container mission__inner">
+            <div class="mission__content">
+              <div class="mission__text-block">
+                <p class="mission__label">MISSION</p>
+                <div class="mission__copy">
+                  <p class="mission__lead">To empower individuals<br />through technology and<br />innovation.</p>
+                  <p class="mission__text">私たちは、採用を通じて世界中の暮らしを向上させることを使命としています。個々の才能や特性を見極め、最大限に活かすことで、持続可能で幸福な未来を築く一翼を担います。自身の価値観やキャリア目標に合わせ、成長と学びの機会を提供し、働きやすい環境でのキャリア構築をサポートします。そして、社会との調和を大切にしながら、共に成長し、個々の可能性を最大化することを目指します。</p>
+                </div>
+              </div>
+            </div>
+            <figure class="mission__figure figma-media figma-media--mission">
+              <img class="figma-media__img" src="./public/assets/img/recruit/mission.png" alt="チームで働く社員の様子" width="373" height="400" />
+            </figure>
+          </div>
+        </section>
+      </div>
+
+      <section class="jobs section" id="jobs">
+        <div class="l-container">
+          <header class="section-heading">
+            <h2 class="section-heading__title">募集職種</h2>
+            <p class="section-heading__subtitle">Jobs</p>
+          </header>
+          <div class="jobs__grid">
+            <article class="job-card">
+              <a class="job-card__main" href="#">
+                <figure class="job-card__figure figma-media figma-media--job"><img class="figma-media__img" src="./public/assets/img/recruit/job-designer.png" alt="" width="379" height="200" /></figure>
+                <div class="job-card__head">
+                  <div class="job-card__titles">
+                    <p class="job-card__role-en">Designer</p>
+                    <h3 class="job-card__role-ja">デザイナー</h3>
+                  </div>
+                  <span class="job-card__arrow material-icons" aria-hidden="true">keyboard_arrow_right</span>
+                </div>
+              </a>
+              <ul class="job-card__links">
+                <li><a href="#"><span class="material-icons" aria-hidden="true">arrow_drop_down_circle</span>UXデザイナー</a></li>
+                <li><a href="#"><span class="material-icons" aria-hidden="true">arrow_drop_down_circle</span>プロダクトデザイナー</a></li>
+                <li><a href="#"><span class="material-icons" aria-hidden="true">arrow_drop_down_circle</span>リードプロダクトデザイナー</a></li>
+              </ul>
+            </article>
+            <article class="job-card">
+              <a class="job-card__main" href="#">
+                <figure class="job-card__figure figma-media figma-media--job"><img class="figma-media__img" src="./public/assets/img/recruit/job-engineer.png" alt="" width="379" height="200" /></figure>
+                <div class="job-card__head">
+                  <div class="job-card__titles">
+                    <p class="job-card__role-en">Engineer</p>
+                    <h3 class="job-card__role-ja">エンジニア</h3>
+                  </div>
+                  <span class="job-card__arrow material-icons" aria-hidden="true">keyboard_arrow_right</span>
+                </div>
+              </a>
+              <ul class="job-card__links">
+                <li><a href="#"><span class="material-icons" aria-hidden="true">arrow_drop_down_circle</span>コーポレートエンジニア</a></li>
+                <li><a href="#"><span class="material-icons" aria-hidden="true">arrow_drop_down_circle</span>デザインエンジニア</a></li>
+                <li><a href="#"><span class="material-icons" aria-hidden="true">arrow_drop_down_circle</span>データ基盤開発エンジニア</a></li>
+              </ul>
+            </article>
+            <article class="job-card">
+              <a class="job-card__main" href="#">
+                <figure class="job-card__figure figma-media figma-media--job"><img class="figma-media__img" src="./public/assets/img/recruit/job-pm.png" alt="" width="379" height="200" /></figure>
+                <div class="job-card__head">
+                  <div class="job-card__titles">
+                    <p class="job-card__role-en">Product Manager</p>
+                    <h3 class="job-card__role-ja">プロダクトマネージャー</h3>
+                  </div>
+                  <span class="job-card__arrow material-icons" aria-hidden="true">keyboard_arrow_right</span>
+                </div>
+              </a>
+              <ul class="job-card__links">
+                <li><a href="#"><span class="material-icons" aria-hidden="true">arrow_drop_down_circle</span>シニアプロダクトマネージャー</a></li>
+                <li><a href="#"><span class="material-icons" aria-hidden="true">arrow_drop_down_circle</span>プロダクトマネージャー</a></li>
+              </ul>
+            </article>
+            <article class="job-card">
+              <a class="job-card__main" href="#">
+                <figure class="job-card__figure figma-media figma-media--job-cs"><img class="figma-media__img" src="./public/assets/img/recruit/job-cs.png" alt="" width="379" height="200" /></figure>
+                <div class="job-card__head">
+                  <div class="job-card__titles">
+                    <p class="job-card__role-en">Customer Success</p>
+                    <h3 class="job-card__role-ja">カスタマーサクセス</h3>
+                  </div>
+                  <span class="job-card__arrow material-icons" aria-hidden="true">keyboard_arrow_right</span>
+                </div>
+              </a>
+              <ul class="job-card__links">
+                <li><a href="#"><span class="material-icons" aria-hidden="true">arrow_drop_down_circle</span>カスタマーサクセス</a></li>
+                <li><a href="#"><span class="material-icons" aria-hidden="true">arrow_drop_down_circle</span>カスタマーサクセスエキスパート</a></li>
+              </ul>
+            </article>
+            <article class="job-card">
+              <a class="job-card__main" href="#">
+                <figure class="job-card__figure figma-media figma-media--job"><img class="figma-media__img" src="./public/assets/img/recruit/job-corporate.png" alt="" width="379" height="200" /></figure>
+                <div class="job-card__head">
+                  <div class="job-card__titles">
+                    <p class="job-card__role-en">Corporate</p>
+                    <h3 class="job-card__role-ja">コーポレート</h3>
+                  </div>
+                  <span class="job-card__arrow material-icons" aria-hidden="true">keyboard_arrow_right</span>
+                </div>
+              </a>
+              <ul class="job-card__links">
+                <li><a href="#"><span class="material-icons" aria-hidden="true">arrow_drop_down_circle</span>総務</a></li>
+                <li><a href="#"><span class="material-icons" aria-hidden="true">arrow_drop_down_circle</span>労務</a></li>
+                <li><a href="#"><span class="material-icons" aria-hidden="true">arrow_drop_down_circle</span>IR</a></li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="interviews section" id="interviews">
+        <div class="l-container">
+          <header class="section-heading section-heading--row">
+            <div class="section-heading__group">
+              <h2 class="section-heading__title">インタビュー</h2>
+              <p class="section-heading__subtitle">Interviews</p>
+            </div>
+            <a class="section-heading__link" href="#"><span class="material-icons" aria-hidden="true">arrow_drop_down_circle</span>すべてみる</a>
+          </header>
+        </div>
+        <div class="interviews__slider">
+          <div class="interviews__track">
+            <a class="interview-card" href="#"><figure class="interview-card__media figma-media figma-media--interview"><img class="figma-media__img" src="./public/assets/img/recruit/interview-01.png" alt="" width="380" height="600" /></figure><div class="interview-card__body"><p class="interview-card__category">コーポレート</p><p class="interview-card__title">ビジネスの舵取り: 企業戦略の立案者</p></div></a>
+            <a class="interview-card" href="#"><figure class="interview-card__media figma-media figma-media--interview"><img class="figma-media__img" src="./public/assets/img/recruit/interview-02.png" alt="" width="380" height="600" /></figure><div class="interview-card__body"><p class="interview-card__category">エンジニア</p><p class="interview-card__title">エンジニアが語る技術への情熱</p></div></a>
+            <a class="interview-card" href="#"><figure class="interview-card__media figma-media figma-media--interview"><img class="figma-media__img" src="./public/assets/img/recruit/interview-03.png" alt="" width="380" height="600" /></figure><div class="interview-card__body"><p class="interview-card__category">デザイナー</p><p class="interview-card__title">デザイナーが語るデザインの世界</p></div></a>
+            <a class="interview-card" href="#"><figure class="interview-card__media figma-media figma-media--interview"><img class="figma-media__img" src="./public/assets/img/recruit/interview-01.png" alt="" width="380" height="600" /></figure><div class="interview-card__body"><p class="interview-card__category">コーポレート</p><p class="interview-card__title">ビジネスの舵取り: 企業戦略の立案者</p></div></a>
+            <a class="interview-card" href="#"><figure class="interview-card__media figma-media figma-media--interview"><img class="figma-media__img" src="./public/assets/img/recruit/interview-02.png" alt="" width="380" height="600" /></figure><div class="interview-card__body"><p class="interview-card__category">エンジニア</p><p class="interview-card__title">エンジニアが語る技術への情熱</p></div></a>
+          </div>
+          <div class="interviews__controls">
+            <button class="interviews__btn interviews__btn--prev" type="button" aria-label="前へ"><span class="material-icons" aria-hidden="true">keyboard_arrow_left</span></button>
+            <button class="interviews__btn interviews__btn--next" type="button" aria-label="次へ"><span class="material-icons" aria-hidden="true">keyboard_arrow_right</span></button>
+          </div>
+        </div>
+      </section>
+
+      <section class="welfare section">
+        <div class="l-container">
+          <header class="section-heading">
+            <h2 class="section-heading__title">社員を支える福利厚生</h2>
+            <p class="section-heading__subtitle">Welfare</p>
+          </header>
+          <ul class="welfare__grid">
+            <li class="welfare-item"><span class="material-icons welfare-item__icon" aria-hidden="true">home</span><h3 class="welfare-item__title">リモートワーク</h3><p class="welfare-item__text">柔軟な働き方を可能にし、通勤ストレスを軽減します。</p></li>
+            <li class="welfare-item"><span class="material-icons welfare-item__icon" aria-hidden="true">book</span><h3 class="welfare-item__title">教育支援プログラム</h3><p class="welfare-item__text">スキル向上を促進し、専門知識の獲得を支援します。</p></li>
+            <li class="welfare-item"><span class="material-icons welfare-item__icon" aria-hidden="true">beach_access</span><h3 class="welfare-item__title">有給休暇</h3><p class="welfare-item__text">休息とリフレッシュの機会を提供し、働き方の調整を可能にします。</p></li>
+            <li class="welfare-item"><span class="material-icons welfare-item__icon" aria-hidden="true">card_travel</span><h3 class="welfare-item__title">社内トレーニング</h3><p class="welfare-item__text">従業員のキャリア成長を促進し、スキル向上を支援します。</p></li>
+            <li class="welfare-item"><span class="material-icons welfare-item__icon" aria-hidden="true">local_cafe</span><h3 class="welfare-item__title">カフェテリアプラン</h3><p class="welfare-item__text">食事補助を通じて従業員の健康的な生活を支援します。</p></li>
+            <li class="welfare-item"><span class="material-icons welfare-item__icon" aria-hidden="true">access_time</span><h3 class="welfare-item__title">フレックスタイム</h3><p class="welfare-item__text">勤務時間の柔軟性を提供し、個々の生活に合わせた働き方を可能にします。</p></li>
+            <li class="welfare-item"><span class="material-icons welfare-item__icon" aria-hidden="true">favorite_border</span><h3 class="welfare-item__title">心の健康サポート</h3><p class="welfare-item__text">心理カウンセリングやストレス管理プログラムを提供し、メンタルヘルスをサポートします。</p></li>
+            <li class="welfare-item"><span class="material-icons welfare-item__icon" aria-hidden="true">timelapse</span><h3 class="welfare-item__title">柔軟な労働時間</h3><p class="welfare-item__text">仕事と生活のバランスを取りやすくし、自己管理をサポートします。</p></li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="blog section" id="blog">
+        <div class="l-container">
+          <header class="section-heading section-heading--row">
+            <div class="section-heading__group">
+              <h2 class="section-heading__title">社員ブログ</h2>
+              <p class="section-heading__subtitle">Blog</p>
+            </div>
+            <a class="section-heading__link" href="#"><span class="material-icons" aria-hidden="true">arrow_drop_down_circle</span>すべてみる</a>
+          </header>
+          <div class="blog__grid">
+            <a class="blog-card" href="#"><figure class="blog-card__figure figma-media figma-media--blog"><img class="figma-media__img" src="./public/assets/img/recruit/blog-01.png" alt="" width="399" height="266" /></figure><div class="blog-card__body"><time class="blog-card__date" datetime="2023-11-23"><span class="blog-card__day">23</span><span class="blog-card__month">2023/11</span></time><div class="blog-card__text"><p class="blog-card__category">デザイナー</p><p class="blog-card__title">デザイナーが語るデザインの世界</p></div></div></a>
+            <a class="blog-card" href="#"><figure class="blog-card__figure figma-media figma-media--blog"><img class="figma-media__img" src="./public/assets/img/recruit/blog-02.png" alt="" width="399" height="266" /></figure><div class="blog-card__body"><time class="blog-card__date" datetime="2023-10-19"><span class="blog-card__day">19</span><span class="blog-card__month">2023/10</span></time><div class="blog-card__text"><p class="blog-card__title">スタイル一覧</p></div></div></a>
+            <a class="blog-card" href="#"><figure class="blog-card__figure figma-media figma-media--blog"><img class="figma-media__img" src="./public/assets/img/recruit/blog-03.png" alt="" width="399" height="266" /></figure><div class="blog-card__body"><time class="blog-card__date" datetime="2023-09-02"><span class="blog-card__day">02</span><span class="blog-card__month">2023/09</span></time><div class="blog-card__text"><p class="blog-card__category">プロダクトマネージャー</p><p class="blog-card__title">会社文化とチームワークについて</p></div></div></a>
+            <a class="blog-card" href="#"><figure class="blog-card__figure figma-media figma-media--blog"><img class="figma-media__img" src="./public/assets/img/recruit/blog-04.png" alt="" width="399" height="266" /></figure><div class="blog-card__body"><time class="blog-card__date" datetime="2023-07-04"><span class="blog-card__day">04</span><span class="blog-card__month">2023/07</span></time><div class="blog-card__text"><p class="blog-card__category">プロダクトマネージャー</p><p class="blog-card__title">イノベーションの牽引者: プロダクトの舵取り役</p></div></div></a>
+            <a class="blog-card" href="#"><figure class="blog-card__figure figma-media figma-media--blog"><img class="figma-media__img" src="./public/assets/img/recruit/blog-05.png" alt="" width="399" height="266" /></figure><div class="blog-card__body"><time class="blog-card__date" datetime="2023-05-16"><span class="blog-card__day">16</span><span class="blog-card__month">2023/05</span></time><div class="blog-card__text"><p class="blog-card__category">コーポレート</p><p class="blog-card__title">ビジネスの舵取り: 企業戦略の立案者</p></div></div></a>
+            <a class="blog-card" href="#"><figure class="blog-card__figure figma-media figma-media--blog"><img class="figma-media__img" src="./public/assets/img/recruit/blog-06.png" alt="" width="399" height="266" /></figure><div class="blog-card__body"><time class="blog-card__date" datetime="2023-04-04"><span class="blog-card__day">04</span><span class="blog-card__month">2023/04</span></time><div class="blog-card__text"><p class="blog-card__category">デザイナー</p><p class="blog-card__title">アートとテクノロジーの融合: デザインの魅力</p></div></div></a>
+          </div>
+        </div>
+      </section>
+
+      <section class="gallery" aria-label="オフィスギャラリー">
+        <ul class="gallery__grid">
+          <li class="gallery__item"><figure class="gallery__figure figma-media figma-media--gallery-01"><img class="figma-media__img" src="./public/assets/img/recruit/gallery-01.png" alt="" width="640" height="400" /><span class="figma-media__overlay figma-media__overlay--gallery-saturation" aria-hidden="true"></span></figure></li>
+          <li class="gallery__item"><figure class="gallery__figure figma-media figma-media--gallery-02"><img class="figma-media__img" src="./public/assets/img/recruit/gallery-02.png" alt="" width="640" height="400" /><span class="figma-media__overlay figma-media__overlay--gallery-saturation" aria-hidden="true"></span></figure></li>
+          <li class="gallery__item"><figure class="gallery__figure figma-media figma-media--gallery-03"><img class="figma-media__img" src="./public/assets/img/recruit/gallery-03.png" alt="" width="640" height="400" /><span class="figma-media__overlay figma-media__overlay--gallery-saturation" aria-hidden="true"></span></figure></li>
+          <li class="gallery__item"><figure class="gallery__figure figma-media figma-media--gallery-04"><img class="figma-media__img" src="./public/assets/img/recruit/gallery-04.png" alt="" width="640" height="400" /><span class="figma-media__overlay figma-media__overlay--gallery-saturation" aria-hidden="true"></span></figure></li>
+          <li class="gallery__item"><figure class="gallery__figure figma-media figma-media--gallery-05"><img class="figma-media__img" src="./public/assets/img/recruit/gallery-05.png" alt="" width="640" height="400" /><span class="figma-media__overlay figma-media__overlay--gallery-saturation" aria-hidden="true"></span></figure></li>
+          <li class="gallery__item"><figure class="gallery__figure figma-media figma-media--gallery-06"><img class="figma-media__img" src="./public/assets/img/recruit/gallery-06.png" alt="" width="640" height="400" /><span class="figma-media__overlay figma-media__overlay--gallery-saturation" aria-hidden="true"></span></figure></li>
+          <li class="gallery__item"><figure class="gallery__figure figma-media figma-media--gallery-07"><img class="figma-media__img" src="./public/assets/img/recruit/gallery-07.png" alt="" width="640" height="400" /><span class="figma-media__overlay figma-media__overlay--gallery-saturation" aria-hidden="true"></span></figure></li>
+          <li class="gallery__item"><figure class="gallery__figure figma-media figma-media--gallery-08"><img class="figma-media__img" src="./public/assets/img/recruit/gallery-08.png" alt="" width="640" height="400" /><span class="figma-media__overlay figma-media__overlay--gallery-saturation" aria-hidden="true"></span></figure></li>
+          <li class="gallery__item"><figure class="gallery__figure figma-media figma-media--gallery-09"><img class="figma-media__img" src="./public/assets/img/recruit/gallery-09.png" alt="" width="640" height="400" /><span class="figma-media__overlay figma-media__overlay--gallery-saturation" aria-hidden="true"></span></figure></li>
+        </ul>
+      </section>
+
+      <section class="faq section">
+        <div class="l-container faq__inner">
+          <header class="section-heading">
+            <h2 class="section-heading__title">よくあるご質問</h2>
+            <p class="section-heading__subtitle">FAQ</p>
+          </header>
+          <div class="faq__list">
+            <details class="faq-item">
+              <summary class="faq-item__question"><span class="faq-item__q">Q</span>会社のカルチャーはどんなものですか？<span class="faq-item__icon material-icons" aria-hidden="true">keyboard_arrow_right</span></summary>
+              <div class="faq-item__answer"><p>オープンなコミュニケーションを大切にし、個人の成長とチームの成功を両立させる文化を育んでいます。</p></div>
+            </details>
+            <details class="faq-item">
+              <summary class="faq-item__question"><span class="faq-item__q">Q</span>リモートワークのオプションはありますか？<span class="faq-item__icon material-icons" aria-hidden="true">keyboard_arrow_right</span></summary>
+              <div class="faq-item__answer"><p>はい、職種やチームに応じてリモートワークやハイブリッド勤務を選択できます。</p></div>
+            </details>
+            <details class="faq-item">
+              <summary class="faq-item__question"><span class="faq-item__q">Q</span>成長やキャリアパスについてどのようなサポートがありますか？<span class="faq-item__icon material-icons" aria-hidden="true">keyboard_arrow_right</span></summary>
+              <div class="faq-item__answer"><p>メンタリング、研修プログラム、社内トレーニングなど、多様な成長支援を用意しています。</p></div>
+            </details>
+            <details class="faq-item">
+              <summary class="faq-item__question"><span class="faq-item__q">Q</span>エントリーレベルのポジションに応募しても大丈夫ですか？<span class="faq-item__icon material-icons" aria-hidden="true">keyboard_arrow_right</span></summary>
+              <div class="faq-item__answer"><p>もちろんです。未経験の方も歓迎しており、入社後の育成体制が整っています。</p></div>
+            </details>
+            <details class="faq-item">
+              <summary class="faq-item__question"><span class="faq-item__q">Q</span>面接プロセスはどのように進行しますか？<span class="faq-item__icon material-icons" aria-hidden="true">keyboard_arrow_right</span></summary>
+              <div class="faq-item__answer"><p>書類選考の後、オンラインまたは対面での面接を2〜3回実施します。カジュアル面談も可能です。</p></div>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <section class="top-cta section" id="entry">
+        <div class="l-container top-cta__grid">
+          <div class="top-cta__block">
+            <span class="material-icons top-cta__icon" aria-hidden="true">mode_comment</span>
+            <h2 class="top-cta__title">話を聞いてみたい</h2>
+            <p class="top-cta__text">カジュアル面談は、くつろいだ雰囲気でのリラックスしたおしゃべりタイムです。リラックスして、フレンドリーなコミュニケーションをお楽しみください！</p>
+            <a class="top-cta__btn" href="#">カジュアル面談<span class="material-icons" aria-hidden="true">keyboard_arrow_right</span></a>
+          </div>
+          <div class="top-cta__block">
+            <span class="material-icons top-cta__icon" aria-hidden="true">directions_run</span>
+            <h2 class="top-cta__title">いますぐエントリー</h2>
+            <p class="top-cta__text">当社への応募は、あなたの可能性を最大限に活かせる素晴らしい機会です。私たちは新しいメンバーを歓迎し、あなたの経験や熱意を活かす場を提供します。リラックスして、あなたらしく、自由な発想で応募してください。一緒に素晴らしい未来を築きましょう！</p>
+            <a class="top-cta__btn" href="#">応募・エントリー<span class="material-icons" aria-hidden="true">keyboard_arrow_right</span></a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="top-footer">
+      <div class="l-container top-footer__inner">
+        <div class="top-footer__top">
+          <div class="top-footer__nav">
+            <ul class="top-footer__nav-primary">
+              <li><a href="#">採用トップ</a></li>
+              <li><a href="#jobs">募集職種</a></li>
+              <li><a href="#">会社概要</a></li>
+              <li><a href="#blog">ブログ</a></li>
+            </ul>
+            <ul class="top-footer__nav-secondary">
+              <li><a href="#" target="_blank" rel="noopener noreferrer">サービス<span class="top-footer__external" aria-hidden="true">↗</span></a></li>
+              <li><a href="#" target="_blank" rel="noopener noreferrer">導入事例<span class="top-footer__external" aria-hidden="true">↗</span></a></li>
+              <li><a href="#" target="_blank" rel="noopener noreferrer">資料ダウンロード<span class="top-footer__external" aria-hidden="true">↗</span></a></li>
+              <li><a href="#" target="_blank" rel="noopener noreferrer">会社情報<span class="top-footer__external" aria-hidden="true">↗</span></a></li>
+              <li><a href="#">プライバシーポリシー</a></li>
+              <li><a href="#" target="_blank" rel="noopener noreferrer">お問い合わせ<span class="top-footer__external" aria-hidden="true">↗</span></a></li>
+            </ul>
+          </div>
+          <ul class="top-footer__sns">
+            <li><a href="#" aria-label="X"><span aria-hidden="true">𝕏</span></a></li>
+            <li><a href="#" aria-label="Facebook"><span aria-hidden="true">f</span></a></li>
+            <li><a href="#" aria-label="YouTube"><span aria-hidden="true">▶</span></a></li>
+          </ul>
+        </div>
+        <div class="top-footer__logo"><img src="./public/assets/img/recruit/logo-footer.png" alt="FRACTAL" width="350" height="58" /></div>
+        <p class="top-footer__copy">© 2023 example All Right Reserved.</p>
+      </div>
+    </footer>
+
+    <script src="./public/assets/js/script.js"></script>
+  </body>
+</html>

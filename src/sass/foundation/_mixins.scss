@@ -1,0 +1,69 @@
+@use "functions" as *;
+
+// デスクトップファースト: 広い画面がデフォルト、狭い画面で上書き
+
+@mixin mq {
+  @media (max-width: 768px) {
+    @content;
+  }
+}
+
+@mixin mq-compact {
+  @media (max-width: 480px) {
+    @content;
+  }
+}
+
+// ニュースグリッドなど、レイアウトが崩れる幅のみの例外的ブレイクポイント
+@mixin mq-md {
+  @media (max-width: 1023px) {
+    @content;
+  }
+}
+
+// セクション内の説明文・段落（ページ見出し／サブタイトル／ヒーローリード／フォームUI・ボタン以外）
+// PC 16px → max-width 768px 以下で 14px（狭い幅の改行を緩和）
+@mixin section-copy-font-size {
+  font-size: rem(16);
+
+  @include mq {
+    font-size: rem(14);
+  }
+}
+
+// `.btn` ベース・ヒーローでラベルだけ大きくしている箇所など（`.btn--dark` はもともと rem(14) 固定で対象外）
+@mixin button-label-font-size {
+  font-size: rem(16);
+
+  @include mq {
+    font-size: rem(14);
+  }
+}
+
+// margin / padding: カンプの min・max は rem、幅に追従させる部分は vw（通常は clamp の中央項）
+// @include fluid-spacing(padding-top, rem(24), 8vw, rem(64));
+// @include fluid-spacing(margin-top, rem(32), 8vw, rem(48));
+@mixin fluid-spacing($property, $min-rem, $vw-middle, $max-rem) {
+  #{$property}: clamp(#{$min-rem}, #{$vw-middle}, #{$max-rem});
+}
+
+// コンテナ横インセットの定番（`.container` と揃えるとき）
+@mixin fluid-padding-inline($min-rem: rem(24), $vw-middle: 6vw, $max-rem: rem(48)) {
+  @include fluid-spacing(padding-left, $min-rem, $vw-middle, $max-rem);
+  @include fluid-spacing(padding-right, $min-rem, $vw-middle, $max-rem);
+}
+
+@mixin fluid-gap($min-rem, $vw-middle, $max-rem) {
+  gap: clamp(#{$min-rem}, #{$vw-middle}, #{$max-rem});
+}
+
+// 上下同一の padding-top / padding-bottom
+@mixin fluid-padding-y($min-rem, $vw-middle, $max-rem) {
+  @include fluid-spacing(padding-top, $min-rem, $vw-middle, $max-rem);
+  @include fluid-spacing(padding-bottom, $min-rem, $vw-middle, $max-rem);
+}
+
+// 四辺同一の padding
+@mixin fluid-padding-all($min-rem, $vw-middle, $max-rem) {
+  @include fluid-spacing(padding, $min-rem, $vw-middle, $max-rem);
+}

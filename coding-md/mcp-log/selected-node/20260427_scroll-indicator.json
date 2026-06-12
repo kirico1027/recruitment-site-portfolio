@@ -1,0 +1,21 @@
+{
+  "source": "get_design_context",
+  "fetchedAt": "2026-04-27T00:08:00+09:00",
+  "page": "selected-node",
+  "section": "scroll-indicator",
+  "nodeId": "1:9",
+  "relatedNodeIds": [
+    "1:12",
+    "1:13"
+  ],
+  "data": {
+    "text": "SCROLL",
+    "fontFamily": "Montserrat",
+    "fontWeight": 700,
+    "fontSizePx": 14,
+    "lineHeightPx": 19.6,
+    "letterSpacingPx": 2.1,
+    "textColor": "#FFFFFF",
+    "asset": "line image exported in design context"
+  }
+}
