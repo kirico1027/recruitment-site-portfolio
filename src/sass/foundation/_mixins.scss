@@ -1,4 +1,5 @@
 @use "functions" as *;
+@use "sass:math";
 
 // デスクトップファースト: 広い画面がデフォルト、狭い画面で上書き
 
@@ -51,6 +52,33 @@
 @mixin fluid-padding-inline($min-rem: rem(24), $vw-middle: 6vw, $max-rem: rem(48)) {
   @include fluid-spacing(padding-left, $min-rem, $vw-middle, $max-rem);
   @include fluid-spacing(padding-right, $min-rem, $vw-middle, $max-rem);
+}
+
+// 1920px カンプ基準の横インセット値（px → calc）
+// 1920px でカンプ通りの vw、375px 付近では同比率の約 43% まで下げて左寄せを強める
+@function layout-inset-comp-calc(
+  $inset-px,
+  $comp-width: 1920,
+  $narrow-width: 375,
+  $narrow-vw-ratio: 0.43
+) {
+  $vw-at-comp: math.div($inset-px, $comp-width) * 100;
+  $vw-at-narrow: $vw-at-comp * $narrow-vw-ratio;
+  $vw-range: $vw-at-comp - $vw-at-narrow;
+  $width-range: $comp-width - $narrow-width;
+
+  @return calc(
+    #{$vw-at-narrow}vw + #{$vw-range}vw * ((100vw - #{$narrow-width}px) / #{$width-range}px)
+  );
+}
+
+@mixin layout-inset-comp-1920($min-rem: rem(16), $inset-px: 360, $comp-width: 1920) {
+  $vw-at-comp: math.div($inset-px, $comp-width) * 100;
+
+  // 左: 狭い幅ほど強く左寄せ
+  padding-left: clamp(#{$min-rem}, layout-inset-comp-calc($inset-px, $comp-width), #{rem($inset-px)});
+  // 右: 1920px 以上はカンプ上限、未満は通常の vw 比例
+  padding-right: clamp(#{$min-rem}, min(#{rem($inset-px)}, #{$vw-at-comp}vw), #{rem($inset-px)});
 }
 
 @mixin fluid-gap($min-rem, $vw-middle, $max-rem) {

@@ -222,21 +222,23 @@
 .top-hero {
   position: relative;
   z-index: 1;
-  // Figma: main y=90 + hero 840px = ページ上端から 930px（ヘッダー分は固定ヘッダーと重なる）
-  min-height: clamp(#{rem(570)}, 48.4375vw, #{rem(930)});
+  // Figma: 930px @1920w。タブレット幅で min 床が効くと見出しが下がるため、SP のみ下限を設ける
+  min-height: min(#{rem(930)}, 48.4375vw);
+
+  @include mq {
+    min-height: clamp(#{rem(480)}, 48.4375vw, #{rem(930)});
+  }
 }
 
 .top-hero__content {
   position: absolute;
+  top: clamp(#{rem(180)}, 50.7957%, #{rem(472)});
   right: 0;
-  bottom: clamp(#{rem(48)}, 5.21vw, #{rem(100)});
   left: 0;
   width: 100%;
-  max-width: var(--container-max);
-  margin: 0 auto;
   box-sizing: border-box;
-  // Figma inner div (1:10): 1280px 幅・テキスト左 inset 40px
-  @include fluid-padding-inline(rem(16), 2.08vw, rem(40));
+  // Figma 1920w: 360px。1920 未満は左 padding だけ強めに漸減して左寄せ
+  @include layout-inset-comp-1920;
 }
 
 .top-hero__title {
@@ -271,11 +273,9 @@
   gap: clamp(#{rem(40)}, 4.17vw, #{rem(80)});
   align-items: flex-start;
   width: 100%;
-  max-width: var(--container-max);
-  margin: 0 auto;
   box-sizing: border-box;
-  // Figma inner div (1:13): 1280px 幅・左右 inset 40px
-  @include fluid-padding-inline(rem(16), 2.08vw, rem(40));
+  // Figma 1920w: ヒーロー見出しと同じ横位置（外ガター 320px + 内 padding 40px）
+  @include layout-inset-comp-1920;
 }
 
 .mission__content {
@@ -290,11 +290,12 @@
 .mission__label {
   position: absolute;
   top: 0;
-  left: rem(-300);
-  width: rem(300);
+  // Figma 1920w: テキスト左端から左へ 300px。インセットと同じ漸減ロジック
+  left: calc(-1 * clamp(#{rem(120)}, #{layout-inset-comp-calc(300)}, #{rem(300)}));
+  width: clamp(#{rem(120)}, #{layout-inset-comp-calc(300)}, #{rem(300)});
   margin: 0;
   padding-top: rem(10);
-  padding-right: rem(30);
+  @include fluid-spacing(padding-right, rem(16), 1.5625vw, 100vw);
   color: var(--color-text-light);
   font-family: var(--font-en);
   font-size: rem(16);
@@ -313,7 +314,8 @@
   margin: 0;
   color: var(--color-white);
   font-family: var(--font-en);
-  font-size: clamp(#{rem(32)}, 3.33vw, #{rem(64)});
+  // Figma: 64px @1920w。3.33vw 単独だと中間幅で小さくなりすぎるため rem ベースを加味
+  font-size: clamp(#{rem(40)}, calc(#{rem(28)} + 1.875vw), #{rem(64)});
   font-weight: 500;
   line-height: 1;
   letter-spacing: -0.06em;
@@ -328,14 +330,15 @@
   color: var(--color-text-light);
   font-family: var(--font-body);
   @include section-copy-font-size;
-  line-height: 2;
+  // 1920w で 1.7、狭い幅では 1.5 まで漸減（固定 2 より詰める）
+  line-height: clamp(1.5, calc(1.5 + 0.2 * ((100vw - 375px) / 1545px)), 1.7);
   letter-spacing: 0.1em;
 }
 
 .mission__figure {
   flex: 0 0 31.11%;
   min-width: 0;
-  height: clamp(#{rem(280)}, 20.83vw, #{rem(400)});
+  aspect-ratio: 373 / 400;
   margin: 0;
   border-radius: rem(24);
   overflow: hidden;
