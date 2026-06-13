@@ -235,10 +235,6 @@
   top: clamp(#{rem(180)}, 50.7957%, #{rem(472)});
   right: 0;
   left: 0;
-  width: 100%;
-  box-sizing: border-box;
-  // Figma 1920w: 360px。1920 未満は左 padding だけ強めに漸減して左寄せ
-  @include layout-inset-comp-1920;
 }
 
 .top-hero__title {
@@ -272,10 +268,6 @@
   display: flex;
   gap: clamp(#{rem(40)}, 4.17vw, #{rem(80)});
   align-items: flex-start;
-  width: 100%;
-  box-sizing: border-box;
-  // Figma 1920w: ヒーロー見出しと同じ横位置（外ガター 320px + 内 padding 40px）
-  @include layout-inset-comp-1920;
 }
 
 .mission__content {
@@ -431,6 +423,12 @@
   min-width: 0;
 }
 
+@include mq-jobs-grid {
+  .job-card {
+    flex: 0 1 calc(50% - #{rem(15)});
+  }
+}
+
 .job-card__main {
   display: block;
   text-decoration: none;
@@ -564,16 +562,10 @@
 
 .interviews__header {
   width: 100%;
-  max-width: var(--container-max);
-  box-sizing: border-box;
-  // Figma 1:412 — 1280px 幅・左右 inset 40px
-  @include fluid-padding-inline(rem(16), 2.08vw, rem(40));
 }
 
 .interviews .section-heading--row {
   width: 100%;
-  max-width: rem(1200);
-  margin: 0 auto;
   align-items: flex-end;
 }
 
@@ -798,7 +790,12 @@
 
 .welfare-item {
   flex: 0 1 calc(25% - #{rem(45)});
-  min-width: rem(200);
+}
+
+@include mq-welfare-grid {
+  .welfare-item {
+    flex: 0 1 calc(33.333% - #{rem(40)});
+  }
 }
 
 .welfare-item__icon {
@@ -959,12 +956,6 @@
   display: flex;
   gap: clamp(#{rem(40)}, 4.17vw, #{rem(80)});
   align-items: flex-start;
-  width: 100%;
-  max-width: var(--container-max);
-  margin: 0 auto;
-  box-sizing: border-box;
-  // Figma 1:354 — 1280px 幅・左右 inset 40px
-  @include fluid-padding-inline(rem(16), 2.08vw, rem(40));
 }
 
 .faq .section-heading {
@@ -1094,11 +1085,9 @@
 }
 
 .top-cta__inner {
-  width: 100%;
-  // Figma 1:477 — py 120 / px 100
+  // Figma 1:477 — py 120
   @include fluid-spacing(padding-top, rem(64), 6.25vw, rem(120));
   @include fluid-spacing(padding-bottom, rem(64), 6.25vw, rem(120));
-  @include fluid-padding-inline(rem(16), 5.21vw, rem(100));
 }
 
 .top-cta__grid {
@@ -1106,11 +1095,6 @@
   gap: clamp(#{rem(40)}, 4.17vw, #{rem(80)});
   align-items: flex-start;
   width: 100%;
-  max-width: var(--container-max);
-  margin: 0 auto;
-  box-sizing: border-box;
-  // Figma 1:478 — 1280px 幅・左右 inset 40px
-  @include fluid-padding-inline(rem(16), 2.08vw, rem(40));
 }
 
 .top-cta__block {
@@ -1254,9 +1238,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
-  max-width: rem(1720);
-  margin: 0 auto;
 }
 
 .top-footer__main {
@@ -1264,10 +1245,6 @@
   gap: rem(60);
   align-items: flex-start;
   width: 100%;
-  max-width: var(--container-max);
-  box-sizing: border-box;
-  // Figma 1:512 — 1280px 幅・左右 inset 40px
-  @include fluid-padding-inline(rem(16), 2.08vw, rem(40));
 }
 
 .top-footer__nav {
@@ -1373,11 +1350,9 @@
 
 .top-footer__brand {
   width: 100%;
-  max-width: var(--container-max);
   box-sizing: border-box;
   // Figma 1:575 — ロゴ上 inset 100px
   padding-top: clamp(#{rem(48)}, 5.21vw, #{rem(100)});
-  @include fluid-padding-inline(rem(16), 2.08vw, rem(40));
 }
 
 .top-footer__logo {
@@ -1394,7 +1369,6 @@
 
 .top-footer__copy {
   width: 100%;
-  max-width: var(--container-max);
   margin: 0;
   box-sizing: border-box;
   text-align: right;
@@ -1403,7 +1377,6 @@
   font-weight: 400;
   line-height: 1;
   color: rgba(255, 255, 255, 0.95);
-  @include fluid-padding-inline(rem(16), 2.08vw, rem(40));
 }
 
 // ---- Responsive ----
@@ -1415,16 +1388,8 @@
     text-align: left;
   }
 
-  .job-card {
-    flex: 0 1 calc(50% - #{rem(15)});
-  }
-
   .blog-card {
     flex: 0 1 calc(50% - #{rem(2)});
-  }
-
-  .welfare-item {
-    flex: 0 1 calc(50% - #{rem(30)});
   }
 
   .faq__inner {

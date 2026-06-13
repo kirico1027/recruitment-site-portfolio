@@ -41,6 +41,13 @@ body {
   padding-right: clamp(1rem, 4vw, 1.5rem);
 }
 
+.l-inset-comp-1920 {
+  width: 100%;
+  box-sizing: border-box;
+  padding-left: clamp(1rem, 3.65625vw + 15.09375vw * (100vw - 375px) / 1545px, 22.5rem);
+  padding-right: clamp(1rem, 3.65625vw + 15.09375vw * (100vw - 375px) / 1545px, 22.5rem);
+}
+
 .figma-media {
   position: relative;
   overflow: hidden;
@@ -384,10 +391,6 @@ body {
   top: clamp(11.25rem, 50.7957%, 29.5rem);
   right: 0;
   left: 0;
-  width: 100%;
-  box-sizing: border-box;
-  padding-left: clamp(1rem, 8.0625vw + 10.6875vw * (100vw - 375px) / 1545px, 22.5rem);
-  padding-right: clamp(1rem, min(22.5rem, 18.75vw), 22.5rem);
 }
 
 .top-hero__title {
@@ -418,10 +421,6 @@ body {
   display: flex;
   gap: clamp(2.5rem, 4.17vw, 5rem);
   align-items: flex-start;
-  width: 100%;
-  box-sizing: border-box;
-  padding-left: clamp(1rem, 8.0625vw + 10.6875vw * (100vw - 375px) / 1545px, 22.5rem);
-  padding-right: clamp(1rem, min(22.5rem, 18.75vw), 22.5rem);
 }
 
 .mission__content {
@@ -575,6 +574,11 @@ body {
   min-width: 0;
 }
 
+@media (max-width: 1400px) {
+  .job-card {
+    flex: 0 1 calc(50% - 0.9375rem);
+  }
+}
 .job-card__main {
   display: block;
   text-decoration: none;
@@ -700,16 +704,10 @@ body {
 
 .interviews__header {
   width: 100%;
-  max-width: var(--container-max);
-  box-sizing: border-box;
-  padding-left: clamp(1rem, 2.08vw, 2.5rem);
-  padding-right: clamp(1rem, 2.08vw, 2.5rem);
 }
 
 .interviews .section-heading--row {
   width: 100%;
-  max-width: 75rem;
-  margin: 0 auto;
   align-items: flex-end;
 }
 
@@ -921,9 +919,13 @@ body {
 
 .welfare-item {
   flex: 0 1 calc(25% - 2.8125rem);
-  min-width: 12.5rem;
 }
 
+@media (max-width: 1400px) {
+  .welfare-item {
+    flex: 0 1 calc(33.333% - 2.5rem);
+  }
+}
 .welfare-item__icon {
   font-size: 2.25rem;
   color: var(--color-text);
@@ -1076,12 +1078,6 @@ body {
   display: flex;
   gap: clamp(2.5rem, 4.17vw, 5rem);
   align-items: flex-start;
-  width: 100%;
-  max-width: var(--container-max);
-  margin: 0 auto;
-  box-sizing: border-box;
-  padding-left: clamp(1rem, 2.08vw, 2.5rem);
-  padding-right: clamp(1rem, 2.08vw, 2.5rem);
 }
 
 .faq .section-heading {
@@ -1214,11 +1210,8 @@ body {
 }
 
 .top-cta__inner {
-  width: 100%;
   padding-top: clamp(4rem, 6.25vw, 7.5rem);
   padding-bottom: clamp(4rem, 6.25vw, 7.5rem);
-  padding-left: clamp(1rem, 5.21vw, 6.25rem);
-  padding-right: clamp(1rem, 5.21vw, 6.25rem);
 }
 
 .top-cta__grid {
@@ -1226,11 +1219,6 @@ body {
   gap: clamp(2.5rem, 4.17vw, 5rem);
   align-items: flex-start;
   width: 100%;
-  max-width: var(--container-max);
-  margin: 0 auto;
-  box-sizing: border-box;
-  padding-left: clamp(1rem, 2.08vw, 2.5rem);
-  padding-right: clamp(1rem, 2.08vw, 2.5rem);
 }
 
 .top-cta__block {
@@ -1372,9 +1360,6 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
-  max-width: 107.5rem;
-  margin: 0 auto;
 }
 
 .top-footer__main {
@@ -1382,10 +1367,6 @@ body {
   gap: 3.75rem;
   align-items: flex-start;
   width: 100%;
-  max-width: var(--container-max);
-  box-sizing: border-box;
-  padding-left: clamp(1rem, 2.08vw, 2.5rem);
-  padding-right: clamp(1rem, 2.08vw, 2.5rem);
 }
 
 .top-footer__nav {
@@ -1489,11 +1470,8 @@ body {
 
 .top-footer__brand {
   width: 100%;
-  max-width: var(--container-max);
   box-sizing: border-box;
   padding-top: clamp(3rem, 5.21vw, 6.25rem);
-  padding-left: clamp(1rem, 2.08vw, 2.5rem);
-  padding-right: clamp(1rem, 2.08vw, 2.5rem);
 }
 
 .top-footer__logo {
@@ -1510,7 +1488,6 @@ body {
 
 .top-footer__copy {
   width: 100%;
-  max-width: var(--container-max);
   margin: 0;
   box-sizing: border-box;
   text-align: right;
@@ -1519,8 +1496,6 @@ body {
   font-weight: 400;
   line-height: 1;
   color: rgba(255, 255, 255, 0.95);
-  padding-left: clamp(1rem, 2.08vw, 2.5rem);
-  padding-right: clamp(1rem, 2.08vw, 2.5rem);
 }
 
 @media (max-width: 1023px) {
@@ -1530,14 +1505,8 @@ body {
     padding-right: 0;
     text-align: left;
   }
-  .job-card {
-    flex: 0 1 calc(50% - 0.9375rem);
-  }
   .blog-card {
     flex: 0 1 calc(50% - 0.125rem);
-  }
-  .welfare-item {
-    flex: 0 1 calc(50% - 1.875rem);
   }
   .faq__inner {
     flex-direction: column;

@@ -22,6 +22,20 @@
   }
 }
 
+// 募集職種グリッド: 3列 → 2列
+@mixin mq-jobs-grid {
+  @media (max-width: 1400px) {
+    @content;
+  }
+}
+
+// 福利厚生グリッド: 4列 → 3列
+@mixin mq-welfare-grid {
+  @media (max-width: 1400px) {
+    @content;
+  }
+}
+
 // セクション内の説明文・段落（ページ見出し／サブタイトル／ヒーローリード／フォームUI・ボタン以外）
 // PC 16px → max-width 768px 以下で 14px（狭い幅の改行を緩和）
 @mixin section-copy-font-size {
@@ -54,8 +68,8 @@
   @include fluid-spacing(padding-right, $min-rem, $vw-middle, $max-rem);
 }
 
-// 1920px カンプ基準の横インセット値（px → calc）
-// 1920px でカンプ通りの vw、375px 付近では同比率の約 43% まで下げて左寄せを強める
+// 1920px カンプ基準の横インセット値（px → vw へ線形補間）
+// $narrow-vw-ratio: 375px 付近の vw 比率（1 に近いほど余白縮小が緩やか＝コンテンツ比率の上昇も緩やか）
 @function layout-inset-comp-calc(
   $inset-px,
   $comp-width: 1920,
@@ -72,13 +86,15 @@
   );
 }
 
-@mixin layout-inset-comp-1920($min-rem: rem(16), $inset-px: 360, $comp-width: 1920) {
-  $vw-at-comp: math.div($inset-px, $comp-width) * 100;
-
-  // 左: 狭い幅ほど強く左寄せ
-  padding-left: clamp(#{$min-rem}, layout-inset-comp-calc($inset-px, $comp-width), #{rem($inset-px)});
-  // 右: 1920px 以上はカンプ上限、未満は通常の vw 比例
-  padding-right: clamp(#{$min-rem}, min(#{rem($inset-px)}, #{$vw-at-comp}vw), #{rem($inset-px)});
+@mixin layout-inset-comp-1920(
+  $min-rem: rem(16),
+  $inset-px: 360,
+  $comp-width: 1920,
+  $narrow-vw-ratio: 0.195
+) {
+  // 1920w でコンテンツ比率 62.5%。768px で 85% になるよう $narrow-vw-ratio を調整
+  padding-left: clamp(#{$min-rem}, layout-inset-comp-calc($inset-px, $comp-width, 375, $narrow-vw-ratio), #{rem($inset-px)});
+  padding-right: clamp(#{$min-rem}, layout-inset-comp-calc($inset-px, $comp-width, 375, $narrow-vw-ratio), #{rem($inset-px)});
 }
 
 @mixin fluid-gap($min-rem, $vw-middle, $max-rem) {
