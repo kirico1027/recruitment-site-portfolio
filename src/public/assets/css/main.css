@@ -831,40 +831,48 @@ body {
 
 .interviews__controls {
   position: absolute;
-  top: calc(100% - 5.625rem);
-  right: clamp(1rem, 22.92vw, 27.5rem);
-  left: clamp(1rem, 22.92vw, 27.5rem);
+  right: 0;
+  bottom: 0;
+  left: 0;
   z-index: 4;
   display: flex;
   justify-content: center;
-  height: 5.625rem;
+  align-items: center;
+  gap: 0;
+  --interviews-btn-size: clamp(3rem, calc(2.0625rem + 2.95vw), 5.625rem);
   margin: 0;
   padding: 0;
+  pointer-events: none;
 }
 
 .interviews__btn {
   display: flex;
+  flex-shrink: 0;
   align-items: center;
   justify-content: center;
-  width: 5.625rem;
-  height: 5.625rem;
+  width: var(--interviews-btn-size);
+  height: var(--interviews-btn-size);
   padding: 0;
   border: 0;
   background: var(--color-dark);
   cursor: pointer;
   color: var(--color-white);
+  line-height: 0;
+  pointer-events: auto;
 }
 
 .interviews__btn--prev {
-  border-radius: 1.875rem 0 0 1.875rem;
+  border-radius: calc(var(--interviews-btn-size) * 0.3333) 0 0 calc(var(--interviews-btn-size) * 0.3333);
 }
 
 .interviews__btn--next {
-  border-radius: 0 1.875rem 1.875rem 0;
+  border-radius: 0 calc(var(--interviews-btn-size) * 0.3333) calc(var(--interviews-btn-size) * 0.3333) 0;
 }
 
 .interviews__btn .material-icons {
-  font-size: 3rem;
+  font-size: calc(var(--interviews-btn-size) * 0.5333);
+  line-height: 1;
+  display: block;
 }
 
 .welfare {
@@ -978,20 +986,32 @@ body {
 .blog__grid {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.125rem;
+  column-gap: 0.125rem;
+  row-gap: 5rem;
   margin-top: clamp(3rem, 8vw, 5rem);
 }
 
 .blog-card {
-  flex: 0 1 calc(33.333% - 0.125rem);
+  display: flex;
+  flex-direction: column;
+  gap: 1.875rem;
+  flex: 0 1 calc(33.333% - 0.0833125rem);
   min-width: 0;
   text-decoration: none;
   color: inherit;
 }
 
+@media (max-width: 1400px) {
+  .blog__grid {
+    column-gap: 0.625rem;
+  }
+  .blog-card {
+    flex: 0 1 calc(50% - 0.3125rem);
+  }
+}
 .blog-card__figure {
   margin: 0;
-  aspect-ratio: 399/266;
+  aspect-ratio: 398.63/265.75;
   border-radius: 0.5rem;
   overflow: hidden;
 }
@@ -999,7 +1019,9 @@ body {
 .blog-card__body {
   display: flex;
   gap: 1.25rem;
-  padding: 1.875rem 1.25rem 0;
+  align-items: flex-start;
+  padding: 0 1.25rem;
+  min-width: 0;
 }
 
 .blog-card__date {
@@ -1012,29 +1034,37 @@ body {
 
 .blog-card__day {
   font-family: var(--font-en);
-  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-size: 2.25rem;
   font-weight: 500;
   line-height: 1;
   color: var(--color-text);
 }
 
 .blog-card__month {
-  margin-top: 0.25rem;
-  font-family: var(--font-body);
+  margin: 0;
+  font-family: var(--font-en);
   font-size: 0.75rem;
-  color: var(--color-text-muted);
+  font-weight: 500;
+  line-height: 1.75;
+  color: var(--color-text);
+}
+
+.blog-card__text {
+  flex: 1 1 auto;
+  min-width: 0;
 }
 
 .blog-card__category {
   margin: 0;
-  font-family: var(--font-ja);
+  font-family: var(--font-body);
   font-size: 0.75rem;
-  color: var(--color-text-muted);
+  font-weight: 400;
+  line-height: 1.75;
+  color: var(--color-text);
 }
 
 .blog-card__title {
   margin: 0;
-  margin-top: 0.25rem;
   font-family: var(--font-ja);
   font-size: 1rem;
   font-weight: 500;
@@ -1217,7 +1247,7 @@ body {
 .top-cta__grid {
   display: flex;
   gap: clamp(2.5rem, 4.17vw, 5rem);
-  align-items: flex-start;
+  align-items: stretch;
   width: 100%;
 }
 
@@ -1256,8 +1286,10 @@ body {
 
 .top-cta__content {
   display: flex;
+  flex: 1 1 auto;
   flex-direction: column;
   gap: 0.625rem;
+  min-width: 0;
 }
 
 .top-cta__title {
@@ -1341,8 +1373,6 @@ body {
   background-color: var(--color-dark);
   padding-top: clamp(4rem, 4.17vw, 5rem);
   padding-bottom: clamp(4rem, 5.21vw, 6.25rem);
-  padding-left: clamp(1rem, 5.21vw, 6.25rem);
-  padding-right: clamp(1rem, 5.21vw, 6.25rem);
 }
 .top-footer::before {
   content: "";
@@ -1461,6 +1491,7 @@ body {
 .top-footer__sns-icon--facebook {
   width: 0.715rem;
   height: 1.25rem;
+  transform: scaleY(-1);
 }
 
 .top-footer__sns-icon--youtube {
@@ -1504,9 +1535,6 @@ body {
     width: auto;
     padding-right: 0;
     text-align: left;
-  }
-  .blog-card {
-    flex: 0 1 calc(50% - 0.125rem);
   }
   .faq__inner {
     flex-direction: column;

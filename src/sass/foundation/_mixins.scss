@@ -36,6 +36,13 @@
   }
 }
 
+// 社員ブロググリッド: 3列 → 2列
+@mixin mq-blog-grid {
+  @media (max-width: 1400px) {
+    @content;
+  }
+}
+
 // セクション内の説明文・段落（ページ見出し／サブタイトル／ヒーローリード／フォームUI・ボタン以外）
 // PC 16px → max-width 768px 以下で 14px（狭い幅の改行を緩和）
 @mixin section-copy-font-size {
