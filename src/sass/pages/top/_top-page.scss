@@ -788,9 +788,10 @@
 }
 
 .welfare__grid {
+  --welfare-gap: clamp(#{rem(32)}, 5vw, #{rem(60)});
   display: flex;
   flex-wrap: wrap;
-  gap: clamp(#{rem(32)}, 5vw, #{rem(60)});
+  gap: var(--welfare-gap);
   margin: 0;
   margin-top: clamp(#{rem(48)}, 8vw, #{rem(80)});
   padding: 0;
@@ -798,12 +799,13 @@
 }
 
 .welfare-item {
-  flex: 0 1 calc(25% - #{rem(45)});
+  flex: 0 1 calc((100% - 3 * var(--welfare-gap)) / 4);
+  min-width: 0;
 }
 
 @include mq-welfare-grid {
   .welfare-item {
-    flex: 0 1 calc(33.333% - #{rem(40)});
+    flex: 0 1 calc((100% - 2 * var(--welfare-gap)) / 3);
   }
 }
 
@@ -1029,6 +1031,11 @@
   border-radius: rem(12);
   cursor: pointer;
   list-style: none;
+
+  @include mq-welfare-grid {
+    padding-top: rem(8);
+    padding-bottom: rem(8);
+  }
 }
 
 .faq-item__question::-webkit-details-marker {
@@ -1298,6 +1305,10 @@
   margin: 0;
   padding: 0;
   list-style: none;
+
+  @include mq-welfare-grid {
+    gap: rem(20);
+  }
 }
 
 .top-footer__nav-primary a,
@@ -1401,6 +1412,11 @@
   max-width: 100%;
   height: auto;
   aspect-ratio: 350 / 58.33;
+
+  @include mq-welfare-grid {
+    // Figma @1400 — 350px。狭幅は 25vw で追従（下限 220px）
+    width: clamp(#{rem(220)}, 25vw, #{rem(350)});
+  }
 }
 
 .top-footer__copy {
