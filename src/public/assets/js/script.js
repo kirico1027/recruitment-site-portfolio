@@ -48,26 +48,85 @@ function initInterviewSlider() {
   const next = slider.querySelector(".interviews__btn--next");
   if (!track || !prev || !next) return;
 
-  const scrollAmount = () => {
-    const card = track.querySelector(".interview-card");
-    return card ? card.offsetWidth + 20 : 400;
+  const cards = [...track.querySelectorAll(".interview-card")];
+  if (!cards.length) return;
+
+  const FLUID_BREAKPOINT = 1440;
+  const MIN_CARD_WIDTH = 260; // 1441px 以上
+  const FLUID_MIN_CARD_WIDTH = 200; // 1440px 以下 — 3枚表示を維持（640px 幅まで）
+  const MAX_CARD_WIDTH = 380; // Figma 1:431 — 1920px カンプ
+  const NARROW_MAX_CARD_WIDTH = 200; // 1枚表示時の上限
+  const CARD_GAP = 20;
+
+  let activeIndex = Math.floor((cards.length - 1) / 2);
+
+  const computeLayout = (containerWidth) => {
+    const isFluid = containerWidth <= FLUID_BREAKPOINT;
+    const minWidth = isFluid ? FLUID_MIN_CARD_WIDTH : MIN_CARD_WIDTH;
+
+    for (let count = 7; count >= 1; count -= 2) {
+      const cardWidth = (containerWidth - (count - 1) * CARD_GAP) / count;
+      if (cardWidth >= minWidth) {
+        const maxWidth = count === 1 ? NARROW_MAX_CARD_WIDTH : MAX_CARD_WIDTH;
+        return {
+          visibleCount: count,
+          cardWidth: Math.round(Math.min(cardWidth, maxWidth)),
+          isFluid,
+        };
+      }
+    }
+
+    return {
+      visibleCount: 1,
+      cardWidth: Math.round(Math.min(containerWidth, NARROW_MAX_CARD_WIDTH)),
+      isFluid,
+    };
   };
 
-  const setInitialScroll = () => {
-    // Figma 1:423 — トラック x=-440 でビューポート左端が 440px 位置
-    const offset = Math.min(slider.offsetWidth * 0.2292, 440);
-    track.scrollLeft = offset;
+  const applyLayout = () => {
+    const layout = computeLayout(slider.offsetWidth);
+
+    slider.classList.toggle("interviews__slider--fluid", layout.isFluid);
+    slider.style.setProperty("--interview-card-width", `${layout.cardWidth}px`);
+    slider.style.setProperty("--interview-gap", `${CARD_GAP}px`);
+    slider.style.setProperty("--interview-visible-count", String(layout.visibleCount));
   };
 
-  setInitialScroll();
+  const scrollToCard = (index, behavior = "auto") => {
+    const card = cards[index];
+    if (!card) return;
+
+    const cardCenter = card.offsetLeft + card.offsetWidth / 2;
+    const scrollLeft = cardCenter - track.clientWidth / 2;
+
+    track.scrollTo({ left: scrollLeft, behavior });
+  };
+
+  const updateSlider = (behavior = "auto") => {
+    applyLayout();
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => scrollToCard(activeIndex, behavior));
+    });
+  };
+
+  updateSlider();
 
   prev.addEventListener("click", () => {
-    track.scrollBy({ left: -scrollAmount(), behavior: "smooth" });
+    activeIndex = Math.max(0, activeIndex - 1);
+    scrollToCard(activeIndex, "smooth");
   });
 
   next.addEventListener("click", () => {
-    track.scrollBy({ left: scrollAmount(), behavior: "smooth" });
+    activeIndex = Math.min(cards.length - 1, activeIndex + 1);
+    scrollToCard(activeIndex, "smooth");
   });
+
+  if ("ResizeObserver" in window) {
+    const resizeObserver = new ResizeObserver(() => updateSlider());
+    resizeObserver.observe(slider);
+  }
+
+  window.addEventListener("resize", () => updateSlider());
 }
 
 function initFaqAccordion() {

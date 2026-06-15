@@ -635,8 +635,19 @@
   overflow: hidden;
   width: 100%;
   max-width: rem(1920);
-  // Figma 1:422 — スライダー高 690px（ナビは y=600）
-  height: clamp(#{rem(500)}, 35.94vw, #{rem(690)});
+  // Figma 1:423 / 1:422 — 上下余白 45px @ カード 380px（カード幅に連動）
+  --interview-slider-padding-block: calc(
+    var(--interview-card-width, #{rem(380)}) * 45 / 380
+  );
+  --interview-card-height: calc(var(--interview-card-width, #{rem(380)}) * 600 / 380);
+  --interviews-btn-size: min(
+    #{rem(90)},
+    calc(var(--interview-card-width, #{rem(380)}) * 90 / 380)
+  );
+  height: auto;
+  min-height: calc(
+    var(--interview-slider-padding-block) * 2 + var(--interview-card-height)
+  );
 
   // Figma 1:473 / 1:474 — 左右 250px、内側透明 → 76% で白
   &::before,
@@ -665,10 +676,11 @@
   position: relative;
   z-index: 0;
   display: flex;
-  gap: 0;
-  // Figma 1:423 — inset ±440px・px 40 / py 45
-  margin-inline: clamp(#{rem(-200)}, -22.92vw, #{rem(-440)});
-  padding: rem(45) clamp(#{rem(216)}, calc(2.08vw + 22.92vw), #{rem(480)}) 0;
+  gap: var(--interview-gap, #{rem(20)});
+  margin-inline: 0;
+  // 端のカードも中央スナップできる余白（幅は JS が --interview-card-width を設定）
+  padding: var(--interview-slider-padding-block, #{rem(45)})
+    calc((100% - var(--interview-card-width, #{rem(380)})) / 2) 0;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
@@ -681,11 +693,12 @@
 }
 
 .interview-card {
-  // Figma a.link (1:431) — 380×600、rounded 16px（スロット 400px は margin で確保）
-  flex: 0 0 clamp(#{rem(260)}, calc(20.83vw - #{rem(20)}), #{rem(380)});
-  height: clamp(#{rem(420)}, 31.25vw, #{rem(600)});
-  margin: 0 rem(10);
-  scroll-snap-align: start;
+  // Figma a.link (1:431) — 380×600、rounded 16px（幅は JS が奇数枚表示用に算出）
+  container-type: inline-size;
+  flex: 0 0 var(--interview-card-width, #{rem(380)});
+  aspect-ratio: 380 / 600;
+  height: auto;
+  scroll-snap-align: center;
   position: relative;
   display: block;
   text-decoration: none;
@@ -740,18 +753,38 @@
   display: block;
 }
 
+// カード幅が狭いとき（3枚表示帯）テキスト・余白を縮小
+@container (max-width: #{rem(300)}) {
+  .interview-card__body {
+    gap: rem(6);
+    padding: rem(40) rem(16);
+  }
+
+  .interview-card__category {
+    font-size: rem(12);
+    line-height: calc(16.8 / 12);
+  }
+
+  .interview-card__title {
+    font-size: rem(16);
+    line-height: calc(22.4 / 16);
+  }
+}
+
 .interviews__controls {
   position: absolute;
   right: 0;
-  bottom: 0;
   left: 0;
   z-index: 4;
+  // 基準: カード下端（padding-top + card-height）。Figma では btn 上端 = カード下端 − 45px
+  top: calc(
+    var(--interview-slider-padding-block) + var(--interview-card-height) -
+      (var(--interviews-btn-size) - var(--interview-slider-padding-block))
+  );
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 0;
-  // Figma 1:469/471 @1920 — 90×90 / icon 48 / radius 30。狭幅は同比率で縮小（768 で約 56px）
-  --interviews-btn-size: clamp(#{rem(48)}, calc(#{rem(33)} + 2.95vw), #{rem(90)});
   margin: 0;
   padding: 0;
   pointer-events: none;
