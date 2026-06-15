@@ -3,6 +3,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   initTopHeader();
   initInterviewSlider();
+  initFaqAccordion();
 });
 
 function initTopHeader() {
@@ -66,5 +67,73 @@ function initInterviewSlider() {
 
   next.addEventListener("click", () => {
     track.scrollBy({ left: scrollAmount(), behavior: "smooth" });
+  });
+}
+
+function initFaqAccordion() {
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  const duration = 300;
+  const easing = "cubic-bezier(0.4, 0, 0.2, 1)";
+
+  document.querySelectorAll(".faq-item").forEach((details) => {
+    const summary = details.querySelector(".faq-item__question");
+    const answer = details.querySelector(".faq-item__answer");
+    const inner = details.querySelector(".faq-item__answer-inner");
+    if (!summary || !answer || !inner) return;
+
+    let activeAnimation = null;
+
+    const resetAnswerStyles = () => {
+      answer.style.height = "";
+      answer.style.overflow = "";
+    };
+
+    summary.addEventListener("click", (event) => {
+      event.preventDefault();
+      if (details.dataset.faqAnimating === "true") return;
+
+      if (activeAnimation) {
+        activeAnimation.cancel();
+        activeAnimation = null;
+      }
+
+      if (details.open) {
+        details.dataset.faqAnimating = "true";
+        const startHeight = answer.offsetHeight;
+        answer.style.overflow = "hidden";
+        answer.style.height = `${startHeight}px`;
+
+        activeAnimation = answer.animate(
+          [{ height: `${startHeight}px` }, { height: "0px" }],
+          { duration, easing }
+        );
+
+        activeAnimation.onfinish = () => {
+          activeAnimation = null;
+          details.open = false;
+          resetAnswerStyles();
+          delete details.dataset.faqAnimating;
+        };
+        return;
+      }
+
+      details.open = true;
+      details.dataset.faqAnimating = "true";
+      const endHeight = inner.offsetHeight;
+      answer.style.overflow = "hidden";
+      answer.style.height = "0px";
+
+      activeAnimation = answer.animate(
+        [{ height: "0px" }, { height: `${endHeight}px` }],
+        { duration, easing }
+      );
+
+      activeAnimation.onfinish = () => {
+        activeAnimation = null;
+        resetAnswerStyles();
+        delete details.dataset.faqAnimating;
+      };
+    });
   });
 }

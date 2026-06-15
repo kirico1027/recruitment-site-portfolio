@@ -1074,7 +1074,7 @@
 .faq__list {
   display: flex;
   flex-direction: column;
-  gap: rem(10);
+  gap: 0;
   flex: 0 1 62.22%;
   min-width: 0;
 }
@@ -1102,9 +1102,8 @@
 
   @include mq {
     @include fluid-gap(rem(10), 2.08vw, rem(16));
-    // 375px で 0 / 768px で 8px・16px（線形補間）。calc は unquote で Sass による壊れを防ぐ
-    padding-top: unquote("clamp(0px, calc((100vw - 375px) * 8 / 393), #{rem(8)})");
-    padding-bottom: unquote("clamp(0px, calc((100vw - 375px) * 8 / 393), #{rem(8)})");
+    padding-top: rem(8);
+    padding-bottom: rem(8);
     padding-left: unquote("clamp(0px, calc((100vw - 375px) * 16 / 393), #{rem(16)})");
     padding-right: unquote("clamp(0px, calc((100vw - 375px) * 16 / 393), #{rem(16)})");
   }
@@ -1170,8 +1169,17 @@
 }
 
 .faq-item__answer {
-  padding: 0 rem(16) rem(16);
+  overflow: hidden;
+}
+
+.faq-item__answer-inner {
+  padding: 0 rem(30) rem(16);
   padding-left: rem(58);
+
+  @include mq {
+    // 375px で rem(28) / 768px で rem(58)（質問行の可変余白と同じ幅域で線形補間）
+    padding-left: unquote("clamp(#{rem(28)}, calc(#{rem(28)} + (100vw - 375px) * 30 / 393), #{rem(58)})");
+  }
 }
 
 .faq-item__answer p {
@@ -1535,6 +1543,12 @@
     flex-direction: column;
   }
 
+  .faq__list {
+    flex: 0 1 100%;
+    width: 100%;
+    max-width: 100%;
+  }
+
   .top-cta__grid {
     flex-direction: column;
   }
@@ -1548,13 +1562,16 @@
 @include mq-header {
   .top-header__menu-toggle {
     display: flex;
+    position: relative;
+    z-index: 2;
   }
 
   .top-header__nav {
     position: fixed;
-    top: rem(90);
+    top: 0;
     right: 0;
     bottom: 0;
+    z-index: 1;
     flex-direction: column;
     align-items: stretch;
     width: min(100%, rem(320));
@@ -1573,7 +1590,6 @@
     display: block;
     position: fixed;
     inset: 0;
-    top: rem(90);
     background: rgba(0, 0, 0, 0.4);
     z-index: -1;
   }
