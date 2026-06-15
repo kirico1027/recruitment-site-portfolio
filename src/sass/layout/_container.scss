@@ -13,5 +13,5 @@
 .l-inset-comp-1920 {
   width: 100%;
   box-sizing: border-box;
-  @include layout-inset-comp-1920;
+  @include layout-inset-comp-1920($min-rem: rem(30));
 }

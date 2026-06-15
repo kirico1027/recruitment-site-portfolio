@@ -44,8 +44,8 @@ body {
 .l-inset-comp-1920 {
   width: 100%;
   box-sizing: border-box;
-  padding-left: clamp(1rem, 3.65625vw + 15.09375vw * (100vw - 375px) / 1545px, 22.5rem);
-  padding-right: clamp(1rem, 3.65625vw + 15.09375vw * (100vw - 375px) / 1545px, 22.5rem);
+  padding-left: clamp(1.875rem, 3.65625vw + 15.09375vw * (100vw - 375px) / 1545px, 22.5rem);
+  padding-right: clamp(1.875rem, 3.65625vw + 15.09375vw * (100vw - 375px) / 1545px, 22.5rem);
 }
 
 .figma-media {
@@ -211,6 +211,12 @@ body {
   max-width: 100%;
   padding: 0.9375rem 2.5rem;
   min-height: 3.75rem;
+}
+@media (max-width: 768px) {
+  .top-header__inner {
+    padding-left: clamp(1.5rem, 5.21vw, 2.5rem);
+    padding-right: clamp(1.5rem, 5.21vw, 2.5rem);
+  }
 }
 
 .top-header__logo {
@@ -422,6 +428,11 @@ body {
 .top-hero__title-line {
   display: block;
 }
+@media (max-width: 768px) {
+  .top-hero__title-line {
+    font-size: clamp(2rem, 4.6875vw, 2.25rem);
+  }
+}
 
 .mission {
   position: relative;
@@ -508,6 +519,19 @@ body {
   border-radius: 1.5rem;
   overflow: hidden;
 }
+@media (max-width: 768px) {
+  .mission__figure {
+    aspect-ratio: 400/160;
+  }
+  .mission__figure .figma-media__img {
+    inset: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+  }
+}
 
 .section-heading {
   margin: 0;
@@ -573,6 +597,11 @@ body {
   background-color: var(--color-bg-jobs);
   pointer-events: none;
 }
+@media (max-width: 768px) {
+  .jobs {
+    padding-bottom: clamp(2.5rem, 8vw, 5rem);
+  }
+}
 
 .jobs .section-heading {
   margin-top: 0;
@@ -581,7 +610,7 @@ body {
 .jobs__grid {
   display: flex;
   flex-wrap: wrap;
-  gap: clamp(1.25rem, 3vw, 1.875rem);
+  gap: clamp(1.4375rem, 3vw, 1.875rem);
   margin-top: clamp(3rem, 8vw, 5rem);
 }
 
@@ -606,6 +635,19 @@ body {
   aspect-ratio: 379/200;
   border-radius: 0.5rem;
   overflow: hidden;
+}
+@media (max-width: 768px) {
+  .job-card__figure {
+    aspect-ratio: 400/160;
+  }
+  .job-card__figure .figma-media__img {
+    inset: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+  }
 }
 
 .job-card__head {
@@ -1008,6 +1050,12 @@ body {
   row-gap: 5rem;
   margin-top: clamp(3rem, 8vw, 5rem);
 }
+@media (max-width: 768px) {
+  .blog__grid {
+    column-gap: clamp(0.125rem, 1.3vw, 0.625rem);
+    row-gap: clamp(3rem, 10vw, 5rem);
+  }
+}
 
 .blog-card {
   display: flex;
@@ -1032,6 +1080,19 @@ body {
   aspect-ratio: 398.63/265.75;
   border-radius: 0.5rem;
   overflow: hidden;
+}
+@media (max-width: 768px) {
+  .blog-card__figure {
+    aspect-ratio: 400/230;
+  }
+  .blog-card__figure .figma-media__img {
+    inset: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+  }
 }
 
 .blog-card__body {
@@ -1173,6 +1234,15 @@ body {
     padding-bottom: 0.5rem;
   }
 }
+@media (max-width: 768px) {
+  .faq-item__question {
+    gap: clamp(0.625rem, 2.08vw, 1rem);
+    padding-top: clamp(0px, calc((100vw - 375px) * 8 / 393), 0.5rem);
+    padding-bottom: clamp(0px, calc((100vw - 375px) * 8 / 393), 0.5rem);
+    padding-left: clamp(0px, calc((100vw - 375px) * 16 / 393), 1rem);
+    padding-right: clamp(0px, calc((100vw - 375px) * 16 / 393), 1rem);
+  }
+}
 
 .faq-item__question::-webkit-details-marker {
   display: none;
@@ -1184,6 +1254,11 @@ body {
   gap: 1.25rem;
   align-items: flex-start;
   min-width: 0;
+}
+@media (max-width: 768px) {
+  .faq-item__label {
+    gap: clamp(0.75rem, 2.6vw, 1.25rem);
+  }
 }
 
 .faq-item__q {
@@ -1201,6 +1276,11 @@ body {
   font-size: 1.125rem;
   font-weight: 500;
   line-height: 1.85;
+}
+@media (max-width: 768px) {
+  .faq-item__text {
+    font-size: 1rem;
+  }
 }
 
 .faq-item__icon-wrap {
@@ -1422,6 +1502,12 @@ body {
   align-items: flex-start;
   width: 100%;
 }
+@media (max-width: 620px) {
+  .top-footer__main {
+    flex-direction: column-reverse;
+    gap: clamp(2rem, 9.68vw, 3.75rem);
+  }
+}
 
 .top-footer__nav {
   display: flex;
@@ -1429,6 +1515,11 @@ body {
   gap: 5.625rem;
   min-width: 0;
   padding-top: clamp(3rem, 8.33vw, 10rem);
+}
+@media (max-width: 620px) {
+  .top-footer__nav {
+    gap: clamp(2.5rem, 14.52vw, 5.625rem);
+  }
 }
 
 .top-footer__nav-primary,
@@ -1483,7 +1574,7 @@ body {
   flex-shrink: 0;
   gap: 0.625rem;
   align-items: center;
-  margin: 0;
+  margin: 0 0 0 auto;
   padding: 0;
   list-style: none;
 }
@@ -1651,24 +1742,26 @@ body {
     flex: 0 1 100%;
     width: 100%;
     height: auto;
-    aspect-ratio: 373/400;
   }
   .job-card,
   .blog-card {
     flex: 0 1 100%;
   }
   .welfare-item {
+    flex: 0 1 calc((100% - var(--welfare-gap)) / 2);
+  }
+}
+@media (max-width: 768px) and (max-width: 500px) {
+  .welfare-item {
     flex: 0 1 100%;
   }
+}
+@media (max-width: 768px) {
   .gallery__item {
     flex: 0 1 50%;
   }
-  .top-footer__main {
-    flex-direction: column;
-  }
-  .top-footer__nav {
-    flex-direction: column;
-    padding-top: 0;
+  .gallery__item:has(.figma-media--gallery-09) {
+    display: none;
   }
   .top-footer__copy {
     text-align: left;

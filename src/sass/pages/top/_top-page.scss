@@ -44,6 +44,10 @@
   max-width: 100%;
   padding: rem(15) rem(40);
   min-height: rem(60);
+
+  @include mq {
+    @include fluid-padding-inline(rem(24), 5.21vw, rem(40));
+  }
 }
 
 .top-header__logo {
@@ -256,6 +260,11 @@
 
 .top-hero__title-line {
   display: block;
+
+  @include mq {
+    // 768px で 36px → 狭幅で 28px まで（親 .top-hero__title の clamp 下限張り付きを解消）
+    font-size: clamp(#{rem(32)}, 4.6875vw, #{rem(36)});
+  }
 }
 
 // ---- Mission ----
@@ -340,6 +349,19 @@
   margin: 0;
   border-radius: rem(24);
   overflow: hidden;
+
+  @include mq {
+    aspect-ratio: 400 / 160;
+
+    .figma-media__img {
+      inset: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+    }
+  }
 }
 
 
@@ -411,6 +433,10 @@
     background-color: var(--color-bg-jobs);
     pointer-events: none;
   }
+
+  @include mq {
+    @include fluid-spacing(padding-bottom, rem(40), 8vw, rem(80));
+  }
 }
 
 .jobs .section-heading {
@@ -420,7 +446,7 @@
 .jobs__grid {
   display: flex;
   flex-wrap: wrap;
-  gap: clamp(#{rem(20)}, 3vw, #{rem(30)});
+  gap: clamp(#{rem(23)}, 3vw, #{rem(30)});
   margin-top: clamp(#{rem(48)}, 8vw, #{rem(80)});
 }
 
@@ -446,6 +472,19 @@
   aspect-ratio: 379 / 200;
   border-radius: rem(8);
   overflow: hidden;
+
+  @include mq {
+    aspect-ratio: 400 / 160;
+
+    .figma-media__img {
+      inset: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+    }
+  }
 }
 
 
@@ -872,6 +911,11 @@
   column-gap: rem(2);
   row-gap: rem(80);
   margin-top: clamp(#{rem(48)}, 8vw, #{rem(80)});
+
+  @include mq {
+    @include fluid-spacing(column-gap, rem(2), 1.3vw, rem(10));
+    @include fluid-spacing(row-gap, rem(48), 10vw, rem(80));
+  }
 }
 
 .blog-card {
@@ -900,6 +944,19 @@
   aspect-ratio: 398.63 / 265.75;
   border-radius: rem(8);
   overflow: hidden;
+
+  @include mq {
+    aspect-ratio: 400 / 230;
+
+    .figma-media__img {
+      inset: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+    }
+  }
 }
 
 .blog-card__body {
@@ -1042,6 +1099,15 @@
     padding-top: rem(8);
     padding-bottom: rem(8);
   }
+
+  @include mq {
+    @include fluid-gap(rem(10), 2.08vw, rem(16));
+    // 375px で 0 / 768px で 8px・16px（線形補間）。calc は unquote で Sass による壊れを防ぐ
+    padding-top: unquote("clamp(0px, calc((100vw - 375px) * 8 / 393), #{rem(8)})");
+    padding-bottom: unquote("clamp(0px, calc((100vw - 375px) * 8 / 393), #{rem(8)})");
+    padding-left: unquote("clamp(0px, calc((100vw - 375px) * 16 / 393), #{rem(16)})");
+    padding-right: unquote("clamp(0px, calc((100vw - 375px) * 16 / 393), #{rem(16)})");
+  }
 }
 
 .faq-item__question::-webkit-details-marker {
@@ -1054,6 +1120,10 @@
   gap: rem(20);
   align-items: flex-start;
   min-width: 0;
+
+  @include mq {
+    @include fluid-gap(rem(12), 2.6vw, rem(20));
+  }
 }
 
 .faq-item__q {
@@ -1071,6 +1141,10 @@
   font-size: rem(18);
   font-weight: 500;
   line-height: calc(33.3 / 18);
+
+  @include mq {
+    font-size: rem(16);
+  }
 }
 
 .faq-item__icon-wrap {
@@ -1292,6 +1366,12 @@
   gap: rem(60);
   align-items: flex-start;
   width: 100%;
+
+  @media (max-width: 620px) {
+    flex-direction: column-reverse;
+    // 375px 付近 rem(32) → 620px で rem(60)
+    @include fluid-gap(rem(32), 9.68vw, rem(60));
+  }
 }
 
 .top-footer__nav {
@@ -1301,6 +1381,11 @@
   min-width: 0;
   // Figma 1:513 — nav 上 inset 160px
   padding-top: clamp(#{rem(48)}, 8.33vw, #{rem(160)});
+
+  @media (max-width: 620px) {
+    // 375px 付近 rem(40) → 620px で rem(90)
+    @include fluid-gap(rem(40), 14.52vw, rem(90));
+  }
 }
 
 .top-footer__nav-primary,
@@ -1353,7 +1438,7 @@
   flex-shrink: 0;
   gap: rem(10);
   align-items: center;
-  margin: 0;
+  margin: 0 0 0 auto;
   padding: 0;
   list-style: none;
 }
@@ -1542,7 +1627,6 @@
     flex: 0 1 100%;
     width: 100%;
     height: auto;
-    aspect-ratio: 373 / 400;
   }
 
   .job-card,
@@ -1551,20 +1635,21 @@
   }
 
   .welfare-item {
-    flex: 0 1 100%;
+    flex: 0 1 calc((100% - var(--welfare-gap)) / 2);
+  }
+
+  @media (max-width: 500px) {
+    .welfare-item {
+      flex: 0 1 100%;
+    }
   }
 
   .gallery__item {
     flex: 0 1 50%;
   }
 
-  .top-footer__main {
-    flex-direction: column;
-  }
-
-  .top-footer__nav {
-    flex-direction: column;
-    padding-top: 0;
+  .gallery__item:has(.figma-media--gallery-09) {
+    display: none;
   }
 
   .top-footer__copy {
