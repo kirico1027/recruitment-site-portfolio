@@ -217,6 +217,12 @@
   aspect-ratio: 1920 / 1200;
   height: clamp(#{rem(480)}, 62.5vw, #{rem(1200)});
   pointer-events: none;
+
+  @include mq {
+    // 768px — 高さを 62.5vw より少し上げる（アスペクト比 1.6 より縦長 → cover で左右が均等に切れる）
+    height: clamp(#{rem(540)}, 70vw, #{rem(1200)});
+    aspect-ratio: auto;
+  }
 }
 
 .top-hero {
@@ -1454,7 +1460,7 @@
   }
 }
 
-@include mq {
+@include mq-header {
   .top-header__menu-toggle {
     display: flex;
   }
@@ -1521,7 +1527,9 @@
   .top-header--menu-open .top-header__menu-toggle-bar:nth-child(3) {
     transform: translateY(rem(-7)) rotate(-45deg);
   }
+}
 
+@include mq {
   .mission__inner {
     flex-direction: column;
   }

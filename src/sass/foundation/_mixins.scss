@@ -22,6 +22,13 @@
   }
 }
 
+// ヘッダー: ハンバーガーメニュー表示・ドロワー切替
+@mixin mq-header {
+  @media (max-width: 950px) {
+    @content;
+  }
+}
+
 // 募集職種グリッド: 3列 → 2列
 @mixin mq-jobs-grid {
   @media (max-width: 1400px) {
