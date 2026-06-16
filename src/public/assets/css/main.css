@@ -788,8 +788,10 @@ body {
 .interviews__slider {
   position: relative;
   overflow: hidden;
-  width: 100%;
-  max-width: 120rem;
+  align-self: stretch;
+  width: 100vw;
+  max-width: none;
+  margin-inline: calc(50% - 50vw);
   --interview-slider-padding-block: calc(
     var(--interview-card-width, 23.75rem) * 45 / 380
   );
