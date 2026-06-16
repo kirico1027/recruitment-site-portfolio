@@ -1,0 +1,9 @@
+{
+  "source": "get_design_context",
+  "nodeId": "1:2",
+  "fetchedAt": "2026-06-16T23:54:00+09:00",
+  "page": "designer",
+  "section": "full-page",
+  "dataPath": "/Users/mizutanitakeshi/.cursor/projects/Users-mizutanitakeshi-Downloads-new-start-project3/agent-tools/9d27836d-90b8-4ab3-afbe-3572655b3de9.txt",
+  "notes": "Figma MCP response was saved as raw text in dataPath and referenced for HTML/SCSS implementation."
+}
