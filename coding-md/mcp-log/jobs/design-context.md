@@ -36,8 +36,8 @@
 
 | 要素 | font | size | weight | 備考 |
 |------|------|------|--------|------|
-| ページ見出し h1 | Noto Sans JP | 48px | Medium | letter-spacing 2.4px, line-height 64.8px |
-| リード文 | Lato | 18px | Medium | letter-spacing 0.9px, line-height 31.5px |
+| ページ見出し h1（`1:157`） | Noto Sans JP | 48px | Medium | letter-spacing 2.4px, line-height 64.8px |
+| リード文（`1:162`） | Lato | 18px | Medium | letter-spacing 0.9px, line-height 31.5px、2行改行 |
 | 職種カード英字 | Inter | 14px | Medium | トップと同一 |
 | 職種カード日本語 | Noto Sans JP | 24px | Medium | トップと同一 |
 

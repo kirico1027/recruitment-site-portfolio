@@ -1,0 +1,34 @@
+{
+  "source": "get_design_context",
+  "nodeId": "1:157",
+  "fetchedAt": "2026-06-16T09:30:00",
+  "page": "jobs",
+  "section": "jobs-intro",
+  "data": {
+    "paddingTop": "159px",
+    "paddingBottom": "80px",
+    "gap": "20px",
+    "title": {
+      "text": "募集職種",
+      "fontFamily": "Noto Sans JP",
+      "fontWeight": 500,
+      "fontSize": "48px",
+      "lineHeight": "64.8px",
+      "letterSpacing": "2.4px",
+      "color": "#242528"
+    },
+    "lead": {
+      "lines": [
+        "私たちのチームは成長中で、挑戦と学びの機会が豊富です。経験を積",
+        "み、成長したい方を歓迎します。新しい仲間を募集しています。"
+      ],
+      "fontFamily": "Lato",
+      "fontWeight": 500,
+      "fontSize": "18px",
+      "lineHeight": "31.5px",
+      "letterSpacing": "0.9px",
+      "color": "#242528"
+    },
+    "layout": "2 columns equal width, items-center"
+  }
+}

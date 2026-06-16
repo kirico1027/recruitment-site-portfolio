@@ -13,12 +13,18 @@
   padding-top: rem(90);
 }
 
-// ---- Page intro ----
+// ---- Page intro (Figma 1:157) ----
 .jobs-intro {
   background-color: var(--color-bg);
 }
 
 .jobs-intro__inner {
+  // Figma 1:158 — pt 159 / pb 80（横インセットは l-inset-comp-1920）
+  @include fluid-spacing(padding-top, rem(69), 8.28vw, rem(159));
+  @include fluid-spacing(padding-bottom, rem(48), 4.17vw, rem(80));
+}
+
+.jobs-intro__layout {
   display: flex;
   align-items: center;
   gap: rem(20);
@@ -32,7 +38,7 @@
   font-size: clamp(#{rem(32)}, #{rem(24)} + 1.25vw, #{rem(48)});
   font-weight: 500;
   line-height: calc(64.8 / 48);
-  letter-spacing: 0.05em;
+  letter-spacing: rem(2.4);
   color: var(--color-text);
 }
 
@@ -44,21 +50,21 @@
   font-size: rem(18);
   font-weight: 500;
   line-height: calc(31.5 / 18);
-  letter-spacing: 0.05em;
+  letter-spacing: rem(0.9);
   color: var(--color-text);
 }
 
-.jobs-intro .l-inset-comp-1920 {
-  @include fluid-spacing(padding-top, rem(69), 8.28vw, rem(159));
-  @include fluid-spacing(padding-bottom, rem(48), 4.17vw, rem(80));
+.jobs-intro__text-line {
+  display: block;
 }
 
-// ---- Jobs listing grid (2 columns) ----
+// ---- Jobs listing grid (Figma 1:6 — 2 columns / 1200px content) ----
 .jobs-page .jobs--listing {
   position: relative;
   z-index: 2;
   background-color: var(--color-bg-jobs);
-  @include fluid-padding-all(rem(64), 5.21vw, rem(100));
+  // Figma 1:6 — p 100（縦のみ。横は l-inset-comp-1920）
+  @include fluid-padding-y(rem(64), 5.21vw, rem(100));
 
   &::after {
     display: none;
@@ -66,16 +72,65 @@
 }
 
 .jobs-page .jobs--listing .jobs__grid {
+  display: flex;
+  flex-wrap: wrap;
   margin-top: 0;
-  @include fluid-gap(rem(30), 2.6vw, rem(50));
+  column-gap: rem(30);
+  row-gap: rem(50);
 }
 
 .jobs-page .jobs--listing .job-card {
+  display: flex;
+  flex-direction: column;
+  gap: rem(20);
   flex: 0 1 calc(50% - #{rem(15)});
+  min-width: 0;
+}
+
+.jobs-page .jobs--listing .job-card__main {
+  display: flex;
+  flex-direction: column;
+  gap: rem(20);
+}
+
+.jobs-page .jobs--listing .job-card__figure {
+  aspect-ratio: 584 / 240;
+}
+
+.jobs-page .jobs--listing .figma-media--job .figma-media__img,
+.jobs-page .jobs--listing .figma-media--job-cs .figma-media__img {
+  top: -31.11%;
+  left: 0;
+  width: 100%;
+  height: 162.22%;
+}
+
+.jobs-page .jobs--listing .job-card__head {
+  margin-top: 0;
+}
+
+.jobs-page .jobs--listing .job-card__titles {
+  display: flex;
+  flex-direction: column;
+  gap: rem(4.5);
+}
+
+.jobs-page .jobs--listing .job-card__role-en {
+  line-height: 1;
+}
+
+.jobs-page .jobs--listing .job-card__role-ja {
+  margin-top: 0;
+  font-size: rem(24);
+  line-height: calc(30 / 24);
+}
+
+.jobs-page .jobs--listing .job-card__links {
+  margin-top: 0;
 }
 
 @include mq {
-  .jobs-intro__inner {
+  .jobs-intro__layout {
     flex-direction: column;
     align-items: flex-start;
   }
@@ -91,6 +146,15 @@
     margin-top: rem(20);
     font-size: rem(14);
     line-height: calc(24.5 / 14);
+    letter-spacing: rem(0.7);
+  }
+
+  .jobs-intro__text-line {
+    display: inline;
+  }
+
+  .jobs-intro__text-line + .jobs-intro__text-line::before {
+    content: "";
   }
 
   .jobs-page .jobs--listing .job-card {

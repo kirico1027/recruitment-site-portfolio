@@ -1,0 +1,24 @@
+{
+  "source": "get_design_context",
+  "nodeId": "1:6",
+  "fetchedAt": "2026-06-16T09:40:00",
+  "page": "jobs",
+  "section": "jobs-listing",
+  "data": {
+    "padding": "100px",
+    "containerWidth": "1280px",
+    "contentWidth": "1200px",
+    "gridColumns": 2,
+    "columnGap": "30px",
+    "rowGap": "50px",
+    "cardWidth": "585px",
+    "imageSize": "584x240",
+    "imageCrop": "height 162.22%, top -31.11%",
+    "cardGap": "20px",
+    "headGap": "30px",
+    "titleGap": "4.5px",
+    "linksGap": "10px",
+    "roleJaFontSize": "24px",
+    "roleJaLineHeight": "30px"
+  }
+}
