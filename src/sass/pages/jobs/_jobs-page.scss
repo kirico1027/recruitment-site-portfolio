@@ -26,7 +26,7 @@
 
 .jobs-intro__layout {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: rem(20);
 }
 
@@ -64,7 +64,12 @@
   z-index: 2;
   background-color: var(--color-bg-jobs);
   // Figma 1:6 — p 100（縦のみ。横は l-inset-comp-1920）
-  @include fluid-padding-y(rem(64), 5.21vw, rem(100));
+  padding-top: rem(100);
+  padding-bottom: rem(100);
+
+  @include mq-md {
+    padding-top: clamp(#{rem(40)}, 8vw, #{rem(100)});
+  }
 
   &::after {
     display: none;
@@ -129,7 +134,7 @@
   margin-top: 0;
 }
 
-@include mq {
+@include mq-md {
   .jobs-intro__layout {
     flex-direction: column;
     align-items: flex-start;
@@ -144,11 +149,13 @@
 
   .jobs-intro__text {
     margin-top: rem(20);
-    font-size: rem(14);
-    line-height: calc(24.5 / 14);
-    letter-spacing: rem(0.7);
+    font-size: rem(16);
+    line-height: calc(28 / 16);
+    letter-spacing: rem(0.8);
   }
+}
 
+@include mq {
   .jobs-intro__text-line {
     display: inline;
   }
