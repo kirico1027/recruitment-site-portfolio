@@ -217,10 +217,17 @@
   top: 0;
   left: 0;
   right: 0;
+  width: 100%;
   z-index: 0;
   aspect-ratio: 1920 / 1200;
   height: clamp(#{rem(480)}, 62.5vw, #{rem(1200)});
   pointer-events: none;
+
+  // 高さが max で止まると aspect-ratio から幅が 1920px に固定され、右に隙間が出る
+  @media (min-width: 1921px) {
+    aspect-ratio: auto;
+    height: rem(1200);
+  }
 
   @include mq {
     // 768px — 高さを 62.5vw より少し上げる（アスペクト比 1.6 より縦長 → cover で左右が均等に切れる）
@@ -603,10 +610,6 @@
       pointer-events: none;
     }
   }
-}
-
-.interviews__header {
-  width: 100%;
 }
 
 .interviews .section-heading--row {

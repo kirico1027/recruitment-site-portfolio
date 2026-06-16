@@ -9,9 +9,15 @@
   @include fluid-padding-inline(rem(16), 4vw, rem(24));
 }
 
-// 採用トップ: 1920w でコンテンツ比率 62.5%。1920px 以下は緩やかに比率が上がる可変余白
+// 採用サイト共通: コンテンツ最大幅 1200px。可変インセットは幅計算に反映（padding ではなく外側余白）
 .l-inset-comp-1920 {
-  width: 100%;
+  --inset-inline: clamp(
+    #{rem(30)},
+    #{layout-inset-comp-calc(360, 1920, 375, 0.195)},
+    #{rem(360)}
+  );
+
+  width: min(#{rem(1200)}, calc(100% - 2 * var(--inset-inline)));
+  margin-inline: auto;
   box-sizing: border-box;
-  @include layout-inset-comp-1920($min-rem: rem(30));
 }
