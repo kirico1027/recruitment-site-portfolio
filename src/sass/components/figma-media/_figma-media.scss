@@ -80,6 +80,14 @@
   object-fit: cover;
 }
 
+// デザイナー下層ヒーロー（1:9）— h 266.67%, top -83.33%
+.figma-media--designer-hero .figma-media__img {
+  top: -83.33%;
+  left: 0;
+  width: 100%;
+  height: 266.67%;
+}
+
 // 職種カード標準（1:33 等）— h 126.32%, top -13.16%
 .figma-media--job .figma-media__img {
   top: -13.16%;
