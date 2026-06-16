@@ -1,0 +1,21 @@
+{
+  "source": "get_design_context",
+  "nodeId": "1:2",
+  "fetchedAt": "2026-06-16T00:00:00",
+  "page": "jobs",
+  "section": "full-page",
+  "data": {
+    "pageTitle": "募集職種一覧",
+    "sections": [
+      "header",
+      "jobs-intro",
+      "jobs-listing",
+      "top-cta",
+      "footer"
+    ],
+    "heroTitle": "募集職種",
+    "heroLead": "私たちのチームは成長中で、挑戦と学びの機会が豊富です。経験を積み、成長したい方を歓迎します。新しい仲間を募集しています。",
+    "gridColumns": 2,
+    "jobCards": 5
+  }
+}
