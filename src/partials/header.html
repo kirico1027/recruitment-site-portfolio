@@ -1,0 +1,35 @@
+<header class="top-header">
+      <div class="top-header__inner">
+        <a class="top-header__logo" href="@@logoHref"><img src="./public/assets/img/recruit/logo.png" alt="FRACTAL" width="160" height="27" />採用サイト</a>
+        <button class="top-header__menu-toggle" type="button" aria-expanded="false" aria-controls="top-nav" aria-label="メニューを開く">
+          <span class="top-header__menu-toggle-bar"></span>
+          <span class="top-header__menu-toggle-bar"></span>
+          <span class="top-header__menu-toggle-bar"></span>
+        </button>
+        <nav class="top-header__nav" id="top-nav" aria-label="グローバルナビゲーション">
+          <ul class="top-header__nav-list">
+            <li class="top-header__nav-item top-header__nav-item--has-dropdown">
+              <a class="@@jobsLinkClass" href="./jobs.html" @@jobsAriaCurrent>募集職種<span class="material-icons top-header__nav-icon" aria-hidden="true">arrow_drop_down</span></a>
+              <ul class="top-header__dropdown">
+                <li><a href="./designer.html">デザイナー</a></li>
+                <li><a href="#">エンジニア</a></li>
+                <li><a href="#">プロダクトマネージャー</a></li>
+                <li><a href="#">カスタマーサクセス</a></li>
+                <li><a href="#">コーポレート</a></li>
+              </ul>
+            </li>
+            <li class="top-header__nav-item"><a class="top-header__nav-link" href="#">会社情報</a></li>
+            <li class="top-header__nav-item top-header__nav-item--has-dropdown">
+              <a class="top-header__nav-link" href="@@blogHref">ブログ<span class="material-icons top-header__nav-icon" aria-hidden="true">arrow_drop_down</span></a>
+              <ul class="top-header__dropdown">
+                <li><a href="#">ニュース</a></li>
+                <li><a href="#">社員紹介</a></li>
+                <li><a href="#">インタビュー</a></li>
+              </ul>
+            </li>
+          </ul>
+          <button class="top-header__cta" type="button" data-entry-modal-open>応募・エントリー</button>
+        </nav>
+      </div>
+      <div class="top-header__backdrop" hidden></div>
+    </header>
