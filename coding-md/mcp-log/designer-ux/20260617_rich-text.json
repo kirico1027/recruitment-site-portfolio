@@ -1,0 +1,8 @@
+{
+  "source": "get_design_context",
+  "nodeId": "1:33",
+  "fetchedAt": "2026-06-17T12:00:00+09:00",
+  "page": "designer-ux",
+  "section": "rich-text",
+  "notes": "div.richText 左カラム本文。gap 16 / pt 15 / pb 8、h2 pt 24（区切り後 62）、h3 pt 4（セクション直下のみ）、ul pt 4（セクション直下）、歓迎要件 ul pb 37、hr 2px。"
+}

@@ -1,0 +1,337 @@
+@use "../../foundation/functions" as *;
+@use "../../foundation/mixins" as *;
+
+.designer-ux-page {
+  font-family: var(--font-body);
+  color: var(--color-text);
+  background: var(--color-bg);
+  line-height: 1.6;
+}
+
+.designer-ux-main {
+  padding-top: rem(90);
+}
+
+.designer-ux-intro__inner {
+  @include fluid-spacing(padding-top, rem(96), 8.33vw, rem(160));
+  @include fluid-spacing(padding-bottom, rem(48), 4.17vw, rem(80));
+}
+
+.designer-ux-intro__breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: rem(10);
+}
+
+.designer-ux-intro__breadcrumb a {
+  color: var(--color-text);
+  text-decoration: none;
+  font-family: var(--font-body);
+  font-size: rem(14);
+  line-height: 1;
+}
+
+.designer-ux-intro__breadcrumb .material-icons {
+  font-size: rem(16);
+}
+
+.designer-ux-intro__title {
+  margin: rem(20) 0 0;
+  font-family: var(--font-ja);
+  font-size: clamp(#{rem(32)}, #{rem(24)} + 1.25vw, #{rem(48)});
+  font-weight: 500;
+  line-height: calc(64.8 / 48);
+  letter-spacing: rem(2.4);
+}
+
+.designer-ux-body__inner {
+  @include fluid-spacing(padding-bottom, rem(64), 5.21vw, rem(100));
+}
+
+// 右カラム（サイドバー）の 33.333% を優先。最小幅はボタン 226 + padding 20×2
+.designer-ux-body__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(#{rem(268)}, 33.333%);
+  align-items: start;
+  gap: rem(40);
+}
+
+// 1130px 以下: サイドバー割合をやや拡大。1024px で 40% まで
+@media (max-width: 1130px) {
+  .designer-ux-body__layout {
+    grid-template-columns: minmax(0, 1fr) minmax(#{rem(300)}, calc(36% + (1130px - 100vw) * 4 / 106));
+  }
+}
+
+// Figma 1:33 — gap 16 / pt 15 / pb 8
+.designer-ux-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: rem(16);
+  min-width: 0;
+  padding-top: rem(15);
+  padding-bottom: rem(8);
+}
+
+.designer-ux-content__lead {
+  margin: 0;
+  width: 100%;
+  font-size: rem(18);
+  line-height: calc(27 / 18);
+}
+
+// Figma 1:36, 1:51, 1:84 — h2 pt 24（区切り線後は 62）
+.designer-ux-content__section-title {
+  margin: 0;
+  padding-top: rem(24);
+  width: 100%;
+  font-family: var(--font-ja);
+  font-size: rem(24);
+  font-weight: 900;
+  line-height: calc(36 / 24);
+}
+
+.designer-ux-content__section-title--after-divider {
+  padding-top: rem(62);
+}
+
+// Figma 1:53, 1:86 — セクション直下 h3 のみ pt 4
+.designer-ux-content__section-title + .designer-ux-content__subsection-title {
+  padding-top: rem(4);
+}
+
+.designer-ux-content__subsection-title {
+  margin: 0;
+  width: 100%;
+  font-family: var(--font-ja);
+  font-size: rem(18);
+  font-weight: 900;
+  line-height: calc(27 / 18);
+}
+
+// Figma 1:38 — セクション直下 ul のみ pt 4
+.designer-ux-content__section-title + .designer-ux-content__list {
+  padding-top: rem(4);
+}
+
+.designer-ux-content__text {
+  margin: 0;
+  width: 100%;
+  font-size: rem(18);
+  line-height: calc(27 / 18);
+}
+
+.designer-ux-content__list {
+  display: flex;
+  flex-direction: column;
+  gap: rem(8);
+  margin: 0;
+  width: 100%;
+  max-width: rem(672);
+  padding-left: rem(24);
+}
+
+.designer-ux-content__list--ordered {
+  list-style-type: decimal;
+  max-width: rem(668);
+}
+
+.designer-ux-content__list:not(.designer-ux-content__list--ordered) {
+  list-style-type: disc;
+}
+
+// Figma 1:70 — 区切り線前 ul pb 37
+.designer-ux-content__list--before-divider {
+  padding-bottom: rem(37);
+}
+
+.designer-ux-content__list-item {
+  font-size: rem(16);
+  line-height: calc(24 / 16);
+}
+
+// Figma 1:83 — hr 2px #242528
+.designer-ux-content__divider {
+  width: 100%;
+  margin: 0;
+  border: 0;
+  border-top: rem(2) solid var(--color-text);
+}
+
+.designer-ux-entry {
+  position: sticky;
+  top: rem(110);
+  display: flex;
+  flex-direction: column;
+  gap: rem(40);
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  // Figma 1:140 — 上下 p 41（fluid）。左右は 1024px で 20px、1920px で 41px
+  @include fluid-padding-y(rem(24), 2.14vw, rem(41));
+  padding-left: clamp(#{rem(20)}, calc(#{rem(20)} + (100vw - 1024px) * 21 / 896), #{rem(41)});
+  padding-right: clamp(#{rem(20)}, calc(#{rem(20)} + (100vw - 1024px) * 21 / 896), #{rem(41)});
+  border: 1px solid var(--color-border);
+  border-radius: rem(24);
+  background: var(--color-bg-mission);
+}
+
+.designer-ux-entry__head {
+  display: flex;
+  flex-direction: column;
+  gap: rem(10);
+  width: 100%;
+  max-width: rem(428);
+  min-width: 0;
+}
+
+.designer-ux-entry__title {
+  margin: 0;
+  width: 100%;
+  font-family: var(--font-ja);
+  font-size: rem(20);
+  font-weight: 700;
+  line-height: calc(27 / 20);
+}
+
+.designer-ux-entry__text {
+  margin: 0;
+  width: 100%;
+  font-size: rem(14);
+  font-weight: 500;
+  line-height: calc(24.5 / 14);
+}
+
+.designer-ux-entry__actions {
+  display: flex;
+  flex-direction: column;
+  gap: rem(10);
+  width: 100%;
+  max-width: rem(428);
+  min-width: 0;
+}
+
+.designer-ux-entry__btn {
+  display: flex;
+  align-self: stretch;
+  width: 100%;
+  padding-bottom: rem(3);
+  border-bottom: rem(3) solid transparent;
+  border-radius: rem(128);
+  text-decoration: none;
+}
+
+.designer-ux-entry__btn-inner {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: rem(10);
+  box-sizing: border-box;
+  width: 100%;
+  max-width: rem(226);
+  min-width: 0;
+  height: rem(56);
+  padding: 0 rem(25);
+  border: 1px solid var(--color-text-muted);
+  border-radius: rem(128);
+  background: var(--color-white);
+}
+
+.designer-ux-entry__btn-text {
+  flex: 1 1 auto;
+  min-width: 0;
+  color: var(--color-text);
+  font-family: var(--font-ja);
+  font-size: rem(18);
+  font-weight: 500;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.designer-ux-entry__btn-icon-wrap {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: rem(20);
+  height: rem(20);
+  border: 1px solid var(--color-text);
+  border-radius: 50%;
+}
+
+.designer-ux-entry__btn-icon {
+  font-size: rem(14);
+  line-height: 1;
+  color: var(--color-text);
+}
+
+.designer-ux-entry__casual-link {
+  display: inline-flex;
+  gap: rem(10);
+  align-items: center;
+  width: fit-content;
+  max-width: 100%;
+  color: var(--color-text);
+  font-size: rem(14);
+  line-height: 1;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.designer-ux-entry__casual-icon {
+  font-size: rem(24);
+  transform: rotate(-90deg);
+}
+
+@include mq-md {
+  .designer-ux-body__layout {
+    grid-template-columns: minmax(0, 100%);
+  }
+
+  .designer-ux-entry {
+    position: static;
+  }
+
+  .designer-ux-content__lead,
+  .designer-ux-content__text {
+    font-size: rem(16);
+    line-height: calc(24 / 16);
+  }
+
+  .designer-ux-content__section-title {
+    font-size: rem(22);
+    line-height: calc(33 / 22);
+  }
+
+  .designer-ux-content__subsection-title {
+    font-size: rem(16);
+    line-height: calc(24 / 16);
+  }
+
+  .designer-ux-content__list {
+    max-width: 100%;
+  }
+}
+
+@include mq {
+  .designer-ux-intro__title {
+    font-size: rem(32);
+    line-height: calc(43.2 / 32);
+    letter-spacing: rem(1.6);
+  }
+
+  .designer-ux-entry {
+    padding-top: rem(25);
+    padding-bottom: rem(25);
+    padding-left: rem(20);
+    padding-right: rem(20);
+    gap: rem(32);
+  }
+
+  .designer-ux-entry__btn-inner {
+    max-width: none;
+  }
+}

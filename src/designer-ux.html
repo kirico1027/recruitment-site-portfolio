@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>募集職種 | FRACTAL 採用サイト</title>
+    <title>UXデザイナー | FRACTAL 採用サイト</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -12,7 +12,7 @@
     />
     <link rel="stylesheet" href="./public/assets/css/main.css" />
   </head>
-  <body class="jobs-page">
+  <body class="designer-ux-page">
     <header class="top-header">
       <div class="top-header__inner">
         <a class="top-header__logo" href="./index.html"><img src="./public/assets/img/recruit/logo.png" alt="FRACTAL" width="160" height="27" />採用サイト</a>
@@ -49,104 +49,88 @@
       <div class="top-header__backdrop" hidden></div>
     </header>
 
-    <main class="jobs-main">
-      <section class="jobs-intro" aria-labelledby="jobs-intro-heading">
-        <div class="jobs-intro__inner l-inset-comp-1920">
-          <div class="jobs-intro__layout">
-            <h1 id="jobs-intro-heading" class="jobs-intro__title">募集職種</h1>
-            <p class="jobs-intro__text">
-              <span class="jobs-intro__text-line">私たちのチームは成長中で、挑戦と学びの機会が豊富です。経験を積み、成長したい方を歓迎します。新しい仲間を募集しています。</span>
-            </p>
-          </div>
+    <main class="designer-ux-main">
+      <section class="designer-ux-intro" aria-labelledby="designer-ux-intro-heading">
+        <div class="designer-ux-intro__inner l-inset-comp-1920">
+          <nav class="designer-ux-intro__breadcrumb" aria-label="パンくず">
+            <a href="./index.html">採用トップ</a>
+            <span class="material-icons" aria-hidden="true">keyboard_arrow_right</span>
+            <a href="./jobs.html">募集職種</a>
+            <span class="material-icons" aria-hidden="true">keyboard_arrow_right</span>
+            <a href="./designer.html">デザイナー</a>
+            <span class="material-icons" aria-hidden="true">keyboard_arrow_right</span>
+          </nav>
+          <h1 id="designer-ux-intro-heading" class="designer-ux-intro__title">UXデザイナー</h1>
         </div>
       </section>
 
-      <section class="jobs jobs--listing" id="jobs">
-        <div class="l-inset-comp-1920">
-          <div class="jobs__grid">
-            <article class="job-card">
-              <a class="job-card__main" href="./designer.html">
-                <figure class="job-card__figure figma-media figma-media--job"><img class="figma-media__img" src="./public/assets/img/recruit/job-designer.png" alt="" width="584" height="240" /></figure>
-                <div class="job-card__head">
-                  <div class="job-card__titles">
-                    <p class="job-card__role-en">Designer</p>
-                    <h3 class="job-card__role-ja">デザイナー</h3>
-                  </div>
-                  <span class="job-card__arrow material-icons" aria-hidden="true">keyboard_arrow_right</span>
-                </div>
-              </a>
-              <ul class="job-card__links">
-                <li><a href="./designer-ux.html"><span class="material-icons" aria-hidden="true">arrow_drop_down_circle</span>UXデザイナー</a></li>
-                <li><a href="./designer.html"><span class="material-icons" aria-hidden="true">arrow_drop_down_circle</span>プロダクトデザイナー</a></li>
-                <li><a href="./designer.html"><span class="material-icons" aria-hidden="true">arrow_drop_down_circle</span>リードプロダクトデザイナー</a></li>
+      <section class="designer-ux-body" aria-label="UXデザイナー募集詳細">
+        <div class="designer-ux-body__inner l-inset-comp-1920">
+          <div class="designer-ux-body__layout">
+            <div class="designer-ux-content">
+              <p class="designer-ux-content__lead">
+                ビジネス界の地平を拡げるべく、革新的なアイデアを追求しています。私たちは、デザインの力で未来を創造するクリエイティブなデザイナーを探しています。スモールビジネスの可能性を最大限に引き出すため、デザインによるイノベーションに貢献できる方、ぜひご応募ください。
+              </p>
+
+              <h2 class="designer-ux-content__section-title">業務内容詳細</h2>
+              <ul class="designer-ux-content__list">
+                <li class="designer-ux-content__list-item">ユーザーエクスペリエンスの向上と新しい機能のデザイン・設計・実装・テスト・改善</li>
+                <li class="designer-ux-content__list-item">魅力的なUI/UXを実現するためのアイデアの提案と実装</li>
+                <li class="designer-ux-content__list-item">プロダクトのビジュアルデザインの企画・制作・改善</li>
               </ul>
-            </article>
-            <article class="job-card">
-              <a class="job-card__main" href="#">
-                <figure class="job-card__figure figma-media figma-media--job"><img class="figma-media__img" src="./public/assets/img/recruit/job-engineer.png" alt="" width="584" height="240" /></figure>
-                <div class="job-card__head">
-                  <div class="job-card__titles">
-                    <p class="job-card__role-en">Engineer</p>
-                    <h3 class="job-card__role-ja">エンジニア</h3>
-                  </div>
-                  <span class="job-card__arrow material-icons" aria-hidden="true">keyboard_arrow_right</span>
-                </div>
-              </a>
-              <ul class="job-card__links">
-                <li><a href="#"><span class="material-icons" aria-hidden="true">arrow_drop_down_circle</span>コーポレートエンジニア</a></li>
-                <li><a href="#"><span class="material-icons" aria-hidden="true">arrow_drop_down_circle</span>デザインエンジニア</a></li>
-                <li><a href="#"><span class="material-icons" aria-hidden="true">arrow_drop_down_circle</span>データ基盤開発エンジニア</a></li>
+
+              <h2 class="designer-ux-content__section-title">求める人物像</h2>
+              <h3 class="designer-ux-content__subsection-title">必須要件（Must）</h3>
+              <ul class="designer-ux-content__list">
+                <li class="designer-ux-content__list-item">Webアプリケーション開発の経験が4年以上ある方</li>
+                <li class="designer-ux-content__list-item">新しい技術に敏感で、技術選定において積極的に議論できる方</li>
+                <li class="designer-ux-content__list-item">自社のシステム構成や課題を理解している方</li>
               </ul>
-            </article>
-            <article class="job-card">
-              <a class="job-card__main" href="#">
-                <figure class="job-card__figure figma-media figma-media--job"><img class="figma-media__img" src="./public/assets/img/recruit/job-pm.png" alt="" width="584" height="240" /></figure>
-                <div class="job-card__head">
-                  <div class="job-card__titles">
-                    <p class="job-card__role-en">Product Manager</p>
-                    <h3 class="job-card__role-ja">プロダクトマネージャー</h3>
-                  </div>
-                  <span class="job-card__arrow material-icons" aria-hidden="true">keyboard_arrow_right</span>
-                </div>
-              </a>
-              <ul class="job-card__links">
-                <li><a href="#"><span class="material-icons" aria-hidden="true">arrow_drop_down_circle</span>シニアプロダクトマネージャー</a></li>
-                <li><a href="#"><span class="material-icons" aria-hidden="true">arrow_drop_down_circle</span>プロダクトマネージャー</a></li>
+              <h3 class="designer-ux-content__subsection-title">歓迎要件（Want）</h3>
+              <ul class="designer-ux-content__list designer-ux-content__list--before-divider">
+                <li class="designer-ux-content__list-item">サービスの設計から開発、運用までの経験を持つ方</li>
+                <li class="designer-ux-content__list-item">既存サービスの改善や大規模な変更に関わった経験を持つ方</li>
+                <li class="designer-ux-content__list-item">積極的なフィードバック提供と、真摯な受容態勢を持つ方</li>
               </ul>
-            </article>
-            <article class="job-card">
-              <a class="job-card__main" href="#">
-                <figure class="job-card__figure figma-media figma-media--job-cs"><img class="figma-media__img" src="./public/assets/img/recruit/job-cs.png" alt="" width="584" height="240" /></figure>
-                <div class="job-card__head">
-                  <div class="job-card__titles">
-                    <p class="job-card__role-en">Customer Success</p>
-                    <h3 class="job-card__role-ja">カスタマーサクセス</h3>
-                  </div>
-                  <span class="job-card__arrow material-icons" aria-hidden="true">keyboard_arrow_right</span>
-                </div>
-              </a>
-              <ul class="job-card__links">
-                <li><a href="#"><span class="material-icons" aria-hidden="true">arrow_drop_down_circle</span>カスタマーサクセス</a></li>
-                <li><a href="#"><span class="material-icons" aria-hidden="true">arrow_drop_down_circle</span>カスタマーサクセスエキスパート</a></li>
+
+              <hr class="designer-ux-content__divider" />
+
+              <h2 class="designer-ux-content__section-title designer-ux-content__section-title--after-divider">募集要項</h2>
+              <h3 class="designer-ux-content__subsection-title">こんな方と働きたい！</h3>
+              <p class="designer-ux-content__text">
+                私たちは、熱意を持ち、クリエイティブな視点でビジョンを共有できる方と働きたいと考えています。チームワークを重んじ、ビジョンエクスプローラーズの成長に貢献できる方を歓迎します。
+              </p>
+              <h3 class="designer-ux-content__subsection-title">給与</h3>
+              <p class="designer-ux-content__text">経験とスキルに基づいて優遇します。詳細は面接時にご相談ください。</p>
+              <h3 class="designer-ux-content__subsection-title">勤務地</h3>
+              <p class="designer-ux-content__text">東京都渋谷区のオフィスでの勤務となります。リモートワークのオプションもあります。</p>
+              <h3 class="designer-ux-content__subsection-title">福利厚生</h3>
+              <ul class="designer-ux-content__list">
+                <li class="designer-ux-content__list-item">社会保険完備</li>
+                <li class="designer-ux-content__list-item">完全週休2日制（土日）</li>
+                <li class="designer-ux-content__list-item">フレックスタイム制度</li>
+                <li class="designer-ux-content__list-item">健康診断・医療相談サポート</li>
+                <li class="designer-ux-content__list-item">スキルアップ支援制度</li>
               </ul>
-            </article>
-            <article class="job-card">
-              <a class="job-card__main" href="#">
-                <figure class="job-card__figure figma-media figma-media--job"><img class="figma-media__img" src="./public/assets/img/recruit/job-corporate.png" alt="" width="584" height="240" /></figure>
-                <div class="job-card__head">
-                  <div class="job-card__titles">
-                    <p class="job-card__role-en">Corporate</p>
-                    <h3 class="job-card__role-ja">コーポレート</h3>
-                  </div>
-                  <span class="job-card__arrow material-icons" aria-hidden="true">keyboard_arrow_right</span>
-                </div>
-              </a>
-              <ul class="job-card__links">
-                <li><a href="#"><span class="material-icons" aria-hidden="true">arrow_drop_down_circle</span>総務</a></li>
-                <li><a href="#"><span class="material-icons" aria-hidden="true">arrow_drop_down_circle</span>労務</a></li>
-                <li><a href="#"><span class="material-icons" aria-hidden="true">arrow_drop_down_circle</span>IR</a></li>
-              </ul>
-            </article>
+              <h3 class="designer-ux-content__subsection-title">選考プロセス</h3>
+              <ol class="designer-ux-content__list designer-ux-content__list--ordered">
+                <li class="designer-ux-content__list-item">書類選考</li>
+                <li class="designer-ux-content__list-item">一次面接</li>
+                <li class="designer-ux-content__list-item">適性試験</li>
+                <li class="designer-ux-content__list-item">最終面接</li>
+              </ol>
+            </div>
+
+            <aside class="designer-ux-entry" aria-label="エントリー">
+              <div class="designer-ux-entry__head">
+                <h2 class="designer-ux-entry__title">UXデザイナーにエントリー</h2>
+                <p class="designer-ux-entry__text">応募後、採用担当からすぐにお返事させていただきます。</p>
+              </div>
+              <div class="designer-ux-entry__actions">
+                <a class="designer-ux-entry__btn" href="#entry"><span class="designer-ux-entry__btn-inner"><span class="designer-ux-entry__btn-text">応募・エントリー</span><span class="designer-ux-entry__btn-icon-wrap" aria-hidden="true"><span class="material-icons designer-ux-entry__btn-icon">keyboard_arrow_right</span></span></span></a>
+                <a class="designer-ux-entry__casual-link" href="#entry"><span class="material-icons designer-ux-entry__casual-icon" aria-hidden="true">arrow_drop_down_circle</span>カジュアル面談</a>
+              </div>
+            </aside>
           </div>
         </div>
       </section>
