@@ -231,10 +231,12 @@ function initEntryModal() {
   const lockScroll = () => {
     const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
     document.documentElement.style.setProperty("--entry-modal-scrollbar-width", `${scrollbarWidth}px`);
+    document.documentElement.classList.add("entry-modal-open");
     document.body.classList.add("entry-modal-open");
   };
 
   const unlockScroll = () => {
+    document.documentElement.classList.remove("entry-modal-open");
     document.body.classList.remove("entry-modal-open");
     document.documentElement.style.removeProperty("--entry-modal-scrollbar-width");
   };

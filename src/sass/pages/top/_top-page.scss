@@ -198,6 +198,11 @@
   white-space: nowrap;
 }
 
+button.top-header__cta {
+  border: 0;
+  cursor: pointer;
+}
+
 .top-header__backdrop {
   display: none;
 }
@@ -1328,6 +1333,16 @@
   border-bottom: rem(3) solid transparent;
   border-radius: rem(128);
   text-decoration: none;
+}
+
+button.top-cta__btn {
+  border: 0;
+  padding: 0;
+  padding-bottom: rem(3);
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
 }
 
 .top-cta__btn-inner {

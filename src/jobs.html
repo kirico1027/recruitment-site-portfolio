@@ -43,7 +43,7 @@
               </ul>
             </li>
           </ul>
-          <a class="top-header__cta" href="#entry">応募・エントリー</a>
+          <button class="top-header__cta" type="button" data-entry-modal-open>応募・エントリー</button>
         </nav>
       </div>
       <div class="top-header__backdrop" hidden></div>
@@ -168,7 +168,7 @@
                 <h2 class="top-cta__title">いますぐエントリー</h2>
                 <p class="top-cta__text">当社への応募は、あなたの可能性を最大限に活かせる素晴らしい機会です。私たちは新しいメンバーを歓迎し、あなたの経験や熱意を活かす場を提供します。リラックスして、あなたらしく、自由な発想で応募してください。一緒に素晴らしい未来を築きましょう！</p>
               </div>
-              <a class="top-cta__btn" href="#"><span class="top-cta__btn-inner"><span class="top-cta__btn-text">応募・エントリー</span><span class="top-cta__btn-icon-wrap" aria-hidden="true"><span class="material-icons top-cta__btn-icon">keyboard_arrow_right</span></span></span></a>
+              <button class="top-cta__btn" type="button" data-entry-modal-open><span class="top-cta__btn-inner"><span class="top-cta__btn-text">応募・エントリー</span><span class="top-cta__btn-icon-wrap" aria-hidden="true"><span class="material-icons top-cta__btn-icon">keyboard_arrow_right</span></span></span></button>
             </div>
           </div>
         </div>
@@ -207,6 +207,67 @@
       </div>
     </footer>
 
-    <script src="./public/assets/js/script.js?v=20250616c"></script>
+
+    <div class="entry-modal" id="entry-modal" hidden aria-hidden="true" aria-modal="true" aria-labelledby="entry-modal-title">
+      <button class="entry-modal__backdrop" type="button" data-entry-modal-close aria-label="閉じる"></button>
+      <div class="entry-modal__panel">
+        <button class="entry-modal__close" type="button" data-entry-modal-close aria-label="閉じる"><span class="material-icons" aria-hidden="true">close</span></button>
+        <div class="entry-modal__header">
+          <h2 class="entry-modal__title" id="entry-modal-title">応募・エントリー</h2>
+          <p class="entry-modal__lead">当社への応募は、あなたの可能性を最大限に活かせる素晴らしい機会です。私たちは新しいメンバーを歓迎し、あなたの経験や熱意を活かす場を提供します。リラックスして、あなたらしく、自由な発想で応募してください。一緒に素晴らしい未来を築きましょう！</p>
+        </div>
+        <form class="entry-modal__form" action="#" method="post" novalidate>
+          <div class="entry-modal__fields">
+            <div class="entry-modal__field">
+              <label class="entry-modal__label" for="entry-name">名前<span class="entry-modal__required" aria-hidden="true">*</span></label>
+              <input class="entry-modal__input" type="text" id="entry-name" name="name" autocomplete="name" required placeholder="例：山田太郎" />
+            </div>
+            <div class="entry-modal__field">
+              <label class="entry-modal__label" for="entry-email">メールアドレス<span class="entry-modal__required" aria-hidden="true">*</span></label>
+              <input class="entry-modal__input" type="email" id="entry-email" name="email" autocomplete="email" required placeholder="例：mail@example.com" />
+            </div>
+            <div class="entry-modal__field">
+              <label class="entry-modal__label" for="entry-job">応募職種<span class="entry-modal__required" aria-hidden="true">*</span></label>
+              <div class="entry-modal__select-wrap">
+                <select class="entry-modal__select" id="entry-job" name="job" required>
+                  <option value="" disabled selected>選択してください</option>
+                  <option value="ux-designer">UXデザイナー</option>
+                  <option value="ui-designer">UIデザイナー</option>
+                  <option value="graphic-designer">グラフィックデザイナー</option>
+                </select>
+                <span class="material-icons entry-modal__select-icon" aria-hidden="true">expand_more</span>
+              </div>
+            </div>
+            <div class="entry-modal__field">
+              <label class="entry-modal__label" for="entry-resume">履歴書・職務経歴書<span class="entry-modal__required" aria-hidden="true">*</span></label>
+              <div class="entry-modal__file-area">
+                <label class="entry-modal__file-label" for="entry-resume"><span class="entry-modal__file-btn">ファイルを選択</span></label>
+                <input class="entry-modal__file" type="file" id="entry-resume" name="resume" accept=".pdf,.doc,.docx" required />
+              </div>
+            </div>
+            <div class="entry-modal__field">
+              <label class="entry-modal__label" for="entry-appeal">アピールポイント</label>
+              <textarea class="entry-modal__textarea" id="entry-appeal" name="appeal"></textarea>
+            </div>
+            <div class="entry-modal__privacy">
+              <p class="entry-modal__privacy-text"><a class="entry-modal__privacy-link" href="#">プライバシーポリシーに同意の上で</a>ご応募ください。</p>
+              <div class="entry-modal__agree">
+                <input class="entry-modal__checkbox" type="checkbox" id="entry-agree" name="agree" required />
+                <label class="entry-modal__agree-label" for="entry-agree">同意する</label>
+              </div>
+            </div>
+          </div>
+          <div class="entry-modal__actions">
+            <button class="entry-modal__submit" type="submit"><span class="entry-modal__submit-text">応募する</span><span class="entry-modal__submit-icon-wrap" aria-hidden="true"><span class="material-icons entry-modal__submit-icon">keyboard_arrow_right</span></span></button>
+          </div>
+        </form>
+        <div class="entry-modal__success" hidden>
+          <p class="entry-modal__success-title" tabindex="-1">送信が完了しました</p>
+          <p class="entry-modal__success-text">ご応募ありがとうございます。採用担当より2〜3営業日以内にご連絡いたします。</p>
+        </div>
+      </div>
+    </div>
+
+    <script src="./public/assets/js/script.js?v=20250617d"></script>
   </body>
 </html>

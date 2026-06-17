@@ -191,48 +191,58 @@
       </div>
     </footer>
 
+
     <div class="entry-modal" id="entry-modal" hidden aria-hidden="true" aria-modal="true" aria-labelledby="entry-modal-title">
       <button class="entry-modal__backdrop" type="button" data-entry-modal-close aria-label="閉じる"></button>
       <div class="entry-modal__panel">
         <button class="entry-modal__close" type="button" data-entry-modal-close aria-label="閉じる"><span class="material-icons" aria-hidden="true">close</span></button>
         <div class="entry-modal__header">
-          <h2 class="entry-modal__title" id="entry-modal-title">UXデザイナーにエントリー</h2>
-          <p class="entry-modal__lead">応募後、採用担当からすぐにお返事させていただきます。</p>
+          <h2 class="entry-modal__title" id="entry-modal-title">応募・エントリー</h2>
+          <p class="entry-modal__lead">当社への応募は、あなたの可能性を最大限に活かせる素晴らしい機会です。私たちは新しいメンバーを歓迎し、あなたの経験や熱意を活かす場を提供します。リラックスして、あなたらしく、自由な発想で応募してください。一緒に素晴らしい未来を築きましょう！</p>
         </div>
         <form class="entry-modal__form" action="#" method="post" novalidate>
           <div class="entry-modal__fields">
             <div class="entry-modal__field">
-              <label class="entry-modal__label" for="entry-name">お名前<span class="entry-modal__required">必須</span></label>
-              <input class="entry-modal__input" type="text" id="entry-name" name="name" autocomplete="name" required placeholder="山田 太郎" />
+              <label class="entry-modal__label" for="entry-name">名前<span class="entry-modal__required" aria-hidden="true">*</span></label>
+              <input class="entry-modal__input" type="text" id="entry-name" name="name" autocomplete="name" required placeholder="例：山田太郎" />
             </div>
             <div class="entry-modal__field">
-              <label class="entry-modal__label" for="entry-email">メールアドレス<span class="entry-modal__required">必須</span></label>
-              <input class="entry-modal__input" type="email" id="entry-email" name="email" autocomplete="email" required placeholder="example@email.com" />
+              <label class="entry-modal__label" for="entry-email">メールアドレス<span class="entry-modal__required" aria-hidden="true">*</span></label>
+              <input class="entry-modal__input" type="email" id="entry-email" name="email" autocomplete="email" required placeholder="例：mail@example.com" />
             </div>
             <div class="entry-modal__field">
-              <label class="entry-modal__label" for="entry-phone">電話番号</label>
-              <input class="entry-modal__input" type="tel" id="entry-phone" name="phone" autocomplete="tel" placeholder="090-1234-5678" />
+              <label class="entry-modal__label" for="entry-job">応募職種<span class="entry-modal__required" aria-hidden="true">*</span></label>
+              <div class="entry-modal__select-wrap">
+                <select class="entry-modal__select" id="entry-job" name="job" required>
+                  <option value="" disabled selected>選択してください</option>
+                  <option value="ux-designer">UXデザイナー</option>
+                  <option value="ui-designer">UIデザイナー</option>
+                  <option value="graphic-designer">グラフィックデザイナー</option>
+                </select>
+                <span class="material-icons entry-modal__select-icon" aria-hidden="true">expand_more</span>
+              </div>
             </div>
             <div class="entry-modal__field">
-              <label class="entry-modal__label" for="entry-portfolio">ポートフォリオURL</label>
-              <input class="entry-modal__input" type="url" id="entry-portfolio" name="portfolio" placeholder="https://" />
+              <label class="entry-modal__label" for="entry-resume">履歴書・職務経歴書<span class="entry-modal__required" aria-hidden="true">*</span></label>
+              <div class="entry-modal__file-area">
+                <label class="entry-modal__file-label" for="entry-resume"><span class="entry-modal__file-btn">ファイルを選択</span></label>
+                <input class="entry-modal__file" type="file" id="entry-resume" name="resume" accept=".pdf,.doc,.docx" required />
+              </div>
             </div>
             <div class="entry-modal__field">
-              <label class="entry-modal__label" for="entry-message">自己PR・志望動機<span class="entry-modal__required">必須</span></label>
-              <textarea class="entry-modal__textarea" id="entry-message" name="message" required placeholder="ご経験や志望動機をご記入ください。"></textarea>
+              <label class="entry-modal__label" for="entry-appeal">アピールポイント</label>
+              <textarea class="entry-modal__textarea" id="entry-appeal" name="appeal"></textarea>
             </div>
-            <div class="entry-modal__field">
-              <label class="entry-modal__label" for="entry-resume">履歴書・職務経歴書</label>
-              <input class="entry-modal__file" type="file" id="entry-resume" name="resume" accept=".pdf,.doc,.docx" />
-              <p class="entry-modal__file-note">PDF、Word形式（10MB以内）</p>
-            </div>
-            <div class="entry-modal__agree">
-              <input class="entry-modal__checkbox" type="checkbox" id="entry-agree" name="agree" required />
-              <label class="entry-modal__agree-label" for="entry-agree"><a href="#">プライバシーポリシー</a>に同意する<span class="entry-modal__required">必須</span></label>
+            <div class="entry-modal__privacy">
+              <p class="entry-modal__privacy-text"><a class="entry-modal__privacy-link" href="#">プライバシーポリシーに同意の上で</a>ご応募ください。</p>
+              <div class="entry-modal__agree">
+                <input class="entry-modal__checkbox" type="checkbox" id="entry-agree" name="agree" required />
+                <label class="entry-modal__agree-label" for="entry-agree">同意する</label>
+              </div>
             </div>
           </div>
           <div class="entry-modal__actions">
-            <button class="entry-modal__submit" type="submit"><span class="entry-modal__submit-text">応募内容を送信</span><span class="entry-modal__submit-icon-wrap" aria-hidden="true"><span class="material-icons entry-modal__submit-icon">keyboard_arrow_right</span></span></button>
+            <button class="entry-modal__submit" type="submit"><span class="entry-modal__submit-text">応募する</span><span class="entry-modal__submit-icon-wrap" aria-hidden="true"><span class="material-icons entry-modal__submit-icon">keyboard_arrow_right</span></span></button>
           </div>
         </form>
         <div class="entry-modal__success" hidden>
@@ -242,6 +252,6 @@
       </div>
     </div>
 
-    <script src="./public/assets/js/script.js?v=20250617c"></script>
+    <script src="./public/assets/js/script.js?v=20250617d"></script>
   </body>
 </html>

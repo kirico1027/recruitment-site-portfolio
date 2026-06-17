@@ -3,10 +3,15 @@
 
 $entry-modal-duration: 0.4s;
 $entry-modal-easing: cubic-bezier(0.4, 0, 0.2, 1);
+$entry-modal-input-bg: #f7f7f7;
 
 body.entry-modal-open {
   overflow: hidden;
   padding-right: var(--entry-modal-scrollbar-width, 0px);
+}
+
+html.entry-modal-open {
+  overflow: hidden;
 }
 
 body.entry-modal-open .top-header {
@@ -18,6 +23,7 @@ body.entry-modal-open .top-header {
   inset: 0;
   z-index: 200;
   box-sizing: border-box;
+  overflow: hidden;
   color: var(--color-text);
 
   &[hidden] {
@@ -31,12 +37,19 @@ body.entry-modal-open .top-header {
   padding: 0;
   border: 0;
   background-color: rgba(36, 37, 40, 0);
+  backdrop-filter: blur(0);
+  -webkit-backdrop-filter: blur(0);
   cursor: pointer;
-  transition: background-color $entry-modal-duration $entry-modal-easing;
+  transition:
+    background-color $entry-modal-duration $entry-modal-easing,
+    backdrop-filter $entry-modal-duration $entry-modal-easing,
+    -webkit-backdrop-filter $entry-modal-duration $entry-modal-easing;
 }
 
 .entry-modal.entry-modal--visible .entry-modal__backdrop {
-  background-color: rgba(36, 37, 40, 0.7);
+  background-color: rgba(36, 37, 40, 0.25);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .entry-modal__panel {
@@ -47,9 +60,9 @@ body.entry-modal-open .top-header {
   flex-direction: column;
   gap: rem(32);
   box-sizing: border-box;
-  width: min(100%, #{rem(720)});
+  width: rem(600);
   height: 100dvh;
-  padding: rem(40);
+  padding: rem(60);
   overflow-y: auto;
   border-radius: rem(24) 0 0 rem(24);
   background: var(--color-white);
@@ -63,10 +76,38 @@ body.entry-modal-open .top-header {
   transform: translate3d(0, 0, 0);
 }
 
+@include mq-md {
+  .entry-modal__panel {
+    top: rem(25);
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: auto;
+    max-height: none;
+    height: auto;
+    overflow-x: hidden;
+    overscroll-behavior: contain;
+    border-radius: rem(24) rem(24) 0 0;
+    box-shadow: 0 rem(-8) rem(32) rgba(36, 37, 40, 0.12);
+    transform: translate3d(0, 100%, 0);
+  }
+
+  .entry-modal.entry-modal--visible .entry-modal__panel {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .entry-modal__panel,
   .entry-modal__backdrop {
     transition: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .entry-modal.entry-modal--visible .entry-modal__backdrop {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
   }
 }
 
@@ -81,51 +122,52 @@ body.entry-modal-open .top-header {
   width: rem(40);
   height: rem(40);
   padding: 0;
-  border: 0;
+  border: 1px solid var(--color-border);
   border-radius: 50%;
-  background: transparent;
+  background: var(--color-white);
   color: var(--color-text);
   cursor: pointer;
 }
 
 .entry-modal__close .material-icons {
-  font-size: rem(24);
+  font-size: rem(20);
   line-height: 1;
 }
 
 .entry-modal__header {
   display: flex;
   flex-direction: column;
-  gap: rem(10);
-  padding-right: rem(40);
+  gap: rem(16);
+  padding: 0 rem(40) rem(24) 0;
+  border-bottom: 1px solid var(--color-border);
 }
 
 .entry-modal__title {
   margin: 0;
   font-family: var(--font-ja);
-  font-size: rem(24);
+  font-size: rem(32);
   font-weight: 700;
-  line-height: calc(36 / 24);
+  line-height: calc(48 / 32);
 }
 
 .entry-modal__lead {
   margin: 0;
-  font-size: rem(14);
-  font-weight: 500;
-  line-height: calc(24.5 / 14);
+  font-size: rem(16);
+  font-weight: 400;
+  line-height: calc(28 / 16);
   color: var(--color-text-muted);
 }
 
 .entry-modal__form {
   display: flex;
   flex-direction: column;
-  gap: rem(24);
+  gap: rem(32);
 }
 
 .entry-modal__fields {
   display: flex;
   flex-direction: column;
-  gap: rem(20);
+  gap: rem(24);
 }
 
 .entry-modal__field {
@@ -143,21 +185,22 @@ body.entry-modal-open .top-header {
 }
 
 .entry-modal__required {
-  margin-left: rem(4);
-  color: var(--color-text-muted);
-  font-size: rem(12);
-  font-weight: 500;
+  margin-left: rem(2);
+  color: #e53935;
+  font-size: rem(14);
+  font-weight: 700;
 }
 
 .entry-modal__input,
-.entry-modal__textarea {
+.entry-modal__textarea,
+.entry-modal__select {
   box-sizing: border-box;
   width: 100%;
   min-width: 0;
-  padding: rem(12) rem(16);
-  border: 1px solid var(--color-border);
-  border-radius: rem(8);
-  background: var(--color-white);
+  padding: rem(14) rem(16);
+  border: 0;
+  border-radius: rem(4);
+  background: $entry-modal-input-bg;
   color: var(--color-text);
   font-family: var(--font-body);
   font-size: rem(16);
@@ -171,43 +214,122 @@ body.entry-modal-open .top-header {
 
 .entry-modal__input:focus-visible,
 .entry-modal__textarea:focus-visible,
+.entry-modal__select:focus-visible,
 .entry-modal__close:focus-visible,
 .entry-modal__submit:focus-visible,
-.entry-modal__checkbox:focus-visible {
+.entry-modal__checkbox:focus-visible,
+.entry-modal__file-btn:focus-visible {
   outline: rem(2) solid var(--color-text);
   outline-offset: rem(2);
 }
 
 .entry-modal__textarea {
-  min-height: rem(120);
+  min-height: rem(200);
   resize: vertical;
 }
 
-.entry-modal__file {
-  font-family: var(--font-body);
-  font-size: rem(14);
-  line-height: calc(21 / 14);
+.entry-modal__select-wrap {
+  position: relative;
+}
+
+.entry-modal__select {
+  appearance: none;
+  padding-right: rem(40);
+  cursor: pointer;
+}
+
+.entry-modal__select:invalid {
+  color: var(--color-text-muted);
+}
+
+.entry-modal__select option {
   color: var(--color-text);
 }
 
-.entry-modal__file-note {
+.entry-modal__select-icon {
+  position: absolute;
+  top: 50%;
+  right: rem(12);
+  color: var(--color-text-muted);
+  font-size: rem(24);
+  line-height: 1;
+  pointer-events: none;
+  transform: translateY(-50%);
+}
+
+.entry-modal__file-area {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: rem(56);
+  border: 1px dashed rgba(36, 37, 40, 0.3);
+  border-radius: rem(4);
+  background: var(--color-white);
+}
+
+.entry-modal__file {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.entry-modal__file-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.entry-modal__file-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: rem(8) rem(20);
+  border-radius: rem(4);
+  background: $entry-modal-input-bg;
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: rem(14);
+  font-weight: 500;
+  line-height: calc(21 / 14);
+}
+
+.entry-modal__privacy {
+  display: flex;
+  flex-direction: column;
+  gap: rem(16);
+}
+
+.entry-modal__privacy-text {
   margin: 0;
   font-size: rem(12);
   line-height: calc(18 / 12);
   color: var(--color-text-muted);
 }
 
+.entry-modal__privacy-link {
+  color: var(--color-text-muted);
+  text-decoration: underline;
+}
+
 .entry-modal__agree {
   display: flex;
   gap: rem(10);
-  align-items: flex-start;
+  align-items: center;
 }
 
 .entry-modal__checkbox {
   flex-shrink: 0;
   width: rem(18);
   height: rem(18);
-  margin-top: rem(2);
+  margin: 0;
+  border: 1px solid rgba(36, 37, 40, 0.4);
+  border-radius: rem(2);
+  accent-color: var(--color-text);
 }
 
 .entry-modal__agree-label {
@@ -215,14 +337,9 @@ body.entry-modal-open .top-header {
   line-height: calc(21 / 14);
 }
 
-.entry-modal__agree-label a {
-  color: var(--color-text);
-  text-decoration: underline;
-}
-
 .entry-modal__actions {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .entry-modal__submit {
@@ -230,7 +347,7 @@ body.entry-modal-open .top-header {
   align-items: center;
   justify-content: center;
   gap: rem(10);
-  min-width: rem(226);
+  min-width: rem(200);
   height: rem(56);
   padding: 0 rem(25);
   border: 0;
@@ -297,21 +414,14 @@ body.entry-modal-open .top-header {
   color: var(--color-text-muted);
 }
 
-@include mq {
+@include mq-md {
   .entry-modal__panel {
     gap: rem(24);
-    width: 100%;
-    padding: rem(24) rem(20) rem(32);
-    border-radius: 0;
   }
 
   .entry-modal__header {
     padding-right: rem(32);
-  }
-
-  .entry-modal__title {
-    font-size: rem(20);
-    line-height: calc(30 / 20);
+    padding-bottom: rem(20);
   }
 
   .entry-modal__submit {
