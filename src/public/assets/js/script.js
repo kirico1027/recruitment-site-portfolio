@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initTopHeader();
   initInterviewSlider();
   initFaqAccordion();
+  initEntryModal();
 });
 
 function initTopHeader() {
@@ -194,5 +195,150 @@ function initFaqAccordion() {
         delete details.dataset.faqAnimating;
       };
     });
+  });
+}
+
+function initEntryModal() {
+  const modal = document.getElementById("entry-modal");
+  if (!modal) return;
+
+  const panel = modal.querySelector(".entry-modal__panel");
+  const form = modal.querySelector(".entry-modal__form");
+  const success = modal.querySelector(".entry-modal__success");
+  const closeButtons = modal.querySelectorAll("[data-entry-modal-close]");
+  const openButtons = document.querySelectorAll("[data-entry-modal-open]");
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const animationDuration = prefersReducedMotion ? 0 : 400;
+  let lastTrigger = null;
+  let isClosing = false;
+  let closeTimer = null;
+
+  const focusFirstField = () => {
+    const firstField = modal.querySelector(".entry-modal__input, .entry-modal__textarea");
+    if (firstField) {
+      firstField.focus();
+      return;
+    }
+    modal.querySelector(".entry-modal__close")?.focus();
+  };
+
+  const resetModal = () => {
+    modal.classList.remove("entry-modal--submitted");
+    if (success) success.hidden = true;
+    form?.reset();
+  };
+
+  const lockScroll = () => {
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+    document.documentElement.style.setProperty("--entry-modal-scrollbar-width", `${scrollbarWidth}px`);
+    document.body.classList.add("entry-modal-open");
+  };
+
+  const unlockScroll = () => {
+    document.body.classList.remove("entry-modal-open");
+    document.documentElement.style.removeProperty("--entry-modal-scrollbar-width");
+  };
+
+  const finishClose = () => {
+    if (closeTimer) {
+      clearTimeout(closeTimer);
+      closeTimer = null;
+    }
+
+    modal.hidden = true;
+    modal.setAttribute("aria-hidden", "true");
+    modal.classList.remove("entry-modal--visible");
+    unlockScroll();
+    resetModal();
+    lastTrigger?.focus();
+    lastTrigger = null;
+    isClosing = false;
+  };
+
+  const openModal = (trigger) => {
+    if (isClosing || !modal.hidden) return;
+
+    lastTrigger = trigger;
+    resetModal();
+    modal.hidden = false;
+    modal.setAttribute("aria-hidden", "false");
+    lockScroll();
+
+    if (prefersReducedMotion) {
+      modal.classList.add("entry-modal--visible");
+      focusFirstField();
+      return;
+    }
+
+    modal.classList.remove("entry-modal--visible");
+    void panel?.offsetWidth;
+    requestAnimationFrame(() => {
+      modal.classList.add("entry-modal--visible");
+    });
+
+    panel?.addEventListener(
+      "transitionend",
+      (event) => {
+        if (event.target !== panel || event.propertyName !== "transform") return;
+        focusFirstField();
+      },
+      { once: true }
+    );
+  };
+
+  const closeModal = () => {
+    if (modal.hidden || isClosing) return;
+
+    if (prefersReducedMotion || !panel) {
+      finishClose();
+      return;
+    }
+
+    isClosing = true;
+    modal.classList.remove("entry-modal--visible");
+
+    panel.addEventListener(
+      "transitionend",
+      (event) => {
+        if (event.target !== panel || event.propertyName !== "transform") return;
+        finishClose();
+      },
+      { once: true }
+    );
+
+    closeTimer = window.setTimeout(() => {
+      if (isClosing) finishClose();
+    }, animationDuration + 50);
+  };
+
+  openButtons.forEach((button) => {
+    button.addEventListener("click", (event) => {
+      event.preventDefault();
+      openModal(button);
+    });
+  });
+
+  closeButtons.forEach((button) => {
+    button.addEventListener("click", closeModal);
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && !modal.hidden) {
+      closeModal();
+    }
+  });
+
+  form?.addEventListener("submit", (event) => {
+    event.preventDefault();
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    modal.classList.add("entry-modal--submitted");
+    if (success) {
+      success.hidden = false;
+    }
+    modal.querySelector(".entry-modal__success-title")?.focus();
   });
 }

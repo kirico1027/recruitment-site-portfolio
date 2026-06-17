@@ -218,9 +218,15 @@
   align-self: stretch;
   width: 100%;
   padding-bottom: rem(3);
+  border: 0;
   border-bottom: rem(3) solid transparent;
   border-radius: rem(128);
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: inherit;
   text-decoration: none;
+  cursor: pointer;
 }
 
 .designer-ux-entry__btn-inner {
@@ -334,4 +340,18 @@
   .designer-ux-entry__btn-inner {
     max-width: none;
   }
+}
+
+button.top-header__cta {
+  border: 0;
+  cursor: pointer;
+}
+
+button.top-cta__btn {
+  border: 0;
+  padding: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
 }
