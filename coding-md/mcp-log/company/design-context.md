@@ -2,54 +2,62 @@
 
 ## 取得情報
 
-- 取得日: 2026-05-05
-- 取得ノード: `1:2`（フレーム名: 1920w light / 会社ページ）
-- 取得ツール: `get_metadata`, `get_design_context`, `get_variable_defs`, `get_screenshot`
+- 取得日: 2026-06-18
+- 取得ノード: `1:2`（フレーム名: 1920w light / 会社情報ページ）
+- 取得ツール: `get_design_context`, `get_variable_defs`, `get_screenshot`
 
 ## フォント情報
 
-- 英字: `Montserrat`（Medium 500 / SemiBold 600 相当で見出し、Bold 700 でフッターカードタイトルなど）
-- 日本語: `Noto Sans JP`（Regular 400 / Medium 500 / Bold 700）
+- 英字見出し: `Inter`（Medium 500 / Bold 700）
+- 本文・英字サブ: `Lato`（Regular 400 / Medium 500）
+- 日本語: `Noto Sans JP`（Medium 500 / Bold 700）
 
-※ トップページと同一スタック。会社ページ見出しは Figma 上 SemiBold のため、フォント読み込みに `600` を追加。
+※ プロジェクト既存スタックと同一（`--font-en: Inter`, `--font-body: Lato`, `--font-ja: Noto Sans JP`）
 
 ## カラー情報
 
-- `#111111` — 本文・フッター背景・強調
-- `#FFFFFF` — 白背景・FV 上の見出し色
-- `#F8F7F6` — ライトセクション背景（ミッション・メッセージ）
-- `#E3E3E3` / `#E8E8E8` — 会社概要リストの区切り線
-- `#222222` — 会社名など一部テキスト
+- `#242528` — 本文・見出し（`--color-text`）
+- `#FFFFFF` — 白背景（`--color-bg`）
+- `rgba(36, 37, 40, 0.7)` — 補助テキスト（`--color-text-muted`）
+- `rgba(36, 37, 40, 0.1)` — セクション区切り線（`--color-border`）
+- `#54565b` — CTA 背景（`--color-bg-cta`）
 
 `get_variable_defs` は空オブジェクト `{}`（ファイル変数未定義）。
 
 ## セクション構成
 
-1. 固定ヘッダー（ロゴ SVG・グロナビ）
-2. FV — 背景写真 + 「COMPANY」「会社情報」
-3. OUR MISSION — 左テキスト / 右 2×2 写真グリッド
-4. VALUES — 左写真 / 右バリュー 2×2
-5. MESSAGE — 左テキスト / 右代表写真
-6. ABOUT — 左写真 / 右会社概要リスト
-7. フッター（CTA カード・ロゴ・ナビ・コピーライト）
+1. 固定ヘッダー（ロゴ・グロナビ・「会社情報」アクティブ）
+2. ページイントロ — 「会社概要」+ リード文（2 カラム）
+3. MISSION — 左ラベル + 英見出し + 和文サブ / 右説明文
+4. VISION — 同上レイアウト
+5. MESSAGE — 代表のメッセージ（左テキスト + 右肖像）
+6. ABOUT — 会社概要（左 Google マップ + 右定義リスト）
+7. CTA セクション（共通パーシャル）
+8. フッター（共通パーシャル）
 
-## 画像一覧（プロジェクト配置）
+## タイポグラフィ（主要）
 
-| 用途 | ファイル | 元 MCP アセット（ハッシュ） |
-|------|----------|------------------------------|
-| FV | `src/public/assets/img/company/fv_01.png` | 0686c9b2… |
-| ミッション 1–4 | `mission_01.png` … `mission_04.png` | 046ce686… ほか |
-| バリュー左 | `values_01.png` | f2fc8c9e… |
-| メッセージ右 | `message_01.png` | 83c5c118… |
-| 会社概要左 | `about_01.png` | 5cf12b3a… |
+| 要素 | font | size | weight | line-height |
+|------|------|------|--------|-------------|
+| ページタイトル | Noto Sans JP | 48px | 500 | 64.8px |
+| イントロ本文 | Lato | 18px | 500 | 31.5px |
+| MISSION/VISION 英見出し | Inter | 64px | 500 | 64px |
+| MISSION/VISION ラベル | Inter | 16px | 700 | 21.6px |
+| 和文サブ | Lato | 16px | 400 | 32px |
+| 右説明文 | Lato | 14px | 400 | 28px |
+| セクション見出し | Noto Sans JP | 32px | 700 | 43.2px |
+| 代表引用 | Noto Sans JP | 24px | 500 | 32.4px |
+| 会社概要 dl | Noto Sans JP / Lato | 14px | 500/400 | 28px |
 
-ヘッダー・フッターのロゴ SVG はトップと共通パス（`logo-header-figma.svg`, `logo-footer.svg`）。
+## 画像一覧
 
-## 実装メモ
+| 用途 | ファイル | 元 MCP アセット |
+|------|----------|-----------------|
+| 代表写真 | `src/public/assets/img/company/message_01.png` | 1769d66a… |
+| 地図 | Google Maps iframe（Figma 1:48 相当） | インタラクティブ埋め込み |
 
-- `src/company.html` + `src/sass/pages/company/_company.scss`
-- スタイルは `src/sass/company.scss` から `pages/top/top` を読み込みヘッダー・フッター等を共有
+## 実装ファイル
 
-## 工程5（スクリーンショット）
-
-- Playwright: `coding-md/mcp-log/company/screenshots/` に PC / SP フルページ PNG を保存済み（タイムスタンプ付きファイル名）。
+- `src/templates/company.html`
+- `src/sass/pages/company/_company-page.scss`
+- `src/sass/components/figma-media/_figma-media.scss`（`figma-media--company-message`）

@@ -1,0 +1,7 @@
+{
+  "source": "get_screenshot",
+  "nodeId": "1:2",
+  "page": "company",
+  "fetchedAt": "2026-06-18T08:26:00+09:00",
+  "note": "Figma フルページスクリーンショット。Playwright 実装比較: coding-md/screenshots/company_fullpage_fullpage_pc_20260618_082611.png"
+}

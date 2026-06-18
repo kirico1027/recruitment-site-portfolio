@@ -189,6 +189,14 @@ body {
   height: 251.82%;
 }
 
+.figma-media--company-message .figma-media__img {
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
+
 body.entry-modal-open {
   overflow: hidden;
   padding-right: var(--entry-modal-scrollbar-width, 0px);
@@ -3151,5 +3159,377 @@ button.top-cta__btn {
   }
   .designer-ux-entry__btn-inner {
     max-width: none;
+  }
+}
+.company-page {
+  font-family: var(--font-body);
+  color: var(--color-text);
+  background: var(--color-bg);
+  line-height: 1.6;
+}
+
+.company-main {
+  padding-top: 5.625rem;
+}
+
+.company-intro {
+  background-color: var(--color-bg);
+}
+
+.company-intro__inner {
+  padding-top: clamp(4.3125rem, 8.28vw, 9.9375rem);
+  padding-bottom: clamp(3rem, 4.17vw, 5rem);
+}
+
+.company-intro__layout {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+}
+
+.company-intro__title {
+  flex: 1 1 50%;
+  min-width: 0;
+  margin: 0;
+  font-family: var(--font-ja);
+  font-size: clamp(2rem, 1.5rem + 1.25vw, 3rem);
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: 0.15rem;
+  color: var(--color-text);
+}
+
+.company-intro__text {
+  flex: 1 1 50%;
+  min-width: 0;
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 1.125rem;
+  font-weight: 500;
+  line-height: 1.75;
+  letter-spacing: 0.05625rem;
+  color: var(--color-text);
+}
+
+.company-intro__text-line {
+  display: block;
+}
+
+.company-statements {
+  border-bottom: 1px solid var(--color-border);
+  background-color: var(--color-bg);
+}
+
+.company-statements__inner {
+  padding-top: 6.25rem;
+  padding-bottom: 6.25rem;
+}
+
+.company-statement + .company-statement {
+  margin-top: 0;
+  padding-top: 6.25rem;
+}
+
+.company-statement__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  gap: 2.5rem;
+  align-items: start;
+}
+@media (max-width: 1440px) {
+  .company-statement__layout {
+    gap: clamp(0.625rem, 0.625rem + (100vw - 64rem) * 30 / 416, 2.5rem);
+  }
+}
+
+.company-statement__main {
+  position: relative;
+  min-width: 0;
+}
+
+.company-statement__label {
+  position: absolute;
+  top: 0.625rem;
+  left: calc(-1 * clamp(7.5rem, calc(6.71875vw + 8.90625vw * (100vw - 375px) / 1545px), 18.75rem));
+  width: clamp(7.5rem, calc(6.71875vw + 8.90625vw * (100vw - 375px) / 1545px), 18.75rem);
+  margin: 0;
+  padding-right: 1.875rem;
+  font-family: var(--font-en);
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.35;
+  text-align: right;
+  color: var(--color-text);
+}
+@media (max-width: 1440px) {
+  .company-statement__label {
+    padding-right: clamp(0.625rem, 0.625rem + (100vw - 64rem) * 20 / 416, 1.875rem);
+  }
+}
+
+.company-statement__copy {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.5rem, 2.06vw, 2.46875rem);
+}
+
+.company-statement__lead {
+  margin: 0;
+  font-family: var(--font-en);
+  font-size: clamp(2.5rem, 1.75rem + 1.875vw, 4rem);
+  font-weight: 500;
+  line-height: 1;
+  color: var(--color-text);
+}
+
+.company-statement__lead-line {
+  display: block;
+  letter-spacing: -0.15rem;
+}
+
+.company-statement__subtitle {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 2;
+  letter-spacing: 0.05rem;
+  color: var(--color-text);
+}
+
+.company-statement__desc {
+  margin: 0;
+  padding-top: 0.625rem;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 2;
+  color: var(--color-text-muted);
+}
+
+.company-message {
+  border-bottom: 1px solid var(--color-border);
+  background-color: var(--color-bg);
+}
+
+.company-message__inner {
+  display: flex;
+  flex-direction: column;
+  padding-top: 6.25rem;
+  padding-bottom: 6.3125rem;
+}
+
+.company-message .section-heading {
+  margin-top: 0;
+}
+
+.company-message .section-heading__title {
+  line-height: 1.35;
+  margin-bottom: -0.035625rem;
+}
+
+.company-message .section-heading__subtitle {
+  margin-top: 0;
+  line-height: 1.75;
+}
+
+.company-message__layout {
+  display: flex;
+  align-items: flex-end;
+  gap: clamp(2.5rem, 4.17vw, 5rem);
+  margin-top: clamp(2.5rem, 4.17vw, 5rem);
+}
+
+.company-message__content {
+  flex: 0 1 32.5rem;
+  min-width: 0;
+}
+
+.company-message__quote {
+  margin: 0;
+  font-family: var(--font-ja);
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 1.35;
+  color: var(--color-text);
+}
+
+.company-message__text {
+  margin: 0;
+  margin-top: 1.5rem;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 2;
+  color: var(--color-text);
+}
+
+.company-message__figure {
+  flex: 0 1 37.5rem;
+  min-width: 0;
+  margin: 0;
+  aspect-ratio: 600/397;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.company-about {
+  border-bottom: 1px solid var(--color-border);
+  background-color: var(--color-bg);
+}
+
+.company-about__inner {
+  display: flex;
+  flex-direction: column;
+  padding-top: 6.25rem;
+  padding-bottom: 6.3125rem;
+}
+
+.company-about .section-heading {
+  margin-top: 0;
+}
+
+.company-about .section-heading__title {
+  line-height: 1.35;
+  margin-bottom: -0.035rem;
+}
+
+.company-about .section-heading__subtitle {
+  margin-top: 0;
+  line-height: 1.75;
+}
+
+.company-about__layout {
+  display: flex;
+  align-items: flex-start;
+  gap: clamp(2.5rem, 4.17vw, 5rem);
+  margin-top: clamp(2.5rem, 4.17vw, 5rem);
+}
+
+.company-about__map {
+  flex: 0 1 35.0625rem;
+  min-width: 0;
+  aspect-ratio: 561/400;
+  border: 1px solid var(--color-border);
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.company-about__map-frame {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.company-about__list {
+  flex: 0 1 34.9375rem;
+  min-width: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.company-about__row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 3fr);
+  gap: 1rem;
+  align-items: start;
+}
+
+.company-about__term {
+  margin: 0;
+  font-family: var(--font-ja);
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 2;
+  color: var(--color-text);
+}
+
+.company-about__value {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 2;
+  color: var(--color-text-muted);
+}
+
+.company-about__row:nth-child(2) .company-about__value,
+.company-about__row:nth-child(3) .company-about__value,
+.company-about__row:nth-child(4) .company-about__value {
+  font-weight: 400;
+}
+
+@media (max-width: 1023px) {
+  .company-statements__inner {
+    padding-top: clamp(4rem, 5.21vw, 6.25rem);
+    padding-bottom: clamp(4rem, 5.21vw, 6.25rem);
+  }
+  .company-statement + .company-statement {
+    padding-top: clamp(4rem, 5.21vw, 6.25rem);
+  }
+  .company-message__inner,
+  .company-about__inner {
+    padding-top: clamp(4rem, 5.21vw, 6.25rem);
+    padding-bottom: clamp(4rem, 5.26vw, 6.3125rem);
+  }
+  .company-intro__layout,
+  .company-statement__layout,
+  .company-message__layout,
+  .company-about__layout {
+    flex-direction: column;
+    display: flex;
+  }
+  .company-intro__title,
+  .company-intro__text,
+  .company-message__content,
+  .company-message__figure,
+  .company-about__map,
+  .company-about__list {
+    flex: 1 1 100%;
+    width: 100%;
+    max-width: 100%;
+  }
+  .company-intro__text {
+    margin-top: 1.25rem;
+    font-size: 1rem;
+    line-height: 1.75;
+    letter-spacing: 0.05rem;
+  }
+  .company-statement__label {
+    position: static;
+    width: auto;
+    padding-right: 0;
+    text-align: left;
+  }
+  .company-statement__copy {
+    margin-top: 0.625rem;
+  }
+  .company-statement__desc {
+    padding-top: 0;
+    margin-top: clamp(1.5rem, 2.06vw, 2.46875rem);
+  }
+  .company-message__layout {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+  }
+  .company-message__figure {
+    aspect-ratio: 600/330;
+  }
+  .company-about__map {
+    aspect-ratio: 600/330;
+  }
+  .company-message__text {
+    margin-top: 1.25rem;
+  }
+}
+@media (max-width: 768px) {
+  .company-intro__text-line {
+    display: inline;
+  }
+  .company-intro__text-line + .company-intro__text-line::before {
+    content: "";
   }
 }/*# sourceMappingURL=main.css.map */

@@ -155,3 +155,12 @@
   width: 100%;
   height: 251.82%;
 }
+
+// 会社情報 — 代表写真（Figma 1:41）— cover 中央
+.figma-media--company-message .figma-media__img {
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+}

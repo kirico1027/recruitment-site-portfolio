@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    @@include('partials/head.html', { "title": "会社情報 | FRACTAL 採用サイト" })
+  </head>
+  <body class="company-page">
+    @@include('partials/header.html', {
+      "logoHref": "./index.html",
+      "jobsLinkClass": "top-header__nav-link",
+      "jobsAriaCurrent": "",
+      "companyHref": "./company.html",
+      "companyLinkClass": "top-header__nav-link top-header__nav-link--current",
+      "companyAriaCurrent": "aria-current=\"page\"",
+      "blogHref": "./index.html#blog"
+    })
+
+    <main class="company-main">
+      <section class="company-intro" aria-labelledby="company-intro-heading">
+        <div class="company-intro__inner l-inset-comp-1920">
+          <div class="company-intro__layout">
+            <h1 id="company-intro-heading" class="company-intro__title">会社概要</h1>
+            <p class="company-intro__text">
+              <span class="company-intro__text-line">私たちはクリエイティブなソリューション提供の専門家集団です。ビジネスの成長と成功を支え、革新的なアプローチで課題解決します。</span>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="company-statements" aria-label="ミッションとビジョン">
+        <div class="company-statements__inner l-inset-comp-1920">
+          <article class="company-statement">
+            <div class="company-statement__layout">
+              <div class="company-statement__main">
+                <p class="company-statement__label">MISSION</p>
+                <div class="company-statement__copy">
+                  <p class="company-statement__lead">
+                    <span class="company-statement__lead-line">To empower individuals</span>
+                    <span class="company-statement__lead-line">through technology and</span>
+                    <span class="company-statement__lead-line">innovation.</span>
+                  </p>
+                  <p class="company-statement__subtitle">技術とイノベーションを通じて個人を力付けること。</p>
+                </div>
+              </div>
+              <p class="company-statement__desc">このミッションは、私たちのサービスや製品が個人の生活やビジネスにポジティブな影響を与え、社会全体に価値を提供することを目指す姿勢を示しています。私たちは、技術とイノベーションの力を最大限に活用し、持続可能な成功を追求し、世界中の人々に希望と可能性を提供することにコミットしています。</p>
+            </div>
+          </article>
+          <article class="company-statement">
+            <div class="company-statement__layout">
+              <div class="company-statement__main">
+                <p class="company-statement__label">VISION</p>
+                <div class="company-statement__copy">
+                  <p class="company-statement__lead">
+                    <span class="company-statement__lead-line">A world where technology</span>
+                    <span class="company-statement__lead-line">enhances lives and</span>
+                    <span class="company-statement__lead-line">connects communities.</span>
+                  </p>
+                  <p class="company-statement__subtitle">技術が生活を向上させ、コミュニティを結ぶ世界。</p>
+                </div>
+              </div>
+              <p class="company-statement__desc">技術の進歩が生活の質向上や社会の連帯感を生み出す可能性を示しています。私たちは、テクノロジーを活用し、人々の生活を豊かにし、地域社会から国際的な結びつきまで促進します。また、持続可能な未来を築き、地球環境に配慮した進化を支持します。このビジョンは、変化と挑戦に対する柔軟性を持ち、技術の力を最大限に生かすことを強調しています。</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="company-message" aria-labelledby="company-message-heading">
+        <div class="company-message__inner l-inset-comp-1920">
+          <header class="section-heading">
+            <h2 id="company-message-heading" class="section-heading__title">代表のメッセージ</h2>
+            <p class="section-heading__subtitle">Message</p>
+          </header>
+          <div class="company-message__layout">
+            <div class="company-message__content">
+              <p class="company-message__quote">「ビジネスを溶かす。」</p>
+              <p class="company-message__text">私たちは新しい時代のビジネスにおいて、従来の枠組みを超えて挑戦し、変革を推進しています。私たちのテーマは『ビジネスを溶かす。』です。これは、創造性、革新、そして柔軟性がビジネスにとって不可欠であることを意味します。私たちは、伝統的なアプローチを破壊し、新たな展望を開きます。変化と挑戦に果敢に立ち向かい、新しい可能性を探索し、ビジネスの未来を塗り替えます。私たちと共に、ビジネスの枠組みを打破し、未知の領域へ進みましょう。</p>
+            </div>
+            <figure class="company-message__figure figma-media figma-media--company-message">
+              <img class="figma-media__img" src="./public/assets/img/company/message_01.png" alt="代表取締役のポートレート" width="600" height="397" />
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="company-about" aria-labelledby="company-about-heading">
+        <div class="company-about__inner l-inset-comp-1920">
+          <header class="section-heading">
+            <h2 id="company-about-heading" class="section-heading__title">会社概要</h2>
+            <p class="section-heading__subtitle">Company</p>
+          </header>
+          <div class="company-about__layout">
+            <div class="company-about__map">
+              <iframe class="company-about__map-frame" title="FRACTAL 本社所在地（Google マップ）" src="https://maps.google.com/maps?q=%E6%9D%B1%E4%BA%AC%E9%83%BD%E6%B8%AF%E5%8C%BA%E8%8A%9D%E5%85%AC%E5%9C%92%EF%BC%94%E4%B8%81%E7%9B%AE%EF%BC%92%E2%88%92%EF%BC%98&amp;hl=ja&amp;z=15&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            <dl class="company-about__list">
+              <div class="company-about__row">
+                <dt class="company-about__term">資本金</dt>
+                <dd class="company-about__value">1億円</dd>
+              </div>
+              <div class="company-about__row">
+                <dt class="company-about__term">設立日</dt>
+                <dd class="company-about__value">2005年4月1日</dd>
+              </div>
+              <div class="company-about__row">
+                <dt class="company-about__term">電話番号</dt>
+                <dd class="company-about__value">000-0000-0000</dd>
+              </div>
+              <div class="company-about__row">
+                <dt class="company-about__term">メールアドレス</dt>
+                <dd class="company-about__value">xxxxxxxx@example.com</dd>
+              </div>
+              <div class="company-about__row">
+                <dt class="company-about__term">所在地</dt>
+                <dd class="company-about__value">〒105-0011 東京都港区芝公園４丁目２−８</dd>
+              </div>
+              <div class="company-about__row company-about__row--multiline">
+                <dt class="company-about__term">事業内容</dt>
+                <dd class="company-about__value">情報技術の分野で幅広いソリューションを提供するIT企業です。主に、企業向けのシステム開発や運用、クラウドサービスの提供、セキュリティ対策の実施、データ分析、AI・IoTソリューションなどを提供しています。</dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      @@include('partials/cta.html')
+    </main>
+
+    @@include('partials/footer.html', {
+      "topHref": "./index.html",
+      "blogHref": "./index.html#blog"
+    })
+
+    @@include('partials/entry-modal.html')
+
+    <script src="./public/assets/js/script.js?v=20250617d"></script>
+  </body>
+</html>
