@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>デザイナー | FRACTAL 採用サイト</title>
+    <title>ブログ | FRACTAL 採用サイト</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="./public/assets/css/main.css" />
 
   </head>
-  <body class="designer-page">
+  <body class="blog-page">
     <header class="top-header">
       <div class="top-header__inner">
         <a class="top-header__logo" href="./index.html"><img src="./public/assets/img/recruit/logo.png" alt="FRACTAL" width="160" height="27" />採用サイト</a>
@@ -25,7 +25,7 @@
         <nav class="top-header__nav" id="top-nav" aria-label="グローバルナビゲーション">
           <ul class="top-header__nav-list">
             <li class="top-header__nav-item top-header__nav-item--has-dropdown">
-              <a class="top-header__nav-link top-header__nav-link--current" href="./jobs.html" aria-current="page">募集職種<span class="material-icons top-header__nav-icon" aria-hidden="true">arrow_drop_down</span></a>
+              <a class="top-header__nav-link" href="./jobs.html" >募集職種<span class="material-icons top-header__nav-icon" aria-hidden="true">arrow_drop_down</span></a>
               <ul class="top-header__dropdown">
                 <li><a href="./designer.html">デザイナー</a></li>
                 <li><a href="#">エンジニア</a></li>
@@ -36,7 +36,7 @@
             </li>
             <li class="top-header__nav-item"><a class="top-header__nav-link" href="./company.html" >会社情報</a></li>
             <li class="top-header__nav-item top-header__nav-item--has-dropdown">
-              <a class="top-header__nav-link" href="./blog.html" >ブログ<span class="material-icons top-header__nav-icon" aria-hidden="true">arrow_drop_down</span></a>
+              <a class="top-header__nav-link top-header__nav-link--current" href="./blog.html" aria-current="page">ブログ<span class="material-icons top-header__nav-icon" aria-hidden="true">arrow_drop_down</span></a>
               <ul class="top-header__dropdown">
                 <li><a href="#">ニュース</a></li>
                 <li><a href="#">社員紹介</a></li>
@@ -51,151 +51,140 @@
     </header>
 
 
-    <main class="designer-main">
-      <section class="designer-intro" aria-labelledby="designer-intro-heading">
-        <div class="designer-intro__inner l-inset-comp-1920">
-          <div class="designer-intro__head">
-            <nav class="designer-intro__breadcrumb" aria-label="パンくず">
-              <a href="./index.html">採用トップ</a>
-              <span class="material-icons" aria-hidden="true">keyboard_arrow_right</span>
-              <a href="./jobs.html">募集職種</a>
-              <span class="material-icons" aria-hidden="true">keyboard_arrow_right</span>
-            </nav>
-            <div class="designer-intro__heading-row">
-              <h1 id="designer-intro-heading" class="designer-intro__title">デザイナー</h1>
-              <p class="designer-intro__text">
-                新規ウェブサイト立ち上げは、オンラインでの存在感向上、信頼性強化、ビジネス成長の鍵となります。
-              </p>
-            </div>
+    <main class="blog-main">
+      <section class="blog-intro" aria-labelledby="blog-intro-heading">
+        <div class="blog-intro__inner l-inset-comp-1920">
+          <div class="blog-intro__layout">
+            <h1 id="blog-intro-heading" class="blog-intro__title">ブログ</h1>
+            <p class="blog-intro__text">
+              <span class="blog-intro__text-line">私たちは、世界にインスピレーションを与え、知識を共有し、コミュニティを作り出すことを目指しています。</span>
+            </p>
           </div>
         </div>
       </section>
 
-      <section class="designer-hero" aria-label="デザイナー職種イメージ">
-        <div class="designer-hero__outer">
-          <div class="designer-hero__inner">
-            <figure class="designer-hero__figure figma-media figma-media--designer-hero">
-              <img class="figma-media__img" src="./public/assets/img/recruit/job-designer.png" alt="デザイナーがワイヤーフレームを描く様子" width="1600" height="400" />
+      <section class="blog-featured" aria-labelledby="blog-featured-title">
+        <div class="blog-featured__inner l-inset-comp-1920">
+          <a class="blog-featured__card" href="#">
+            <figure class="blog-featured__figure figma-media figma-media--blog-featured">
+              <img class="figma-media__img" src="./public/assets/img/recruit/blog-05.png" alt="ビジネスの舵取り: 企業戦略の立案者" width="1200" height="800" />
             </figure>
-          </div>
-        </div>
-      </section>
-
-      <section class="designer-skills" aria-label="デザイナーに求めるスキル">
-        <div class="designer-skills__inner l-inset-comp-1920">
-          <article class="designer-skill">
-            <div class="designer-skill__main">
-              <p class="designer-skill__index">01</p>
-              <h2 class="designer-skill__title">創造性と視覚的センス</h2>
-              <p class="designer-skill__lead">
-                ユーザー体験を向上させるデザインを作成する際、デザイナーは創造力を活かし、視覚的な魅力と機能性を兼ね備えたデザインを提供します。色彩感覚やデザイン理論を通じて、感情を喚起するデザインを創出します。
-              </p>
+            <div class="blog-featured__body">
+              <time class="blog-featured__date" datetime="2023-05-17">
+                <span class="blog-featured__day">17</span>
+                <span class="blog-featured__month">2023/05</span>
+              </time>
+              <div class="blog-featured__text">
+                <p class="blog-featured__category">コーポレート</p>
+                <h2 class="blog-featured__title" id="blog-featured-title">ビジネスの舵取り: 企業戦略の立案者</h2>
+              </div>
             </div>
-            <p class="designer-skill__sub">
-              ユーザー体験を向上させるために、魅力的で使いやすいインターフェースやデザインを生み出します。
-            </p>
-          </article>
-          <article class="designer-skill">
-            <div class="designer-skill__main">
-              <p class="designer-skill__index">02</p>
-              <h2 class="designer-skill__title">コミュニケーションと協力</h2>
-              <p class="designer-skill__lead">
-                デザイナーはクライアントや他のチームメンバーとのコミュニケーションを通じて、デザインの要件や目標を明確にし、互いの期待に応えるために緊密に協力します。
-              </p>
-            </div>
-            <p class="designer-skill__sub">
-              ユーザー、開発者、マーケティングなど様々な部門と協力し、ニーズやビジョンを理解し、デザインを調整します。
-            </p>
-          </article>
+          </a>
         </div>
       </section>
 
-      <section class="designer-description" aria-label="デザイナー職種の説明">
-        <div class="designer-description__inner l-inset-comp-1920">
-          <p class="designer-description__text">
-            デザイナーは、クリエイティブなアイデアをビジュアルなコンセプトに昇華させる役割を果たします。彼らはビジネスニーズを理解し、視覚的な表現力を用いてその要件を満たすデザインを創造します。ユーザー体験を最適化するために、デザイナーは洗練されたインターフェースと視覚的な要素を構築し、ビジネス目標に合致した魅力的なコンテンツを作成します。
-          </p>
-          <p class="designer-description__text">
-            また、デザイナーはビジネスコミュニケーションの重要な側面を担っています。彼らは優れたコミュニケーションスキルを駆使して、デザインの意図や価値を他のチームメンバーや関係者に伝え、共有します。さらに、ビジネス目標やブランドの理解をもとに、視覚的な要素を通じて明確なメッセージを発信し、ビジネスストーリーを表現する能力も備えています。
-          </p>
-          <p class="designer-description__text">
-            デザイナーは単なる美しいデザインを提供するだけでなく、ビジネスの成功に直結する要素を提供します。彼らの仕事は、創造性と戦略性を融合させ、ビジネスのブランディングやプロモーション、ユーザーエクスペリエンスを向上させ、顧客との深いつながりを築くことにあります。
-          </p>
-        </div>
-      </section>
-
-      <section class="designer-positions" aria-label="デザイナー募集ポジション">
-        <div class="designer-positions__inner l-inset-comp-1920">
-          <ul class="designer-positions__list">
-            <li class="designer-positions__item">
-              <a class="designer-positions__link" href="./designer-ux.html">
-                <span class="designer-positions__icon-wrap"><span class="material-icons designer-positions__icon" aria-hidden="true">keyboard_arrow_right</span></span>
-                <span class="designer-positions__label-wrap">
-                  <span class="designer-positions__category">デザイナー</span>
-                  <span class="designer-positions__label">UXデザイナー</span>
-                </span>
-              </a>
+      <nav class="blog-filters" aria-label="ブログカテゴリー">
+        <div class="blog-filters__inner l-inset-comp-1920">
+          <ul class="blog-filters__list">
+            <li class="blog-filters__item">
+              <a class="blog-filters__link" href="#"><span class="material-icons blog-filters__icon" aria-hidden="true">arrow_drop_down_circle</span>ニュース</a>
             </li>
-            <li class="designer-positions__item">
-              <a class="designer-positions__link" href="#">
-                <span class="designer-positions__icon-wrap"><span class="material-icons designer-positions__icon" aria-hidden="true">keyboard_arrow_right</span></span>
-                <span class="designer-positions__label-wrap">
-                  <span class="designer-positions__category">デザイナー</span>
-                  <span class="designer-positions__label">プロダクトデザイナー</span>
-                </span>
-              </a>
+            <li class="blog-filters__item">
+              <a class="blog-filters__link" href="#"><span class="material-icons blog-filters__icon" aria-hidden="true">arrow_drop_down_circle</span>社員紹介</a>
             </li>
-            <li class="designer-positions__item">
-              <a class="designer-positions__link" href="#">
-                <span class="designer-positions__icon-wrap"><span class="material-icons designer-positions__icon" aria-hidden="true">keyboard_arrow_right</span></span>
-                <span class="designer-positions__label-wrap">
-                  <span class="designer-positions__category">デザイナー</span>
-                  <span class="designer-positions__label">リードプロダクトデザイナー</span>
-                </span>
-              </a>
+            <li class="blog-filters__item">
+              <a class="blog-filters__link" href="#"><span class="material-icons blog-filters__icon" aria-hidden="true">arrow_drop_down_circle</span>インタビュー</a>
             </li>
           </ul>
         </div>
-      </section>
+      </nav>
 
-      <section class="designer-blog" aria-labelledby="designer-blog-title">
-        <div class="designer-blog__inner l-inset-comp-1920">
-          <header class="designer-blog__head">
-            <div class="designer-blog__title-block">
-              <h2 class="designer-blog__title" id="designer-blog-title">デザイナーのブログ</h2>
-              <p class="designer-blog__subtitle">Blog</p>
-            </div>
-            <a class="designer-blog__all-link" href="./blog.html"><span class="material-icons" aria-hidden="true">arrow_drop_down_circle</span>すべてみる</a>
+      <section class="blog blog--listing" aria-labelledby="blog-listing-title">
+        <div class="l-inset-comp-1920">
+          <header class="section-heading">
+            <h2 class="section-heading__title" id="blog-listing-title">最新の記事</h2>
+            <p class="section-heading__subtitle">Newest</p>
           </header>
-          <div class="designer-blog__grid">
-            <a class="blog-card designer-blog__card" href="./blog.html">
-              <figure class="blog-card__figure figma-media figma-media--blog">
-                <img class="figma-media__img" src="./public/assets/img/recruit/blog-01.png" alt="デザイナーが語るデザインの世界" width="399" height="266" />
+          <div class="blog__grid">
+            <a class="blog-card" href="#">
+              <figure class="blog-card__figure figma-media figma-media--blog-listing">
+                <img class="figma-media__img" src="./public/assets/img/recruit/blog-01.png" alt="" width="399" height="266" />
               </figure>
               <div class="blog-card__body">
-                <div class="blog-card__date">
-                  <span class="blog-card__day">23</span>
-                  <p class="blog-card__month">2023/11</p>
-                </div>
-                <div class="blog-card__text">
-                  <p class="blog-card__category">デザイナー</p>
-                  <h3 class="blog-card__title">デザイナーが語るデザインの世界</h3>
-                </div>
+                <time class="blog-card__date" datetime="2023-11-23"><span class="blog-card__day">23</span><span class="blog-card__month">2023/11</span></time>
+                <div class="blog-card__text"><p class="blog-card__category">デザイナー</p><p class="blog-card__title">デザイナーが語るデザインの世界</p></div>
               </div>
             </a>
-            <a class="blog-card designer-blog__card" href="./blog.html">
-              <figure class="blog-card__figure figma-media figma-media--blog">
-                <img class="figma-media__img" src="./public/assets/img/recruit/blog-06.png" alt="アートとテクノロジーの融合" width="399" height="266" />
+            <a class="blog-card" href="#">
+              <figure class="blog-card__figure figma-media figma-media--blog-listing">
+                <img class="figma-media__img" src="./public/assets/img/recruit/blog-02.png" alt="" width="399" height="266" />
               </figure>
               <div class="blog-card__body">
-                <div class="blog-card__date">
-                  <span class="blog-card__day">04</span>
-                  <p class="blog-card__month">2023/04</p>
-                </div>
-                <div class="blog-card__text">
-                  <p class="blog-card__category">デザイナー</p>
-                  <h3 class="blog-card__title">アートとテクノロジーの融合: デザインの魅力</h3>
-                </div>
+                <time class="blog-card__date" datetime="2023-10-20"><span class="blog-card__day">20</span><span class="blog-card__month">2023/10</span></time>
+                <div class="blog-card__text"><p class="blog-card__title">スタイル一覧</p></div>
+              </div>
+            </a>
+            <a class="blog-card" href="#">
+              <figure class="blog-card__figure figma-media figma-media--blog-listing">
+                <img class="figma-media__img" src="./public/assets/img/recruit/blog-03.png" alt="" width="399" height="266" />
+              </figure>
+              <div class="blog-card__body">
+                <time class="blog-card__date" datetime="2023-09-03"><span class="blog-card__day">03</span><span class="blog-card__month">2023/09</span></time>
+                <div class="blog-card__text"><p class="blog-card__category">プロダクトマネージャー</p><p class="blog-card__title">会社文化とチームワークについて</p></div>
+              </div>
+            </a>
+            <a class="blog-card" href="#">
+              <figure class="blog-card__figure figma-media figma-media--blog-listing">
+                <img class="figma-media__img" src="./public/assets/img/recruit/blog-04.png" alt="" width="399" height="266" />
+              </figure>
+              <div class="blog-card__body">
+                <time class="blog-card__date" datetime="2023-07-05"><span class="blog-card__day">05</span><span class="blog-card__month">2023/07</span></time>
+                <div class="blog-card__text"><p class="blog-card__category">プロダクトマネージャー</p><p class="blog-card__title">イノベーションの牽引者: プロダクトの舵取り役</p></div>
+              </div>
+            </a>
+            <a class="blog-card" href="#">
+              <figure class="blog-card__figure figma-media figma-media--blog-listing">
+                <img class="figma-media__img" src="./public/assets/img/recruit/blog-05.png" alt="" width="399" height="266" />
+              </figure>
+              <div class="blog-card__body">
+                <time class="blog-card__date" datetime="2023-05-17"><span class="blog-card__day">17</span><span class="blog-card__month">2023/05</span></time>
+                <div class="blog-card__text"><p class="blog-card__category">コーポレート</p><p class="blog-card__title">ビジネスの舵取り: 企業戦略の立案者</p></div>
+              </div>
+            </a>
+            <a class="blog-card" href="#">
+              <figure class="blog-card__figure figma-media figma-media--blog-listing">
+                <img class="figma-media__img" src="./public/assets/img/recruit/blog-06.png" alt="" width="399" height="266" />
+              </figure>
+              <div class="blog-card__body">
+                <time class="blog-card__date" datetime="2023-04-05"><span class="blog-card__day">05</span><span class="blog-card__month">2023/04</span></time>
+                <div class="blog-card__text"><p class="blog-card__category">デザイナー</p><p class="blog-card__title">アートとテクノロジーの融合: デザインの魅力</p></div>
+              </div>
+            </a>
+            <a class="blog-card" href="#">
+              <figure class="blog-card__figure figma-media figma-media--blog-listing">
+                <img class="figma-media__img" src="./public/assets/img/recruit/blog-07.png" alt="" width="399" height="266" />
+              </figure>
+              <div class="blog-card__body">
+                <time class="blog-card__date" datetime="2023-03-03"><span class="blog-card__day">03</span><span class="blog-card__month">2023/03</span></time>
+                <div class="blog-card__text"><p class="blog-card__title">新しい福利厚生を導入</p></div>
+              </div>
+            </a>
+            <a class="blog-card" href="#">
+              <figure class="blog-card__figure figma-media figma-media--blog-listing">
+                <img class="figma-media__img" src="./public/assets/img/recruit/blog-08.png" alt="" width="399" height="266" />
+              </figure>
+              <div class="blog-card__body">
+                <time class="blog-card__date" datetime="2023-02-15"><span class="blog-card__day">15</span><span class="blog-card__month">2023/02</span></time>
+                <div class="blog-card__text"><p class="blog-card__category">エンジニア</p><p class="blog-card__title">エンジニアが語る技術への情熱</p></div>
+              </div>
+            </a>
+            <a class="blog-card" href="#">
+              <figure class="blog-card__figure blog-card__figure--listing-compact figma-media figma-media--blog-listing">
+                <img class="figma-media__img" src="./public/assets/img/recruit/blog-09.png" alt="" width="399" height="244" />
+              </figure>
+              <div class="blog-card__body">
+                <time class="blog-card__date" datetime="2022-08-17"><span class="blog-card__day">17</span><span class="blog-card__month">2022/08</span></time>
+                <div class="blog-card__text"><p class="blog-card__category">エンジニア</p><p class="blog-card__title">テクノロジーの未来を切り拓く革新者</p></div>
               </div>
             </a>
           </div>
