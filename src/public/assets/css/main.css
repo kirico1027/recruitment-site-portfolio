@@ -3817,4 +3817,110 @@ button.top-cta__btn {
   .blog-intro__layout {
     flex-direction: column;
   }
+}
+.blog-news-page {
+  font-family: var(--font-body);
+  color: var(--color-text);
+  background: var(--color-bg);
+  line-height: 1.6;
+}
+
+.blog-news-main {
+  padding-top: 5.625rem;
+}
+
+.blog-news-intro {
+  background-color: var(--color-bg);
+}
+
+.blog-news-intro__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding-top: clamp(6rem, 8.33vw, 10rem);
+  padding-bottom: 5rem;
+}
+@media (max-width: 1905px) {
+  .blog-news-intro__inner {
+    padding-bottom: clamp(1.25rem, 1.25rem + (100vw - 375px) * 60 / 1530, 5rem);
+  }
+}
+
+.blog-news-intro__breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.blog-news-intro__breadcrumb-link {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1;
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.blog-news-intro__breadcrumb-icon {
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.blog-news-intro__title {
+  margin: 0;
+  font-family: var(--font-ja);
+  font-size: clamp(2rem, 1.5rem + 1.25vw, 3rem);
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: 0.15rem;
+  color: var(--color-text);
+}
+
+.blog-news-page .blog-filters {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.blog-news-page .blog-filters__link--current {
+  font-weight: 500;
+}
+
+.blog-news-page .blog--news-listing {
+  position: relative;
+  z-index: 2;
+  margin-top: 0;
+  border-top: 0;
+  background-color: var(--color-bg);
+  padding-top: 6.25rem;
+  padding-bottom: 6.3125rem;
+}
+@media (max-width: 1023px) {
+  .blog-news-page .blog--news-listing {
+    padding-top: clamp(3rem, 8vw, 6.25rem);
+    padding-bottom: clamp(3rem, 8vw, 6.3125rem);
+  }
+}
+.blog-news-page .blog--news-listing::before {
+  display: none;
+}
+
+.blog-news-page .blog--news-listing .blog__grid {
+  margin-top: 0;
+}
+
+.blog-news-page .blog-card__figure.figma-media--blog-listing {
+  background-color: #f0efef;
+}
+
+.blog-news-page .top-header__nav-link--current {
+  position: relative;
+}
+
+.blog-news-page .top-header__nav-link--current::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 0.125rem;
+  background-color: var(--color-text);
 }/*# sourceMappingURL=main.css.map */

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    @@include('partials/head.html', { "title": "ニュース | FRACTAL 採用サイト" })
+  </head>
+  <body class="blog-news-page">
+    @@include('partials/header.html', {
+      "logoHref": "./index.html",
+      "jobsLinkClass": "top-header__nav-link",
+      "jobsAriaCurrent": "",
+      "companyHref": "./company.html",
+      "companyLinkClass": "top-header__nav-link",
+      "companyAriaCurrent": "",
+      "blogHref": "./blog.html",
+      "blogLinkClass": "top-header__nav-link top-header__nav-link--current",
+      "blogAriaCurrent": "aria-current=\"page\""
+    })
+
+    <main class="blog-news-main">
+      <section class="blog-news-intro" aria-labelledby="blog-news-intro-heading">
+        <div class="blog-news-intro__inner l-inset-comp-1920">
+          <nav class="blog-news-intro__breadcrumb" aria-label="パンくず">
+            <a class="blog-news-intro__breadcrumb-link" href="./index.html">採用トップ</a>
+            <span class="material-icons blog-news-intro__breadcrumb-icon" aria-hidden="true">keyboard_arrow_right</span>
+            <a class="blog-news-intro__breadcrumb-link" href="./blog.html">ブログ</a>
+            <span class="material-icons blog-news-intro__breadcrumb-icon" aria-hidden="true">keyboard_arrow_right</span>
+          </nav>
+          <h1 id="blog-news-intro-heading" class="blog-news-intro__title">ニュース</h1>
+        </div>
+      </section>
+
+      <nav class="blog-filters" aria-label="ブログカテゴリー">
+        <div class="blog-filters__inner l-inset-comp-1920">
+          <ul class="blog-filters__list">
+            <li class="blog-filters__item">
+              <a class="blog-filters__link blog-filters__link--current" href="./blog-news.html" aria-current="page"><span class="material-icons blog-filters__icon" aria-hidden="true">arrow_drop_down_circle</span>ニュース</a>
+            </li>
+            <li class="blog-filters__item">
+              <a class="blog-filters__link" href="#"><span class="material-icons blog-filters__icon" aria-hidden="true">arrow_drop_down_circle</span>社員紹介</a>
+            </li>
+            <li class="blog-filters__item">
+              <a class="blog-filters__link" href="#"><span class="material-icons blog-filters__icon" aria-hidden="true">arrow_drop_down_circle</span>インタビュー</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <section class="blog blog--news-listing" aria-label="ニュース記事一覧">
+        <div class="l-inset-comp-1920">
+          <div class="blog__grid">
+            <a class="blog-card" href="#">
+              <figure class="blog-card__figure figma-media figma-media--blog-listing">
+                <img class="figma-media__img" src="./public/assets/img/recruit/blog-02.png" alt="" width="399" height="266" />
+              </figure>
+              <div class="blog-card__body">
+                <time class="blog-card__date" datetime="2023-10-20"><span class="blog-card__day">20</span><span class="blog-card__month">2023/10</span></time>
+                <div class="blog-card__text"><p class="blog-card__title">スタイル一覧</p></div>
+              </div>
+            </a>
+            <a class="blog-card" href="#">
+              <figure class="blog-card__figure figma-media figma-media--blog-listing">
+                <img class="figma-media__img" src="./public/assets/img/recruit/blog-07.png" alt="" width="399" height="266" />
+              </figure>
+              <div class="blog-card__body">
+                <time class="blog-card__date" datetime="2023-03-03"><span class="blog-card__day">03</span><span class="blog-card__month">2023/03</span></time>
+                <div class="blog-card__text"><p class="blog-card__title">新しい福利厚生を導入</p></div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      @@include('partials/cta.html')
+    </main>
+
+    @@include('partials/footer.html', {
+      "topHref": "./index.html",
+      "blogHref": "./blog.html"
+    })
+
+    @@include('partials/entry-modal.html')
+
+    <script src="./public/assets/js/script.js?v=20250617d"></script>
+  </body>
+</html>
