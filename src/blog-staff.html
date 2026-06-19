@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ブログ | FRACTAL 採用サイト</title>
+    <title>社員紹介 | FRACTAL 採用サイト</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="./public/assets/css/main.css" />
 
   </head>
-  <body class="blog-page">
+  <body class="blog-staff-page">
     <header class="top-header">
       <div class="top-header__inner">
         <a class="top-header__logo" href="./index.html"><img src="./public/assets/img/recruit/logo.png" alt="FRACTAL" width="160" height="27" />採用サイト</a>
@@ -51,35 +51,16 @@
     </header>
 
 
-    <main class="blog-main">
-      <section class="blog-intro" aria-labelledby="blog-intro-heading">
-        <div class="blog-intro__inner l-inset-comp-1920">
-          <div class="blog-intro__layout">
-            <h1 id="blog-intro-heading" class="blog-intro__title">ブログ</h1>
-            <p class="blog-intro__text">
-              <span class="blog-intro__text-line">私たちは、世界にインスピレーションを与え、知識を共有し、コミュニティを作り出すことを目指しています。</span>
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section class="blog-featured" aria-labelledby="blog-featured-title">
-        <div class="blog-featured__inner l-inset-comp-1920">
-          <a class="blog-featured__card" href="#">
-            <figure class="blog-featured__figure figma-media figma-media--blog-featured">
-              <img class="figma-media__img" src="./public/assets/img/recruit/blog-05.png" alt="ビジネスの舵取り: 企業戦略の立案者" width="1200" height="800" />
-            </figure>
-            <div class="blog-featured__body">
-              <time class="blog-featured__date" datetime="2023-05-17">
-                <span class="blog-featured__day">17</span>
-                <span class="blog-featured__month">2023/05</span>
-              </time>
-              <div class="blog-featured__text">
-                <p class="blog-featured__category">コーポレート</p>
-                <h2 class="blog-featured__title" id="blog-featured-title">ビジネスの舵取り: 企業戦略の立案者</h2>
-              </div>
-            </div>
-          </a>
+    <main class="blog-staff-main">
+      <section class="blog-staff-intro" aria-labelledby="blog-staff-intro-heading">
+        <div class="blog-staff-intro__inner l-inset-comp-1920">
+          <nav class="blog-staff-intro__breadcrumb" aria-label="パンくず">
+            <a class="blog-staff-intro__breadcrumb-link" href="./index.html">採用トップ</a>
+            <span class="material-icons blog-staff-intro__breadcrumb-icon" aria-hidden="true">keyboard_arrow_right</span>
+            <a class="blog-staff-intro__breadcrumb-link" href="./blog.html">ブログ</a>
+            <span class="material-icons blog-staff-intro__breadcrumb-icon" aria-hidden="true">keyboard_arrow_right</span>
+          </nav>
+          <h1 id="blog-staff-intro-heading" class="blog-staff-intro__title">社員紹介</h1>
         </div>
       </section>
 
@@ -90,7 +71,7 @@
               <a class="blog-filters__link" href="./blog-news.html"><span class="material-icons blog-filters__icon" aria-hidden="true">arrow_drop_down_circle</span>ニュース</a>
             </li>
             <li class="blog-filters__item">
-              <a class="blog-filters__link" href="./blog-staff.html"><span class="material-icons blog-filters__icon" aria-hidden="true">arrow_drop_down_circle</span>社員紹介</a>
+              <a class="blog-filters__link blog-filters__link--current" href="./blog-staff.html" aria-current="page"><span class="material-icons blog-filters__icon" aria-hidden="true">arrow_drop_down_circle</span>社員紹介</a>
             </li>
             <li class="blog-filters__item">
               <a class="blog-filters__link" href="./blog-interview.html"><span class="material-icons blog-filters__icon" aria-hidden="true">arrow_drop_down_circle</span>インタビュー</a>
@@ -99,31 +80,9 @@
         </div>
       </nav>
 
-      <section class="blog blog--listing" aria-labelledby="blog-listing-title">
+      <section class="blog blog--staff-listing" aria-label="社員紹介記事一覧">
         <div class="l-inset-comp-1920">
-          <header class="section-heading">
-            <h2 class="section-heading__title" id="blog-listing-title">最新の記事</h2>
-            <p class="section-heading__subtitle">Newest</p>
-          </header>
           <div class="blog__grid">
-            <a class="blog-card" href="./blog-article.html">
-              <figure class="blog-card__figure figma-media figma-media--blog-listing">
-                <img class="figma-media__img" src="./public/assets/img/recruit/blog-01.png" alt="" width="399" height="266" />
-              </figure>
-              <div class="blog-card__body">
-                <time class="blog-card__date" datetime="2023-11-23"><span class="blog-card__day">23</span><span class="blog-card__month">2023/11</span></time>
-                <div class="blog-card__text"><p class="blog-card__category">デザイナー</p><p class="blog-card__title">デザイナーが語るデザインの世界</p></div>
-              </div>
-            </a>
-            <a class="blog-card" href="#">
-              <figure class="blog-card__figure figma-media figma-media--blog-listing">
-                <img class="figma-media__img" src="./public/assets/img/recruit/blog-02.png" alt="" width="399" height="266" />
-              </figure>
-              <div class="blog-card__body">
-                <time class="blog-card__date" datetime="2023-10-20"><span class="blog-card__day">20</span><span class="blog-card__month">2023/10</span></time>
-                <div class="blog-card__text"><p class="blog-card__title">スタイル一覧</p></div>
-              </div>
-            </a>
             <a class="blog-card" href="#">
               <figure class="blog-card__figure figma-media figma-media--blog-listing">
                 <img class="figma-media__img" src="./public/assets/img/recruit/blog-03.png" alt="" width="399" height="266" />
@@ -144,38 +103,11 @@
             </a>
             <a class="blog-card" href="#">
               <figure class="blog-card__figure figma-media figma-media--blog-listing">
-                <img class="figma-media__img" src="./public/assets/img/recruit/blog-05.png" alt="" width="399" height="266" />
-              </figure>
-              <div class="blog-card__body">
-                <time class="blog-card__date" datetime="2023-05-17"><span class="blog-card__day">17</span><span class="blog-card__month">2023/05</span></time>
-                <div class="blog-card__text"><p class="blog-card__category">コーポレート</p><p class="blog-card__title">ビジネスの舵取り: 企業戦略の立案者</p></div>
-              </div>
-            </a>
-            <a class="blog-card" href="#">
-              <figure class="blog-card__figure figma-media figma-media--blog-listing">
                 <img class="figma-media__img" src="./public/assets/img/recruit/blog-06.png" alt="" width="399" height="266" />
               </figure>
               <div class="blog-card__body">
                 <time class="blog-card__date" datetime="2023-04-05"><span class="blog-card__day">05</span><span class="blog-card__month">2023/04</span></time>
                 <div class="blog-card__text"><p class="blog-card__category">デザイナー</p><p class="blog-card__title">アートとテクノロジーの融合: デザインの魅力</p></div>
-              </div>
-            </a>
-            <a class="blog-card" href="#">
-              <figure class="blog-card__figure figma-media figma-media--blog-listing">
-                <img class="figma-media__img" src="./public/assets/img/recruit/blog-07.png" alt="" width="399" height="266" />
-              </figure>
-              <div class="blog-card__body">
-                <time class="blog-card__date" datetime="2023-03-03"><span class="blog-card__day">03</span><span class="blog-card__month">2023/03</span></time>
-                <div class="blog-card__text"><p class="blog-card__title">新しい福利厚生を導入</p></div>
-              </div>
-            </a>
-            <a class="blog-card" href="#">
-              <figure class="blog-card__figure figma-media figma-media--blog-listing">
-                <img class="figma-media__img" src="./public/assets/img/recruit/blog-08.png" alt="" width="399" height="266" />
-              </figure>
-              <div class="blog-card__body">
-                <time class="blog-card__date" datetime="2023-02-15"><span class="blog-card__day">15</span><span class="blog-card__month">2023/02</span></time>
-                <div class="blog-card__text"><p class="blog-card__category">エンジニア</p><p class="blog-card__title">エンジニアが語る技術への情熱</p></div>
               </div>
             </a>
             <a class="blog-card" href="#">

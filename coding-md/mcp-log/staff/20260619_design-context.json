@@ -1,0 +1,49 @@
+{
+  "source": "get_design_context",
+  "nodeId": "2:2",
+  "fetchedAt": "2026-06-19T00:00:00",
+  "page": "staff",
+  "section": "full-page",
+  "data": {
+    "pageName": "社員紹介",
+    "parentLink": "blog",
+    "breadcrumb": ["採用トップ", "ブログ"],
+    "filters": ["ニュース", "社員紹介", "インタビュー"],
+    "activeFilter": "社員紹介",
+    "articles": [
+      {
+        "image": "recruit/blog-03.png",
+        "day": "03",
+        "month": "2023/09",
+        "datetime": "2023-09-03",
+        "category": "プロダクトマネージャー",
+        "title": "会社文化とチームワークについて"
+      },
+      {
+        "image": "recruit/blog-04.png",
+        "day": "05",
+        "month": "2023/07",
+        "datetime": "2023-07-05",
+        "category": "プロダクトマネージャー",
+        "title": "イノベーションの牽引者: プロダクトの舵取り役"
+      },
+      {
+        "image": "recruit/blog-06.png",
+        "day": "05",
+        "month": "2023/04",
+        "datetime": "2023-04-05",
+        "category": "デザイナー",
+        "title": "アートとテクノロジーの融合: デザインの魅力"
+      },
+      {
+        "image": "recruit/blog-09.png",
+        "day": "17",
+        "month": "2022/08",
+        "datetime": "2022-08-17",
+        "category": "エンジニア",
+        "title": "テクノロジーの未来を切り拓く革新者",
+        "compactFigure": true
+      }
+    ]
+  }
+}

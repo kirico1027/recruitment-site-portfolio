@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    @@include('partials/head.html', { "title": "社員紹介 | FRACTAL 採用サイト" })
+  </head>
+  <body class="blog-staff-page">
+    @@include('partials/header.html', {
+      "logoHref": "./index.html",
+      "jobsLinkClass": "top-header__nav-link",
+      "jobsAriaCurrent": "",
+      "companyHref": "./company.html",
+      "companyLinkClass": "top-header__nav-link",
+      "companyAriaCurrent": "",
+      "blogHref": "./blog.html",
+      "blogLinkClass": "top-header__nav-link top-header__nav-link--current",
+      "blogAriaCurrent": "aria-current=\"page\""
+    })
+
+    <main class="blog-staff-main">
+      <section class="blog-staff-intro" aria-labelledby="blog-staff-intro-heading">
+        <div class="blog-staff-intro__inner l-inset-comp-1920">
+          <nav class="blog-staff-intro__breadcrumb" aria-label="パンくず">
+            <a class="blog-staff-intro__breadcrumb-link" href="./index.html">採用トップ</a>
+            <span class="material-icons blog-staff-intro__breadcrumb-icon" aria-hidden="true">keyboard_arrow_right</span>
+            <a class="blog-staff-intro__breadcrumb-link" href="./blog.html">ブログ</a>
+            <span class="material-icons blog-staff-intro__breadcrumb-icon" aria-hidden="true">keyboard_arrow_right</span>
+          </nav>
+          <h1 id="blog-staff-intro-heading" class="blog-staff-intro__title">社員紹介</h1>
+        </div>
+      </section>
+
+      <nav class="blog-filters" aria-label="ブログカテゴリー">
+        <div class="blog-filters__inner l-inset-comp-1920">
+          <ul class="blog-filters__list">
+            <li class="blog-filters__item">
+              <a class="blog-filters__link" href="./blog-news.html"><span class="material-icons blog-filters__icon" aria-hidden="true">arrow_drop_down_circle</span>ニュース</a>
+            </li>
+            <li class="blog-filters__item">
+              <a class="blog-filters__link blog-filters__link--current" href="./blog-staff.html" aria-current="page"><span class="material-icons blog-filters__icon" aria-hidden="true">arrow_drop_down_circle</span>社員紹介</a>
+            </li>
+            <li class="blog-filters__item">
+              <a class="blog-filters__link" href="./blog-interview.html"><span class="material-icons blog-filters__icon" aria-hidden="true">arrow_drop_down_circle</span>インタビュー</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <section class="blog blog--staff-listing" aria-label="社員紹介記事一覧">
+        <div class="l-inset-comp-1920">
+          <div class="blog__grid">
+            <a class="blog-card" href="#">
+              <figure class="blog-card__figure figma-media figma-media--blog-listing">
+                <img class="figma-media__img" src="./public/assets/img/recruit/blog-03.png" alt="" width="399" height="266" />
+              </figure>
+              <div class="blog-card__body">
+                <time class="blog-card__date" datetime="2023-09-03"><span class="blog-card__day">03</span><span class="blog-card__month">2023/09</span></time>
+                <div class="blog-card__text"><p class="blog-card__category">プロダクトマネージャー</p><p class="blog-card__title">会社文化とチームワークについて</p></div>
+              </div>
+            </a>
+            <a class="blog-card" href="#">
+              <figure class="blog-card__figure figma-media figma-media--blog-listing">
+                <img class="figma-media__img" src="./public/assets/img/recruit/blog-04.png" alt="" width="399" height="266" />
+              </figure>
+              <div class="blog-card__body">
+                <time class="blog-card__date" datetime="2023-07-05"><span class="blog-card__day">05</span><span class="blog-card__month">2023/07</span></time>
+                <div class="blog-card__text"><p class="blog-card__category">プロダクトマネージャー</p><p class="blog-card__title">イノベーションの牽引者: プロダクトの舵取り役</p></div>
+              </div>
+            </a>
+            <a class="blog-card" href="#">
+              <figure class="blog-card__figure figma-media figma-media--blog-listing">
+                <img class="figma-media__img" src="./public/assets/img/recruit/blog-06.png" alt="" width="399" height="266" />
+              </figure>
+              <div class="blog-card__body">
+                <time class="blog-card__date" datetime="2023-04-05"><span class="blog-card__day">05</span><span class="blog-card__month">2023/04</span></time>
+                <div class="blog-card__text"><p class="blog-card__category">デザイナー</p><p class="blog-card__title">アートとテクノロジーの融合: デザインの魅力</p></div>
+              </div>
+            </a>
+            <a class="blog-card" href="#">
+              <figure class="blog-card__figure blog-card__figure--listing-compact figma-media figma-media--blog-listing">
+                <img class="figma-media__img" src="./public/assets/img/recruit/blog-09.png" alt="" width="399" height="244" />
+              </figure>
+              <div class="blog-card__body">
+                <time class="blog-card__date" datetime="2022-08-17"><span class="blog-card__day">17</span><span class="blog-card__month">2022/08</span></time>
+                <div class="blog-card__text"><p class="blog-card__category">エンジニア</p><p class="blog-card__title">テクノロジーの未来を切り拓く革新者</p></div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      @@include('partials/cta.html')
+    </main>
+
+    @@include('partials/footer.html', {
+      "topHref": "./index.html",
+      "blogHref": "./blog.html"
+    })
+
+    @@include('partials/entry-modal.html')
+
+    <script src="./public/assets/js/script.js?v=20250617d"></script>
+  </body>
+</html>

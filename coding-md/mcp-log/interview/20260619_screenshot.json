@@ -1,0 +1,8 @@
+{
+  "source": "get_screenshot",
+  "nodeId": "1:2",
+  "fetchedAt": "2026-06-19T00:00:00",
+  "page": "interview",
+  "section": "full-page",
+  "note": "Figma MCP get_screenshot で取得。画像は coding-md/screenshots/interview/ に Playwright で保存。"
+}

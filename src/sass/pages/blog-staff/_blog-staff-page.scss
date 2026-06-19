@@ -1,0 +1,131 @@
+@use "../../foundation/functions" as *;
+@use "../../foundation/mixins" as *;
+
+// ---- Blog staff listing page ----
+.blog-staff-page {
+  font-family: var(--font-body);
+  color: var(--color-text);
+  background: var(--color-bg);
+  line-height: 1.6;
+}
+
+.blog-staff-main {
+  padding-top: rem(90);
+}
+
+// ---- Page intro (Figma 2:171) ----
+.blog-staff-intro {
+  background-color: var(--color-bg);
+}
+
+.blog-staff-intro__inner {
+  display: flex;
+  flex-direction: column;
+  gap: rem(20);
+  @include fluid-spacing(padding-top, rem(96), 8.33vw, rem(160));
+  padding-bottom: rem(80);
+
+  // Figma 2:173 — pb 80 @1905w。375px で 20px まで線形縮小
+  @media (max-width: 1905px) {
+    padding-bottom: clamp(
+      #{rem(20)},
+      calc(#{rem(20)} + (100vw - 375px) * 60 / 1530),
+      #{rem(80)}
+    );
+  }
+}
+
+.blog-staff-intro__breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: rem(10);
+}
+
+.blog-staff-intro__breadcrumb-link {
+  font-family: var(--font-body);
+  font-size: rem(14);
+  font-weight: 400;
+  line-height: calc(14 / 14);
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.blog-staff-intro__breadcrumb-icon {
+  font-size: rem(16);
+  line-height: 1;
+}
+
+.blog-staff-intro__title {
+  margin: 0;
+  font-family: var(--font-ja);
+  font-size: clamp(#{rem(32)}, #{rem(24)} + 1.25vw, #{rem(48)});
+  font-weight: 500;
+  line-height: calc(64.8 / 48);
+  letter-spacing: rem(2.4);
+  color: var(--color-text);
+}
+
+// ---- Category filters (Figma 2:51) — blog-filters を流用 ----
+.blog-staff-page .blog-filters {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.blog-staff-page .blog-filters__link--current {
+  font-weight: 500;
+}
+
+// ---- Article grid (Figma 2:90) ----
+.blog-staff-page .blog--staff-listing {
+  position: relative;
+  z-index: 2;
+  margin-top: 0;
+  border-top: 0;
+  background-color: var(--color-bg);
+  padding-top: rem(100);
+  padding-bottom: rem(101);
+
+  @include mq-md {
+    padding-top: clamp(#{rem(48)}, 8vw, #{rem(100)});
+    padding-bottom: clamp(#{rem(48)}, 8vw, #{rem(101)});
+  }
+
+  &::before {
+    display: none;
+  }
+}
+
+.blog-staff-page .blog--staff-listing .blog__grid {
+  margin-top: 0;
+}
+
+.blog-staff-page .blog-card__category {
+  color: var(--color-text-muted);
+}
+
+.blog-staff-page .blog-card__figure.figma-media--blog-listing {
+  background-color: #f0efef;
+}
+
+.blog-staff-page .blog-card__figure--listing-compact {
+  // Figma 2:153 — 398.625 × 243.813
+  aspect-ratio: 398.625 / 243.813;
+
+  @include mq {
+    aspect-ratio: 398.625 / 243.813;
+  }
+}
+
+// ---- Header active state ----
+.blog-staff-page .top-header__nav-link--current {
+  position: relative;
+}
+
+.blog-staff-page .top-header__nav-link--current::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: rem(2);
+  background-color: var(--color-text);
+}

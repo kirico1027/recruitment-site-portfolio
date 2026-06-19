@@ -1,0 +1,40 @@
+{
+  "source": "get_design_context",
+  "nodeId": "1:2",
+  "fetchedAt": "2026-06-19T00:00:00",
+  "page": "interview",
+  "section": "full-page",
+  "data": {
+    "pageName": "インタビュー",
+    "parentLink": "blog",
+    "breadcrumb": ["採用トップ", "ブログ"],
+    "filters": ["ニュース", "社員紹介", "インタビュー"],
+    "activeFilter": "インタビュー",
+    "articles": [
+      {
+        "image": "recruit/blog-01.png",
+        "day": "23",
+        "month": "2023/11",
+        "datetime": "2023-11-23",
+        "category": "デザイナー",
+        "title": "デザイナーが語るデザインの世界"
+      },
+      {
+        "image": "recruit/blog-05.png",
+        "day": "17",
+        "month": "2023/05",
+        "datetime": "2023-05-17",
+        "category": "コーポレート",
+        "title": "ビジネスの舵取り: 企業戦略の立案者"
+      },
+      {
+        "image": "recruit/blog-08.png",
+        "day": "15",
+        "month": "2023/02",
+        "datetime": "2023-02-15",
+        "category": "エンジニア",
+        "title": "エンジニアが語る技術への情熱"
+      }
+    ]
+  }
+}
