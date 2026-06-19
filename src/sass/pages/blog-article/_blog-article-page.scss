@@ -35,55 +35,57 @@
 }
 
 .blog-article-hero__share {
-  grid-area: 1 / 1;
-  align-self: end;
-  justify-self: start;
-  z-index: 1;
-  margin: 0 0 rem(2) rem(40);
+  position: fixed;
+  bottom: 5%;
+  // top-cta(6)・top-footer(7) より下 — CTA 到達時は背面に回る
+  z-index: 5;
+  // ヒーロー画像（最大 1280px）左端 + 40px（Figma 1:175）をビューポート基準で維持
+  left: calc((100vw - min(#{rem(1280)}, 100vw - #{rem(40)})) / 2 + #{rem(40)});
 }
 
-// ---- Share bar (Figma 1:172) ----
+// ---- Share bar (Figma 1:172 / 1:175) ----
 .blog-article-share {
   display: flex;
   align-items: center;
   gap: rem(10);
+  min-height: rem(48);
 }
 
 .blog-article-share__label {
   margin: 0;
+  font-family: var(--font-body);
   font-size: rem(16);
-  line-height: 1;
+  font-weight: 400;
+  line-height: rem(16);
   color: var(--color-text-muted);
-}
-
-.blog-article-share__list {
-  display: flex;
-  align-items: center;
-  gap: rem(10);
-  margin: 0;
-  padding: 0;
-  list-style: none;
+  text-align: center;
+  white-space: nowrap;
 }
 
 .blog-article-share__link {
   display: flex;
+  flex-shrink: 0;
   align-items: center;
   justify-content: center;
   width: rem(48);
   height: rem(48);
   border-radius: rem(128);
+  line-height: 0;
   text-decoration: none;
 }
 
 .blog-article-share__icon {
   display: block;
+  flex-shrink: 0;
   width: rem(18);
   height: rem(18);
 }
 
 .blog-article-share__icon--facebook {
-  width: rem(12);
+  width: rem(11);
   height: rem(20);
+  // Figmaアセットが上下反転のため補正（フッター .top-footer__sns-icon--facebook と同様）
+  transform: scaleY(-1);
 }
 
 // ---- Article body (Figma 1:14) ----
@@ -379,10 +381,6 @@
 
   .blog-article-body__layout {
     @include fluid-gap(rem(48), 10vw, rem(75));
-  }
-
-  .blog-article-hero__share {
-    margin: 0 0 rem(2) rem(20);
   }
 
   .blog-article-meta__day {
