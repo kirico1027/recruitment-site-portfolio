@@ -166,12 +166,12 @@
   min-width: 0;
 }
 
-// 応募ボタン（Figma 1:35 / 1:36）— 207×56、左右 padding 約15px
+// 応募ボタン — 左右 padding 25px（CTA entry ボタンと同幅）
 .blog-article-meta__actions .top-cta__btn-inner {
   box-sizing: border-box;
-  width: rem(207);
-  min-width: rem(207);
-  padding-inline: rem(15);
+  width: auto;
+  min-width: rem(226);
+  padding-inline: rem(25);
 }
 
 .blog-article-meta__actions .top-cta__btn-text {

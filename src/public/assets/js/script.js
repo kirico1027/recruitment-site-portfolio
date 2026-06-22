@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initInterviewSlider();
   initFaqAccordion();
   initEntryModal();
+  initCasualModal();
 });
 
 function initTopHeader() {
@@ -55,7 +56,7 @@ function initInterviewSlider() {
   const FLUID_BREAKPOINT = 1440;
   const MIN_CARD_WIDTH = 260; // 1441px 以上
   const FLUID_MIN_CARD_WIDTH = 200; // 1440px 以下 — 3枚表示を維持（640px 幅まで）
-  const MAX_CARD_WIDTH = 380; // Figma 1:431 — 1920px カンプ
+  const MAX_CARD_WIDTH = 380; // Figma 1:431 — 1905px カンプ
   const NARROW_MAX_CARD_WIDTH = 200; // 1枚表示時の上限
   const CARD_GAP = 20;
 
@@ -64,6 +65,20 @@ function initInterviewSlider() {
   const computeLayout = (containerWidth) => {
     const isFluid = containerWidth <= FLUID_BREAKPOINT;
     const minWidth = isFluid ? FLUID_MIN_CARD_WIDTH : MIN_CARD_WIDTH;
+
+    if (!isFluid) {
+      // カード幅 380px を優先（1905px 幅で 3 枚 @ 380px）
+      for (let count = 7; count >= 1; count -= 2) {
+        const naturalWidth = (containerWidth - (count - 1) * CARD_GAP) / count;
+        if (naturalWidth >= MAX_CARD_WIDTH) {
+          return {
+            visibleCount: count,
+            cardWidth: MAX_CARD_WIDTH,
+            isFluid,
+          };
+        }
+      }
+    }
 
     for (let count = 7; count >= 1; count -= 2) {
       const cardWidth = (containerWidth - (count - 1) * CARD_GAP) / count;
@@ -198,15 +213,15 @@ function initFaqAccordion() {
   });
 }
 
-function initEntryModal() {
-  const modal = document.getElementById("entry-modal");
+function initSlideModal({ modalId, openSelector, closeSelector }) {
+  const modal = document.getElementById(modalId);
   if (!modal) return;
 
   const panel = modal.querySelector(".entry-modal__panel");
   const form = modal.querySelector(".entry-modal__form");
   const success = modal.querySelector(".entry-modal__success");
-  const closeButtons = modal.querySelectorAll("[data-entry-modal-close]");
-  const openButtons = document.querySelectorAll("[data-entry-modal-open]");
+  const closeButtons = modal.querySelectorAll(closeSelector);
+  const openButtons = document.querySelectorAll(openSelector);
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const animationDuration = prefersReducedMotion ? 0 : 400;
   let lastTrigger = null;
@@ -214,7 +229,7 @@ function initEntryModal() {
   let closeTimer = null;
 
   const focusFirstField = () => {
-    const firstField = modal.querySelector(".entry-modal__input, .entry-modal__textarea");
+    const firstField = modal.querySelector(".entry-modal__input, .entry-modal__textarea, .entry-modal__select");
     if (firstField) {
       firstField.focus();
       return;
@@ -342,5 +357,21 @@ function initEntryModal() {
       success.hidden = false;
     }
     modal.querySelector(".entry-modal__success-title")?.focus();
+  });
+}
+
+function initEntryModal() {
+  initSlideModal({
+    modalId: "entry-modal",
+    openSelector: "[data-entry-modal-open]",
+    closeSelector: "[data-entry-modal-close]",
+  });
+}
+
+function initCasualModal() {
+  initSlideModal({
+    modalId: "casual-modal",
+    openSelector: "[data-casual-modal-open]",
+    closeSelector: "[data-casual-modal-close]",
   });
 }

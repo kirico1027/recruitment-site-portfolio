@@ -132,7 +132,7 @@
   position: absolute;
   top: 100%;
   left: 0;
-  min-width: rem(220);
+  width: max-content;
   margin: 0;
   padding: rem(5);
   list-style: none;
@@ -152,20 +152,27 @@
   transform: translateY(0);
 }
 
-.top-header__dropdown a {
+.top-header__dropdown a,
+.top-header__dropdown span {
   display: flex;
   align-items: center;
   gap: rem(10);
-  padding: rem(10) rem(20);
+  padding: rem(10) rem(25) rem(10) rem(16);
   text-decoration: none;
   color: var(--color-text);
   font-family: var(--font-ja);
   font-size: rem(14);
   font-weight: 500;
   border-radius: rem(4);
+  white-space: nowrap;
 }
 
-.top-header__dropdown a::before {
+.top-header__dropdown span {
+  cursor: default;
+}
+
+.top-header__dropdown a::before,
+.top-header__dropdown span::before {
   content: "›";
   display: flex;
   align-items: center;
@@ -177,7 +184,8 @@
   font-size: rem(12);
 }
 
-.top-header__dropdown a:hover {
+.top-header__dropdown a:hover,
+.top-header__dropdown span:hover {
   background: var(--color-bg-light);
 }
 
@@ -196,11 +204,33 @@
   font-weight: 500;
   letter-spacing: 0.1em;
   white-space: nowrap;
+  transition:
+    background-color 0.18s ease,
+    transform 0.18s ease,
+    box-shadow 0.18s ease;
+
+  @media (hover: hover) {
+    &:hover {
+      background-color: var(--color-bg-cta);
+      transform: translateY(-2px);
+      box-shadow: 0 rem(4) rem(12) rgba(36, 37, 40, 0.18);
+    }
+  }
+
+  &:active {
+    transform: translateY(-1px);
+    box-shadow: 0 rem(2) rem(6) rgba(36, 37, 40, 0.12);
+  }
 }
 
 button.top-header__cta {
   border: 0;
   cursor: pointer;
+
+  &:focus,
+  &:focus-visible {
+    outline: none;
+  }
 }
 
 .top-header__backdrop {
@@ -553,7 +583,8 @@ button.top-header__cta {
   margin-top: 0;
 }
 
-.job-card__links a {
+.job-card__links a,
+.job-card__links li > span {
   display: inline-flex;
   align-items: center;
   gap: rem(10);
@@ -562,6 +593,10 @@ button.top-header__cta {
   font-family: var(--font-ja);
   font-size: rem(14);
   font-weight: 500;
+}
+
+.job-card__links li > span {
+  cursor: default;
 }
 
 .job-card__links .material-icons {
@@ -1328,11 +1363,44 @@ button.top-header__cta {
 }
 
 .top-cta__btn {
+  position: relative;
   display: inline-flex;
   padding-bottom: rem(3);
-  border-bottom: rem(3) solid transparent;
   border-radius: rem(128);
   text-decoration: none;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: rem(3);
+    left: 0;
+    right: 0;
+    height: rem(56);
+    border-radius: rem(128);
+    background: rgba(36, 37, 40, 0.65);
+    z-index: 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.18s ease;
+  }
+
+  @media (hover: hover) {
+    &:hover .top-cta__btn-inner {
+      transform: translateY(-3px);
+    }
+
+    &:hover::after {
+      opacity: 1;
+    }
+  }
+
+  &:active .top-cta__btn-inner {
+    transform: translateY(-1px);
+  }
+
+  &:active::after {
+    opacity: 1;
+  }
 }
 
 button.top-cta__btn {
@@ -1343,9 +1411,16 @@ button.top-cta__btn {
   color: inherit;
   font: inherit;
   cursor: pointer;
+
+  &:focus,
+  &:focus-visible {
+    outline: none;
+  }
 }
 
 .top-cta__btn-inner {
+  position: relative;
+  z-index: 1;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -1355,6 +1430,7 @@ button.top-cta__btn {
   border: 1px solid var(--color-text-muted);
   border-radius: rem(128);
   background: var(--color-white);
+  transition: transform 0.18s ease;
 }
 
 .top-cta__block--casual .top-cta__btn-inner {
@@ -1485,6 +1561,14 @@ button.top-cta__btn {
   display: inline-flex;
   gap: rem(5);
   align-items: center;
+  cursor: default;
+  transition: opacity 0.2s;
+
+  @media (hover: hover) {
+    &:hover {
+      opacity: 0.7;
+    }
+  }
 }
 
 .top-footer__external-icon {
@@ -1517,7 +1601,14 @@ button.top-cta__btn {
   height: rem(48);
   border-radius: rem(8);
   line-height: 0;
-  text-decoration: none;
+  cursor: default;
+  transition: opacity 0.2s;
+
+  @media (hover: hover) {
+    &:hover {
+      opacity: 0.7;
+    }
+  }
 }
 
 .top-footer__sns-link--x {

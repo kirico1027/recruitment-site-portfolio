@@ -773,7 +773,7 @@ body.entry-modal-open .top-header {
   position: absolute;
   top: 100%;
   left: 0;
-  min-width: 13.75rem;
+  width: max-content;
   margin: 0;
   padding: 0.3125rem;
   list-style: none;
@@ -793,20 +793,27 @@ body.entry-modal-open .top-header {
   transform: translateY(0);
 }
 
-.top-header__dropdown a {
+.top-header__dropdown a,
+.top-header__dropdown span {
   display: flex;
   align-items: center;
   gap: 0.625rem;
-  padding: 0.625rem 1.25rem;
+  padding: 0.625rem 1.5625rem 0.625rem 1rem;
   text-decoration: none;
   color: var(--color-text);
   font-family: var(--font-ja);
   font-size: 0.875rem;
   font-weight: 500;
   border-radius: 0.25rem;
+  white-space: nowrap;
 }
 
-.top-header__dropdown a::before {
+.top-header__dropdown span {
+  cursor: default;
+}
+
+.top-header__dropdown a::before,
+.top-header__dropdown span::before {
   content: "›";
   display: flex;
   align-items: center;
@@ -818,7 +825,8 @@ body.entry-modal-open .top-header {
   font-size: 0.75rem;
 }
 
-.top-header__dropdown a:hover {
+.top-header__dropdown a:hover,
+.top-header__dropdown span:hover {
   background: var(--color-bg-light);
 }
 
@@ -837,11 +845,26 @@ body.entry-modal-open .top-header {
   font-weight: 500;
   letter-spacing: 0.1em;
   white-space: nowrap;
+  transition: background-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+}
+@media (hover: hover) {
+  .top-header__cta:hover {
+    background-color: var(--color-bg-cta);
+    transform: translateY(-2px);
+    box-shadow: 0 0.25rem 0.75rem rgba(36, 37, 40, 0.18);
+  }
+}
+.top-header__cta:active {
+  transform: translateY(-1px);
+  box-shadow: 0 0.125rem 0.375rem rgba(36, 37, 40, 0.12);
 }
 
 button.top-header__cta {
   border: 0;
   cursor: pointer;
+}
+button.top-header__cta:focus, button.top-header__cta:focus-visible {
+  outline: none;
 }
 
 .top-header__backdrop {
@@ -1187,7 +1210,8 @@ button.top-header__cta {
   margin-top: 0;
 }
 
-.job-card__links a {
+.job-card__links a,
+.job-card__links li > span {
   display: inline-flex;
   align-items: center;
   gap: 0.625rem;
@@ -1196,6 +1220,10 @@ button.top-header__cta {
   font-family: var(--font-ja);
   font-size: 0.875rem;
   font-weight: 500;
+}
+
+.job-card__links li > span {
+  cursor: default;
 }
 
 .job-card__links .material-icons {
@@ -1929,11 +1957,39 @@ button.top-header__cta {
 }
 
 .top-cta__btn {
+  position: relative;
   display: inline-flex;
   padding-bottom: 0.1875rem;
-  border-bottom: 0.1875rem solid transparent;
   border-radius: 8rem;
   text-decoration: none;
+}
+.top-cta__btn::after {
+  content: "";
+  position: absolute;
+  top: 0.1875rem;
+  left: 0;
+  right: 0;
+  height: 3.5rem;
+  border-radius: 8rem;
+  background: rgba(36, 37, 40, 0.65);
+  z-index: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.18s ease;
+}
+@media (hover: hover) {
+  .top-cta__btn:hover .top-cta__btn-inner {
+    transform: translateY(-3px);
+  }
+  .top-cta__btn:hover::after {
+    opacity: 1;
+  }
+}
+.top-cta__btn:active .top-cta__btn-inner {
+  transform: translateY(-1px);
+}
+.top-cta__btn:active::after {
+  opacity: 1;
 }
 
 button.top-cta__btn {
@@ -1945,8 +2001,13 @@ button.top-cta__btn {
   font: inherit;
   cursor: pointer;
 }
+button.top-cta__btn:focus, button.top-cta__btn:focus-visible {
+  outline: none;
+}
 
 .top-cta__btn-inner {
+  position: relative;
+  z-index: 1;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -1956,6 +2017,7 @@ button.top-cta__btn {
   border: 1px solid var(--color-text-muted);
   border-radius: 8rem;
   background: var(--color-white);
+  transition: transform 0.18s ease;
 }
 
 .top-cta__block--casual .top-cta__btn-inner {
@@ -2084,6 +2146,13 @@ button.top-cta__btn {
   display: inline-flex;
   gap: 0.3125rem;
   align-items: center;
+  cursor: default;
+  transition: opacity 0.2s;
+}
+@media (hover: hover) {
+  .top-footer__nav-link--external:hover {
+    opacity: 0.7;
+  }
 }
 
 .top-footer__external-icon {
@@ -2115,7 +2184,13 @@ button.top-cta__btn {
   height: 3rem;
   border-radius: 0.5rem;
   line-height: 0;
-  text-decoration: none;
+  cursor: default;
+  transition: opacity 0.2s;
+}
+@media (hover: hover) {
+  .top-footer__sns-link:hover {
+    opacity: 0.7;
+  }
 }
 
 .top-footer__sns-link--x {
@@ -3065,65 +3140,19 @@ button.top-cta__btn {
   min-width: 0;
 }
 
-.designer-ux-entry__btn {
-  display: flex;
-  align-self: stretch;
-  width: 100%;
-  padding-bottom: 0.1875rem;
-  border: 0;
-  border-bottom: 0.1875rem solid transparent;
-  border-radius: 8rem;
-  background: none;
-  color: inherit;
-  font: inherit;
-  text-align: inherit;
-  text-decoration: none;
-  cursor: pointer;
+.designer-ux-entry__actions .top-cta__btn {
+  align-self: flex-start;
+  max-width: 100%;
 }
 
-.designer-ux-entry__btn-inner {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.625rem;
-  box-sizing: border-box;
-  width: 100%;
-  max-width: 14.125rem;
-  min-width: 0;
-  height: 3.5rem;
-  padding: 0 1.5625rem;
-  border: 1px solid var(--color-text-muted);
-  border-radius: 8rem;
-  background: var(--color-white);
+.designer-ux-entry__actions .top-cta__btn-inner {
+  min-width: 14.125rem;
 }
 
-.designer-ux-entry__btn-text {
+.designer-ux-entry__actions .top-cta__btn-text {
   flex: 1 1 auto;
   min-width: 0;
-  color: var(--color-text);
-  font-family: var(--font-ja);
-  font-size: 1.125rem;
-  font-weight: 500;
-  line-height: 1;
   text-align: center;
-  white-space: nowrap;
-}
-
-.designer-ux-entry__btn-icon-wrap {
-  display: flex;
-  flex-shrink: 0;
-  align-items: center;
-  justify-content: center;
-  width: 1.25rem;
-  height: 1.25rem;
-  border: 1px solid var(--color-text);
-  border-radius: 50%;
-}
-
-.designer-ux-entry__btn-icon {
-  font-size: 0.875rem;
-  line-height: 1;
-  color: var(--color-text);
 }
 
 .designer-ux-entry__casual-link {
@@ -3137,6 +3166,9 @@ button.top-cta__btn {
   line-height: 1;
   text-decoration: none;
   white-space: nowrap;
+}
+.designer-ux-entry__casual-link:focus, .designer-ux-entry__casual-link:focus-visible {
+  outline: none;
 }
 
 .designer-ux-entry__casual-icon {
@@ -3181,8 +3213,13 @@ button.top-cta__btn {
     padding-right: 1.25rem;
     gap: 2rem;
   }
-  .designer-ux-entry__btn-inner {
-    max-width: none;
+  .designer-ux-entry__actions .top-cta__btn {
+    align-self: stretch;
+    width: 100%;
+  }
+  .designer-ux-entry__actions .top-cta__btn-inner {
+    width: 100%;
+    min-width: 0;
   }
 }
 .company-page {
@@ -4323,9 +4360,9 @@ button.top-cta__btn {
 
 .blog-article-meta__actions .top-cta__btn-inner {
   box-sizing: border-box;
-  width: 12.9375rem;
-  min-width: 12.9375rem;
-  padding-inline: 0.9375rem;
+  width: auto;
+  min-width: 14.125rem;
+  padding-inline: 1.5625rem;
 }
 
 .blog-article-meta__actions .top-cta__btn-text {

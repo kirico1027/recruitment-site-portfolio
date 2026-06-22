@@ -1,0 +1,52 @@
+<div class="entry-modal" id="casual-modal" hidden aria-hidden="true" aria-modal="true" aria-labelledby="casual-modal-title">
+      <button class="entry-modal__backdrop" type="button" data-casual-modal-close aria-label="閉じる"></button>
+      <div class="entry-modal__panel">
+        <button class="entry-modal__close" type="button" data-casual-modal-close aria-label="閉じる"><span class="material-icons" aria-hidden="true">close</span></button>
+        <div class="entry-modal__header">
+          <h2 class="entry-modal__title" id="casual-modal-title">カジュアル面談</h2>
+          <p class="entry-modal__lead">カジュアル面談は、くつろいだ雰囲気でのリラックスしたおしゃべりタイムです。会社について、働くイメージ、社員の様子、具体的なポジションについて等、きになること、聞きたいことについて、お気軽にお話しください。</p>
+        </div>
+        <form class="entry-modal__form" action="#" method="post" novalidate>
+          <div class="entry-modal__fields">
+            <div class="entry-modal__field">
+              <label class="entry-modal__label" for="casual-name">名前<span class="entry-modal__required" aria-hidden="true">*</span></label>
+              <input class="entry-modal__input" type="text" id="casual-name" name="name" autocomplete="name" required placeholder="例：山田太郎" />
+            </div>
+            <div class="entry-modal__field">
+              <label class="entry-modal__label" for="casual-email">メールアドレス<span class="entry-modal__required" aria-hidden="true">*</span></label>
+              <input class="entry-modal__input" type="email" id="casual-email" name="email" autocomplete="email" required placeholder="例：mail@example.com" />
+            </div>
+            <div class="entry-modal__field">
+              <label class="entry-modal__label" for="casual-job">職種<span class="entry-modal__required" aria-hidden="true">*</span></label>
+              <div class="entry-modal__select-wrap">
+                <select class="entry-modal__select" id="casual-job" name="job" required>
+                  <option value="" disabled selected>選択してください</option>
+                  <option value="ux-designer">UXデザイナー</option>
+                  <option value="ui-designer">UIデザイナー</option>
+                  <option value="graphic-designer">グラフィックデザイナー</option>
+                </select>
+                <span class="material-icons entry-modal__select-icon" aria-hidden="true">expand_more</span>
+              </div>
+            </div>
+            <div class="entry-modal__field">
+              <label class="entry-modal__label" for="casual-topic">特に話したいこと</label>
+              <textarea class="entry-modal__textarea" id="casual-topic" name="topic" placeholder="例：会社のカルチャーについて"></textarea>
+            </div>
+            <div class="entry-modal__privacy">
+              <p class="entry-modal__privacy-text"><a class="entry-modal__privacy-link" href="#">プライバシーポリシーに同意の上で</a>お問い合わせください。</p>
+              <div class="entry-modal__agree">
+                <input class="entry-modal__checkbox" type="checkbox" id="casual-agree" name="agree" required />
+                <label class="entry-modal__agree-label" for="casual-agree">同意する</label>
+              </div>
+            </div>
+          </div>
+          <div class="entry-modal__actions">
+            <button class="entry-modal__submit" type="submit"><span class="entry-modal__submit-text">送信する</span><span class="entry-modal__submit-icon-wrap" aria-hidden="true"><span class="material-icons entry-modal__submit-icon">keyboard_arrow_right</span></span></button>
+          </div>
+        </form>
+        <div class="entry-modal__success" hidden>
+          <p class="entry-modal__success-title" tabindex="-1">送信が完了しました</p>
+          <p class="entry-modal__success-text">お問い合わせありがとうございます。採用担当より2〜3営業日以内にご連絡いたします。</p>
+        </div>
+      </div>
+    </div>
