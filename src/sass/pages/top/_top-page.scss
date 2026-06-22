@@ -154,14 +154,14 @@
   .top-header__nav-link:hover .top-header__nav-label {
     text-decoration-color: currentColor;
   }
+}
 
-  .top-header__nav-link--current:hover .top-header__nav-label {
-    text-decoration-color: transparent;
-  }
+.top-header__nav-link--current {
+  opacity: 1;
 }
 
 .top-header__nav-link--current .top-header__nav-label {
-  text-decoration-color: transparent;
+  text-decoration-color: currentColor;
 }
 
 .top-header__nav-icon {
@@ -202,7 +202,7 @@
 }
 
 .top-header__dropdown a,
-.top-header__dropdown span {
+.top-header__dropdown-item--static {
   display: flex;
   align-items: center;
   gap: rem(10);
@@ -223,36 +223,45 @@
     &:hover {
       background: var(--color-bg-light);
 
-      &::before {
+      .top-header__dropdown-icon {
         transform: translateX(rem(2));
       }
     }
   }
 }
 
-.top-header__dropdown span {
+.top-header__dropdown-item--static {
   cursor: default;
+
+  @media (hover: hover) {
+    &:hover {
+      background: var(--color-bg-light);
+    }
+  }
 }
 
-.top-header__dropdown a::before,
-.top-header__dropdown span::before {
-  content: "›";
-  display: flex;
+.top-header__dropdown-icon {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
   width: rem(20);
   height: rem(20);
+  padding: 0;
   border: 1px solid var(--color-text);
   border-radius: 50%;
-  font-size: rem(12);
+  line-height: 0;
+
+  .material-icons {
+    font-family: "Material Icons";
+    font-size: rem(12);
+    font-weight: normal;
+    letter-spacing: normal;
+  }
 }
 
-.top-header__dropdown a::before {
+.top-header__dropdown a .top-header__dropdown-icon {
   transition: transform 0.18s ease;
-}
-
-.top-header__dropdown span:hover {
-  background: var(--color-bg-light);
 }
 
 .top-header__cta {
@@ -715,6 +724,16 @@ a.job-card__main:active .job-card__arrow {
   font-weight: 500;
 }
 
+.job-card__links a .job-card__links-label {
+  opacity: 0.85;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 0.2em;
+  transition:
+    opacity 0.18s ease,
+    text-decoration-color 0.18s ease;
+}
+
 .job-card__links li > span {
   cursor: default;
 }
@@ -722,6 +741,21 @@ a.job-card__main:active .job-card__arrow {
 .job-card__links .material-icons {
   font-size: rem(24);
   transform: rotate(-90deg);
+}
+
+.job-card__links a .material-icons {
+  transition: transform 0.18s ease;
+}
+
+@media (hover: hover) {
+  .job-card__links a:hover .job-card__links-label {
+    opacity: 1;
+    text-decoration-color: currentColor;
+  }
+
+  .job-card__links a:hover .material-icons {
+    transform: rotate(-90deg) translateY(2px);
+  }
 }
 
 // ---- Interviews ----
@@ -917,6 +951,40 @@ a.job-card__main:active .job-card__arrow {
   display: block;
 }
 
+a.interview-card .figma-media--interview .figma-media__img {
+  transition: transform 0.18s ease;
+  transform-origin: 42% 35%;
+}
+
+a.interview-card .interview-card__body {
+  transition: background 0.18s ease;
+}
+
+a.interview-card .interview-card__title {
+  opacity: 0.9;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 0.2em;
+  transition:
+    text-decoration-color 0.18s ease,
+    opacity 0.18s ease;
+}
+
+@media (hover: hover) {
+  a.interview-card:hover .figma-media--interview .figma-media__img {
+    transform: scale(1.03);
+  }
+
+  a.interview-card:hover .interview-card__body {
+    background: linear-gradient(180deg, rgba(30, 30, 30, 0) 0%, rgba(30, 30, 30, 0.75) 100%);
+  }
+
+  a.interview-card:hover .interview-card__title {
+    opacity: 1;
+    text-decoration-color: currentColor;
+  }
+}
+
 // カード幅が狭いとき（3枚表示帯）テキスト・余白を縮小
 @container (max-width: #{rem(300)}) {
   .interview-card__body {
@@ -968,6 +1036,7 @@ a.job-card__main:active .job-card__arrow {
   color: var(--color-white);
   line-height: 0;
   pointer-events: auto;
+  transition: background-color 0.18s ease;
 }
 
 .interviews__btn--prev {
@@ -982,6 +1051,29 @@ a.job-card__main:active .job-card__arrow {
   font-size: calc(var(--interviews-btn-size) * 0.5333);
   line-height: 1;
   display: block;
+  transition: transform 0.18s ease;
+}
+
+@media (hover: hover) {
+  .interviews__btn:hover {
+    background-color: var(--color-bg-cta);
+  }
+
+  .interviews__btn--prev:hover .material-icons {
+    transform: translateX(rem(-3));
+  }
+
+  .interviews__btn--next:hover .material-icons {
+    transform: translateX(rem(3));
+  }
+}
+
+.interviews__btn--prev:active .material-icons {
+  transform: translateX(rem(-1));
+}
+
+.interviews__btn--next:active .material-icons {
+  transform: translateX(rem(1));
 }
 
 // ---- Welfare ----
@@ -1316,6 +1408,9 @@ a.blog-card .blog-card__title {
   border-radius: rem(12);
   cursor: pointer;
   list-style: none;
+  transition:
+    background-color 0.18s ease,
+    border-color 0.18s ease;
 
   @include mq-welfare-grid {
     padding-top: rem(8);
@@ -1383,11 +1478,25 @@ a.blog-card .blog-card__title {
   font-size: rem(14);
   line-height: 1;
   transform: rotate(90deg);
-  transition: transform 0.2s;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.faq-item[open] .faq-item__icon {
+.faq-item--expanded .faq-item__icon,
+.faq-item[open]:not(.faq-item--js) .faq-item__icon {
   transform: rotate(-90deg);
+}
+
+.faq-item--expanded .faq-item__question,
+.faq-item[open]:not(.faq-item--js) .faq-item__question {
+  background-color: var(--color-bg-light);
+  border-color: var(--color-border);
+}
+
+@media (hover: hover) {
+  .faq-item__question:hover {
+    background-color: var(--color-bg-light);
+    border-color: var(--color-border);
+  }
 }
 
 .faq-item__answer {
@@ -1395,7 +1504,7 @@ a.blog-card .blog-card__title {
 }
 
 .faq-item__answer-inner {
-  padding: 0 rem(30) rem(16);
+  padding: rem(16) rem(30) rem(16);
   padding-left: rem(58);
 
   @include mq {
@@ -1694,6 +1803,20 @@ button.top-cta__btn {
 .top-footer__nav-primary a {
   font-size: rem(18);
   line-height: 1;
+  opacity: 0.85;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 0.2em;
+  transition:
+    opacity 0.18s ease,
+    text-decoration-color 0.18s ease;
+}
+
+@media (hover: hover) {
+  .top-footer__nav-primary a:hover {
+    opacity: 1;
+    text-decoration-color: currentColor;
+  }
 }
 
 .top-footer__nav-link {

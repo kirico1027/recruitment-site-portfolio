@@ -27,20 +27,20 @@
             <li class="top-header__nav-item top-header__nav-item--has-dropdown">
               <a class="top-header__nav-link top-header__nav-link--current" href="./jobs.html" aria-current="page"><span class="top-header__nav-label">募集職種</span><span class="material-icons top-header__nav-icon" aria-hidden="true">arrow_drop_down</span></a>
               <ul class="top-header__dropdown">
-                <li><a href="./designer.html">デザイナー</a></li>
-                <li><span>エンジニア</span></li>
-                <li><span>プロダクトマネージャー</span></li>
-                <li><span>カスタマーサクセス</span></li>
-                <li><span>コーポレート</span></li>
+                <li><a href="./designer.html"><span class="top-header__dropdown-icon" aria-hidden="true"><span class="material-icons">keyboard_arrow_right</span></span>デザイナー</a></li>
+                <li><span class="top-header__dropdown-item top-header__dropdown-item--static"><span class="top-header__dropdown-icon" aria-hidden="true"><span class="material-icons">keyboard_arrow_right</span></span>エンジニア</span></li>
+                <li><span class="top-header__dropdown-item top-header__dropdown-item--static"><span class="top-header__dropdown-icon" aria-hidden="true"><span class="material-icons">keyboard_arrow_right</span></span>プロダクトマネージャー</span></li>
+                <li><span class="top-header__dropdown-item top-header__dropdown-item--static"><span class="top-header__dropdown-icon" aria-hidden="true"><span class="material-icons">keyboard_arrow_right</span></span>カスタマーサクセス</span></li>
+                <li><span class="top-header__dropdown-item top-header__dropdown-item--static"><span class="top-header__dropdown-icon" aria-hidden="true"><span class="material-icons">keyboard_arrow_right</span></span>コーポレート</span></li>
               </ul>
             </li>
             <li class="top-header__nav-item"><a class="top-header__nav-link" href="./company.html" ><span class="top-header__nav-label">会社情報</span></a></li>
             <li class="top-header__nav-item top-header__nav-item--has-dropdown">
               <a class="top-header__nav-link" href="./blog.html" ><span class="top-header__nav-label">ブログ</span><span class="material-icons top-header__nav-icon" aria-hidden="true">arrow_drop_down</span></a>
               <ul class="top-header__dropdown">
-                <li><a href="./blog-news.html">ニュース</a></li>
-                <li><a href="./blog-staff.html">社員紹介</a></li>
-                <li><a href="./blog-interview.html">インタビュー</a></li>
+                <li><a href="./blog-news.html"><span class="top-header__dropdown-icon" aria-hidden="true"><span class="material-icons">keyboard_arrow_right</span></span>ニュース</a></li>
+                <li><a href="./blog-staff.html"><span class="top-header__dropdown-icon" aria-hidden="true"><span class="material-icons">keyboard_arrow_right</span></span>社員紹介</a></li>
+                <li><a href="./blog-interview.html"><span class="top-header__dropdown-icon" aria-hidden="true"><span class="material-icons">keyboard_arrow_right</span></span>インタビュー</a></li>
               </ul>
             </li>
           </ul>
@@ -55,11 +55,11 @@
       <section class="designer-intro" aria-labelledby="designer-intro-heading">
         <div class="designer-intro__inner l-inset-comp-1920">
           <div class="designer-intro__head">
-            <nav class="designer-intro__breadcrumb" aria-label="パンくず">
-              <a href="./index.html">採用トップ</a>
-              <span class="material-icons" aria-hidden="true">keyboard_arrow_right</span>
-              <a href="./jobs.html">募集職種</a>
-              <span class="material-icons" aria-hidden="true">keyboard_arrow_right</span>
+            <nav class="breadcrumb" aria-label="パンくず">
+              <a class="breadcrumb__link" href="./index.html">採用トップ</a>
+              <span class="material-icons breadcrumb__icon" aria-hidden="true">keyboard_arrow_right</span>
+              <a class="breadcrumb__link" href="./jobs.html">募集職種</a>
+              <span class="material-icons breadcrumb__icon" aria-hidden="true">keyboard_arrow_right</span>
             </nav>
             <div class="designer-intro__heading-row">
               <h1 id="designer-intro-heading" class="designer-intro__title">デザイナー</h1>
@@ -137,22 +137,22 @@
               </a>
             </li>
             <li class="designer-positions__item">
-              <a class="designer-positions__link" href="#">
+              <span class="designer-positions__link designer-positions__link--static">
                 <span class="designer-positions__icon-wrap"><span class="material-icons designer-positions__icon" aria-hidden="true">keyboard_arrow_right</span></span>
                 <span class="designer-positions__label-wrap">
                   <span class="designer-positions__category">デザイナー</span>
                   <span class="designer-positions__label">プロダクトデザイナー</span>
                 </span>
-              </a>
+              </span>
             </li>
             <li class="designer-positions__item">
-              <a class="designer-positions__link" href="#">
+              <span class="designer-positions__link designer-positions__link--static">
                 <span class="designer-positions__icon-wrap"><span class="material-icons designer-positions__icon" aria-hidden="true">keyboard_arrow_right</span></span>
                 <span class="designer-positions__label-wrap">
                   <span class="designer-positions__category">デザイナー</span>
                   <span class="designer-positions__label">リードプロダクトデザイナー</span>
                 </span>
-              </a>
+              </span>
             </li>
           </ul>
         </div>
@@ -165,7 +165,7 @@
               <h2 class="designer-blog__title" id="designer-blog-title">デザイナーのブログ</h2>
               <p class="designer-blog__subtitle">Blog</p>
             </div>
-            <a class="designer-blog__all-link" href="./blog.html"><span class="material-icons" aria-hidden="true">arrow_drop_down_circle</span>すべてみる</a>
+            <a class="section-heading__link" href="./blog.html"><span class="material-icons" aria-hidden="true">arrow_drop_down_circle</span><span class="section-heading__link-text">すべてみる</span></a>
           </header>
           <div class="designer-blog__grid">
             <a class="blog-card designer-blog__card" href="./blog-article.html">
@@ -183,7 +183,7 @@
                 </div>
               </div>
             </a>
-            <a class="blog-card designer-blog__card" href="./blog.html">
+            <div class="blog-card designer-blog__card">
               <figure class="blog-card__figure figma-media figma-media--blog">
                 <img class="figma-media__img" src="./public/assets/img/recruit/blog-06.png" alt="アートとテクノロジーの融合" width="399" height="266" />
               </figure>
@@ -194,10 +194,10 @@
                 </div>
                 <div class="blog-card__text">
                   <p class="blog-card__category">デザイナー</p>
-                  <h3 class="blog-card__title">アートとテクノロジーの融合: デザインの魅力</h3>
+                  <p class="blog-card__title">アートとテクノロジーの融合: デザインの魅力</p>
                 </div>
               </div>
-            </a>
+            </div>
           </div>
         </div>
       </section>

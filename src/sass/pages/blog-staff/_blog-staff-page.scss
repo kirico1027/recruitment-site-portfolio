@@ -35,26 +35,6 @@
   }
 }
 
-.blog-staff-intro__breadcrumb {
-  display: flex;
-  align-items: center;
-  gap: rem(10);
-}
-
-.blog-staff-intro__breadcrumb-link {
-  font-family: var(--font-body);
-  font-size: rem(14);
-  font-weight: 400;
-  line-height: calc(14 / 14);
-  color: var(--color-text);
-  text-decoration: none;
-}
-
-.blog-staff-intro__breadcrumb-icon {
-  font-size: rem(16);
-  line-height: 1;
-}
-
 .blog-staff-intro__title {
   margin: 0;
   font-family: var(--font-ja);
@@ -113,19 +93,4 @@
   @include mq {
     aspect-ratio: 398.625 / 243.813;
   }
-}
-
-// ---- Header active state ----
-.blog-staff-page .top-header__nav-link--current {
-  position: relative;
-}
-
-.blog-staff-page .top-header__nav-link--current::after {
-  content: "";
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  height: rem(2);
-  background-color: var(--color-text);
 }

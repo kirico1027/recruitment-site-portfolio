@@ -168,18 +168,3 @@
     flex: 0 1 100%;
   }
 }
-
-// ---- Header active state ----
-.top-header__nav-link--current {
-  position: relative;
-}
-
-.top-header__nav-link--current::after {
-  content: "";
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  height: rem(2);
-  background-color: var(--color-text);
-}

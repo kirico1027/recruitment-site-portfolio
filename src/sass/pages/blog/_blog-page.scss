@@ -203,6 +203,33 @@
   font-size: rem(24);
   line-height: 1;
   transform: rotate(-90deg);
+  transition: transform 0.18s ease;
+}
+
+.blog-filters__label {
+  opacity: 0.85;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 0.2em;
+  transition:
+    opacity 0.18s ease,
+    text-decoration-color 0.18s ease;
+}
+
+@media (hover: hover) {
+  .blog-filters__link:hover .blog-filters__label {
+    opacity: 1;
+    text-decoration-color: currentColor;
+  }
+
+  .blog-filters__link:hover .blog-filters__icon {
+    transform: rotate(-90deg) translateY(2px);
+  }
+}
+
+.blog-filters__link--current .blog-filters__label {
+  opacity: 1;
+  text-decoration-color: currentColor;
 }
 
 // ---- Article grid (Figma 1:112) ----
@@ -253,21 +280,6 @@
   @include mq {
     aspect-ratio: 398.625 / 244.313;
   }
-}
-
-// ---- Header active state ----
-.blog-page .top-header__nav-link--current {
-  position: relative;
-}
-
-.blog-page .top-header__nav-link--current::after {
-  content: "";
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  height: rem(2);
-  background-color: var(--color-text);
 }
 
 @include mq-md {

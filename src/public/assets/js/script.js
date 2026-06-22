@@ -179,6 +179,7 @@ function initFaqAccordion() {
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
   const duration = 300;
+  const closeOpacityDuration = Math.round(duration * 0.6);
   const easing = "cubic-bezier(0.4, 0, 0.2, 1)";
 
   document.querySelectorAll(".faq-item").forEach((details) => {
@@ -187,58 +188,100 @@ function initFaqAccordion() {
     const inner = details.querySelector(".faq-item__answer-inner");
     if (!summary || !answer || !inner) return;
 
-    let activeAnimation = null;
+    details.classList.add("faq-item--js");
+    if (details.open) {
+      details.classList.add("faq-item--expanded");
+    }
+
+    let activeAnimations = [];
+
+    const cancelAnimations = () => {
+      activeAnimations.forEach((animation) => animation.cancel());
+      activeAnimations = [];
+    };
 
     const resetAnswerStyles = () => {
       answer.style.height = "";
       answer.style.overflow = "";
+      inner.style.opacity = "";
+    };
+
+    const runAnimations = (animations, onFinish) => {
+      cancelAnimations();
+      activeAnimations = animations;
+
+      let finishedCount = 0;
+      const handleFinish = () => {
+        finishedCount += 1;
+        if (finishedCount === animations.length) {
+          activeAnimations = [];
+          onFinish();
+        }
+      };
+
+      animations.forEach((animation) => {
+        animation.onfinish = handleFinish;
+      });
     };
 
     summary.addEventListener("click", (event) => {
       event.preventDefault();
       if (details.dataset.faqAnimating === "true") return;
 
-      if (activeAnimation) {
-        activeAnimation.cancel();
-        activeAnimation = null;
-      }
-
       if (details.open) {
         details.dataset.faqAnimating = "true";
+        details.classList.remove("faq-item--expanded");
         const startHeight = answer.offsetHeight;
         answer.style.overflow = "hidden";
         answer.style.height = `${startHeight}px`;
+        inner.style.opacity = "1";
 
-        activeAnimation = answer.animate(
-          [{ height: `${startHeight}px` }, { height: "0px" }],
-          { duration, easing }
+        runAnimations(
+          [
+            inner.animate([{ opacity: 1 }, { opacity: 0 }], {
+              duration: closeOpacityDuration,
+              easing,
+              fill: "forwards",
+            }),
+            answer.animate(
+              [{ height: `${startHeight}px` }, { height: "0px" }],
+              { duration, easing }
+            ),
+          ],
+          () => {
+            details.open = false;
+            resetAnswerStyles();
+            delete details.dataset.faqAnimating;
+          }
         );
-
-        activeAnimation.onfinish = () => {
-          activeAnimation = null;
-          details.open = false;
-          resetAnswerStyles();
-          delete details.dataset.faqAnimating;
-        };
         return;
       }
 
       details.open = true;
+      details.classList.add("faq-item--expanded");
       details.dataset.faqAnimating = "true";
       const endHeight = inner.offsetHeight;
       answer.style.overflow = "hidden";
       answer.style.height = "0px";
+      inner.style.opacity = "0";
 
-      activeAnimation = answer.animate(
-        [{ height: "0px" }, { height: `${endHeight}px` }],
-        { duration, easing }
+      runAnimations(
+        [
+          answer.animate(
+            [{ height: "0px" }, { height: `${endHeight}px` }],
+            { duration, easing }
+          ),
+          inner.animate([{ opacity: 0 }, { opacity: 1 }], {
+            duration,
+            easing,
+            fill: "forwards",
+          }),
+        ],
+        () => {
+          resetAnswerStyles();
+          delete details.dataset.faqAnimating;
+        }
       );
-
-      activeAnimation.onfinish = () => {
-        activeAnimation = null;
-        resetAnswerStyles();
-        delete details.dataset.faqAnimating;
-      };
     });
   });
 }

@@ -35,26 +35,6 @@
   }
 }
 
-.blog-interview-intro__breadcrumb {
-  display: flex;
-  align-items: center;
-  gap: rem(10);
-}
-
-.blog-interview-intro__breadcrumb-link {
-  font-family: var(--font-body);
-  font-size: rem(14);
-  font-weight: 400;
-  line-height: calc(14 / 14);
-  color: var(--color-text);
-  text-decoration: none;
-}
-
-.blog-interview-intro__breadcrumb-icon {
-  font-size: rem(16);
-  line-height: 1;
-}
-
 .blog-interview-intro__title {
   margin: 0;
   font-family: var(--font-ja);
@@ -104,19 +84,4 @@
 
 .blog-interview-page .blog-card__figure.figma-media--blog-listing {
   background-color: #f0efef;
-}
-
-// ---- Header active state ----
-.blog-interview-page .top-header__nav-link--current {
-  position: relative;
-}
-
-.blog-interview-page .top-header__nav-link--current::after {
-  content: "";
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  height: rem(2);
-  background-color: var(--color-text);
 }

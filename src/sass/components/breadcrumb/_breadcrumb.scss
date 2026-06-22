@@ -1,0 +1,35 @@
+@use "../../foundation/functions" as *;
+
+.breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: rem(10);
+}
+
+.breadcrumb__link {
+  font-family: var(--font-body);
+  font-size: rem(14);
+  font-weight: 400;
+  line-height: 1;
+  color: var(--color-text);
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 0.2em;
+  opacity: 0.85;
+  transition:
+    opacity 0.18s ease,
+    text-decoration-color 0.18s ease;
+}
+
+@media (hover: hover) {
+  .breadcrumb__link:hover {
+    opacity: 1;
+    text-decoration-color: currentColor;
+  }
+}
+
+.breadcrumb__icon {
+  font-size: rem(16);
+  line-height: 1;
+}

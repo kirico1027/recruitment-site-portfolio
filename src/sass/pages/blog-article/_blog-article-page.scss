@@ -71,7 +71,6 @@
   height: rem(48);
   border-radius: rem(128);
   line-height: 0;
-  text-decoration: none;
 }
 
 .blog-article-share__icon {
@@ -281,21 +280,8 @@
   gap: rem(20);
 }
 
-.blog-article-related__all-link {
-  display: inline-flex;
-  gap: rem(10);
-  align-items: center;
+.blog-article-related__head .section-heading__link {
   flex-shrink: 0;
-  color: var(--color-text);
-  font-size: rem(14);
-  line-height: 1;
-  text-decoration: none;
-  white-space: nowrap;
-}
-
-.blog-article-related__all-link .material-icons {
-  font-size: rem(24);
-  transform: rotate(-90deg);
 }
 
 // blog__grid と同じ幅別挙動（3列 → mq-blog-grid 2列 → mq 1列）。margin-top のみ blog--listing と揃える
@@ -313,21 +299,6 @@
 
 .blog-article-page .blog-card__figure.figma-media--blog-listing {
   background-color: #f0efef;
-}
-
-// ---- Header active state ----
-.blog-article-page .top-header__nav-link--current {
-  position: relative;
-}
-
-.blog-article-page .top-header__nav-link--current::after {
-  content: "";
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  height: rem(2);
-  background-color: var(--color-text);
 }
 
 @include mq-md {
