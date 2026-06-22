@@ -2,8 +2,14 @@
 @use "../../foundation/mixins" as *;
 
 $entry-modal-duration: 0.4s;
+$entry-modal-duration-close: 0.3s;
+$entry-modal-backdrop-duration: 0.3s;
+$entry-modal-backdrop-duration-close: 0.25s;
 $entry-modal-easing: cubic-bezier(0.4, 0, 0.2, 1);
 $entry-modal-input-bg: #f7f7f7;
+$entry-modal-transition: 0.18s ease;
+$entry-modal-backdrop-dim-mobile: rgba(36, 37, 40, 0.4);
+$entry-modal-backdrop-dim-desktop: rgba(36, 37, 40, 0.3);
 
 body.entry-modal-open {
   overflow: hidden;
@@ -37,19 +43,22 @@ body.entry-modal-open .top-header {
   padding: 0;
   border: 0;
   background-color: rgba(36, 37, 40, 0);
-  backdrop-filter: blur(0);
-  -webkit-backdrop-filter: blur(0);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
   cursor: pointer;
-  transition:
-    background-color $entry-modal-duration $entry-modal-easing,
-    backdrop-filter $entry-modal-duration $entry-modal-easing,
-    -webkit-backdrop-filter $entry-modal-duration $entry-modal-easing;
+  transition: background-color $entry-modal-backdrop-duration $entry-modal-easing;
 }
 
 .entry-modal.entry-modal--visible .entry-modal__backdrop {
-  background-color: rgba(36, 37, 40, 0.25);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background-color: $entry-modal-backdrop-dim-mobile;
+}
+
+@media (min-width: 951px) {
+  .entry-modal.entry-modal--visible .entry-modal__backdrop {
+    background-color: $entry-modal-backdrop-dim-desktop;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
 }
 
 .entry-modal__panel {
@@ -74,6 +83,14 @@ body.entry-modal-open .top-header {
 
 .entry-modal.entry-modal--visible .entry-modal__panel {
   transform: translate3d(0, 0, 0);
+}
+
+.entry-modal.entry-modal--closing .entry-modal__panel {
+  transition-duration: $entry-modal-duration-close;
+}
+
+.entry-modal.entry-modal--closing .entry-modal__backdrop {
+  transition-duration: $entry-modal-backdrop-duration-close;
 }
 
 @include mq-md {
@@ -101,13 +118,15 @@ body.entry-modal-open .top-header {
   .entry-modal__panel,
   .entry-modal__backdrop {
     transition: none;
+  }
+
+  .entry-modal__backdrop {
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
   }
 
   .entry-modal.entry-modal--visible .entry-modal__backdrop {
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
+    background-color: $entry-modal-backdrop-dim-mobile;
   }
 }
 
@@ -127,6 +146,25 @@ body.entry-modal-open .top-header {
   background: var(--color-white);
   color: var(--color-text);
   cursor: pointer;
+  transition:
+    background-color $entry-modal-transition,
+    border-color $entry-modal-transition;
+
+  @media (hover: hover) {
+    &:hover {
+      background: var(--color-bg-light);
+      border-color: rgba(36, 37, 40, 0.3);
+    }
+  }
+
+  &:focus-visible {
+    outline: rem(2) solid var(--color-text);
+    outline-offset: rem(2);
+  }
+
+  &:focus:not(:focus-visible) {
+    outline: none;
+  }
 }
 
 .entry-modal__close .material-icons {
@@ -205,6 +243,9 @@ body.entry-modal-open .top-header {
   font-family: var(--font-body);
   font-size: rem(16);
   line-height: calc(24 / 16);
+  transition:
+    background-color $entry-modal-transition,
+    box-shadow $entry-modal-transition;
 }
 
 .entry-modal__input::placeholder,
@@ -214,13 +255,17 @@ body.entry-modal-open .top-header {
 
 .entry-modal__input:focus-visible,
 .entry-modal__textarea:focus-visible,
-.entry-modal__select:focus-visible,
-.entry-modal__close:focus-visible,
-.entry-modal__submit:focus-visible,
-.entry-modal__checkbox:focus-visible,
-.entry-modal__file-btn:focus-visible {
-  outline: rem(2) solid var(--color-text);
-  outline-offset: rem(2);
+.entry-modal__select:focus-visible {
+  outline: none;
+  background: var(--color-white);
+  box-shadow: 0 0 0 rem(2) var(--color-text);
+}
+
+.entry-modal__input:focus:not(:focus-visible),
+.entry-modal__textarea:focus:not(:focus-visible),
+.entry-modal__select:focus:not(:focus-visible) {
+  outline: none;
+  box-shadow: none;
 }
 
 .entry-modal__textarea {
@@ -255,6 +300,11 @@ body.entry-modal-open .top-header {
   line-height: 1;
   pointer-events: none;
   transform: translateY(-50%);
+  transition: color $entry-modal-transition;
+}
+
+.entry-modal__select-wrap:focus-within .entry-modal__select-icon {
+  color: var(--color-text);
 }
 
 .entry-modal__file-area {
@@ -266,6 +316,27 @@ body.entry-modal-open .top-header {
   border: 1px dashed rgba(36, 37, 40, 0.3);
   border-radius: rem(4);
   background: var(--color-white);
+  transition:
+    border-color $entry-modal-transition,
+    background-color $entry-modal-transition,
+    box-shadow $entry-modal-transition;
+
+  @media (hover: hover) {
+    &:hover {
+      border-color: rgba(36, 37, 40, 0.5);
+      background: var(--color-bg-light);
+
+      .entry-modal__file-btn {
+        background: #efefef;
+      }
+    }
+  }
+
+  &:focus-within {
+    border-color: var(--color-text);
+    background: var(--color-bg-light);
+    box-shadow: 0 0 0 rem(2) var(--color-text);
+  }
 }
 
 .entry-modal__file {
@@ -275,6 +346,10 @@ body.entry-modal-open .top-header {
   height: 100%;
   opacity: 0;
   cursor: pointer;
+
+  &:focus-visible {
+    outline: none;
+  }
 }
 
 .entry-modal__file-label {
@@ -296,6 +371,7 @@ body.entry-modal-open .top-header {
   font-size: rem(14);
   font-weight: 500;
   line-height: calc(21 / 14);
+  transition: background-color $entry-modal-transition;
 }
 
 .entry-modal__privacy {
@@ -330,11 +406,34 @@ body.entry-modal-open .top-header {
   border: 1px solid rgba(36, 37, 40, 0.4);
   border-radius: rem(2);
   accent-color: var(--color-text);
+  cursor: pointer;
+  transition:
+    border-color $entry-modal-transition,
+    box-shadow $entry-modal-transition,
+    background-color $entry-modal-transition;
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 rem(2) var(--color-text);
+  }
+
+  &:focus:not(:focus-visible) {
+    outline: none;
+    box-shadow: none;
+  }
+}
+
+@media (hover: hover) {
+  .entry-modal__agree:hover .entry-modal__checkbox:not(:focus-visible) {
+    border-color: var(--color-text);
+    background: var(--color-bg-light);
+  }
 }
 
 .entry-modal__agree-label {
   font-size: rem(14);
   line-height: calc(21 / 14);
+  cursor: pointer;
 }
 
 .entry-modal__actions {
@@ -359,6 +458,32 @@ body.entry-modal-open .top-header {
   font-weight: 500;
   line-height: 1;
   cursor: pointer;
+  transition:
+    background-color $entry-modal-transition,
+    transform $entry-modal-transition,
+    box-shadow $entry-modal-transition;
+
+  @media (hover: hover) {
+    &:hover {
+      background-color: var(--color-bg-cta);
+      transform: translateY(rem(-2));
+      box-shadow: 0 rem(4) rem(12) rgba(36, 37, 40, 0.18);
+    }
+  }
+
+  &:active {
+    transform: translateY(rem(-1));
+    box-shadow: 0 rem(2) rem(6) rgba(36, 37, 40, 0.12);
+  }
+
+  &:focus-visible {
+    outline: rem(2) solid var(--color-text);
+    outline-offset: rem(3);
+  }
+
+  &:focus:not(:focus-visible) {
+    outline: none;
+  }
 }
 
 .entry-modal__submit-icon-wrap {

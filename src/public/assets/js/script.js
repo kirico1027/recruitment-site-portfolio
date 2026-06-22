@@ -286,17 +286,67 @@ function initFaqAccordion() {
   });
 }
 
+const MODAL_PAGE_INERT_SELECTORS = ["main", ".top-header", ".top-footer"];
+const MODAL_FOCUSABLE_SELECTOR = [
+  "a[href]",
+  "button:not([disabled])",
+  "textarea:not([disabled])",
+  "input:not([disabled])",
+  "select:not([disabled])",
+  '[tabindex]:not([tabindex="-1"])',
+].join(", ");
+
+let modalPageLockCount = 0;
+
+function setModalPageInert(inert) {
+  MODAL_PAGE_INERT_SELECTORS.forEach((selector) => {
+    document.querySelector(selector)?.toggleAttribute("inert", inert);
+  });
+}
+
+function lockModalPage() {
+  const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+  document.documentElement.style.setProperty("--entry-modal-scrollbar-width", `${scrollbarWidth}px`);
+  document.documentElement.classList.add("entry-modal-open");
+  document.body.classList.add("entry-modal-open");
+  modalPageLockCount += 1;
+
+  if (modalPageLockCount === 1) {
+    setModalPageInert(true);
+  }
+}
+
+function unlockModalPage() {
+  modalPageLockCount = Math.max(0, modalPageLockCount - 1);
+
+  if (modalPageLockCount === 0) {
+    document.documentElement.classList.remove("entry-modal-open");
+    document.body.classList.remove("entry-modal-open");
+    document.documentElement.style.removeProperty("--entry-modal-scrollbar-width");
+    setModalPageInert(false);
+  }
+}
+
+function getModalFocusableElements(modal) {
+  return [...modal.querySelectorAll(MODAL_FOCUSABLE_SELECTOR)].filter((element) => {
+    if (element.closest("[hidden]")) return false;
+    return element.getClientRects().length > 0;
+  });
+}
+
 function initSlideModal({ modalId, openSelector, closeSelector }) {
   const modal = document.getElementById(modalId);
   if (!modal) return;
 
   const panel = modal.querySelector(".entry-modal__panel");
+  const backdrop = modal.querySelector(".entry-modal__backdrop");
   const form = modal.querySelector(".entry-modal__form");
   const success = modal.querySelector(".entry-modal__success");
   const closeButtons = modal.querySelectorAll(closeSelector);
   const openButtons = document.querySelectorAll(openSelector);
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const animationDuration = prefersReducedMotion ? 0 : 400;
+  const openAnimationDuration = prefersReducedMotion ? 0 : 400;
+  const closeAnimationDuration = prefersReducedMotion ? 0 : 300;
   let lastTrigger = null;
   let isClosing = false;
   let closeTimer = null;
@@ -316,19 +366,6 @@ function initSlideModal({ modalId, openSelector, closeSelector }) {
     form?.reset();
   };
 
-  const lockScroll = () => {
-    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
-    document.documentElement.style.setProperty("--entry-modal-scrollbar-width", `${scrollbarWidth}px`);
-    document.documentElement.classList.add("entry-modal-open");
-    document.body.classList.add("entry-modal-open");
-  };
-
-  const unlockScroll = () => {
-    document.documentElement.classList.remove("entry-modal-open");
-    document.body.classList.remove("entry-modal-open");
-    document.documentElement.style.removeProperty("--entry-modal-scrollbar-width");
-  };
-
   const finishClose = () => {
     if (closeTimer) {
       clearTimeout(closeTimer);
@@ -337,8 +374,8 @@ function initSlideModal({ modalId, openSelector, closeSelector }) {
 
     modal.hidden = true;
     modal.setAttribute("aria-hidden", "true");
-    modal.classList.remove("entry-modal--visible");
-    unlockScroll();
+    modal.classList.remove("entry-modal--visible", "entry-modal--closing");
+    unlockModalPage();
     resetModal();
     lastTrigger?.focus();
     lastTrigger = null;
@@ -350,9 +387,10 @@ function initSlideModal({ modalId, openSelector, closeSelector }) {
 
     lastTrigger = trigger;
     resetModal();
+    modal.classList.remove("entry-modal--closing");
     modal.hidden = false;
     modal.setAttribute("aria-hidden", "false");
-    lockScroll();
+    lockModalPage();
 
     if (prefersReducedMotion) {
       modal.classList.add("entry-modal--visible");
@@ -385,20 +423,62 @@ function initSlideModal({ modalId, openSelector, closeSelector }) {
     }
 
     isClosing = true;
+    modal.classList.add("entry-modal--closing");
     modal.classList.remove("entry-modal--visible");
 
-    panel.addEventListener(
-      "transitionend",
-      (event) => {
-        if (event.target !== panel || event.propertyName !== "transform") return;
+    let panelDone = false;
+    let backdropDone = false;
+
+    const tryFinishClose = () => {
+      if (panelDone && backdropDone) {
         finishClose();
-      },
-      { once: true }
-    );
+      }
+    };
+
+    const onPanelTransitionEnd = (event) => {
+      if (event.target !== panel || event.propertyName !== "transform") return;
+      panelDone = true;
+      tryFinishClose();
+    };
+
+    const onBackdropTransitionEnd = (event) => {
+      if (event.target !== backdrop || event.propertyName !== "background-color") return;
+      backdropDone = true;
+      tryFinishClose();
+    };
+
+    panel.addEventListener("transitionend", onPanelTransitionEnd, { once: true });
+
+    if (backdrop) {
+      backdrop.addEventListener("transitionend", onBackdropTransitionEnd, { once: true });
+    } else {
+      backdropDone = true;
+    }
 
     closeTimer = window.setTimeout(() => {
       if (isClosing) finishClose();
-    }, animationDuration + 50);
+    }, closeAnimationDuration + 50);
+  };
+
+  const handleModalKeydown = (event) => {
+    if (modal.hidden || event.key !== "Tab") return;
+
+    const focusables = getModalFocusableElements(modal);
+    if (focusables.length === 0) return;
+
+    const first = focusables[0];
+    const last = focusables[focusables.length - 1];
+
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+      return;
+    }
+
+    if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
   };
 
   openButtons.forEach((button) => {
@@ -411,6 +491,8 @@ function initSlideModal({ modalId, openSelector, closeSelector }) {
   closeButtons.forEach((button) => {
     button.addEventListener("click", closeModal);
   });
+
+  modal.addEventListener("keydown", handleModalKeydown);
 
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape" && !modal.hidden) {
