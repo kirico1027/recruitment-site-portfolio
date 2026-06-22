@@ -1085,8 +1085,26 @@ button.top-header__cta:focus, button.top-header__cta:focus-visible {
 .section-heading__link .material-icons {
   font-size: 1.5rem;
   transform: rotate(-90deg);
+  transition: transform 0.18s ease;
 }
 
+.section-heading__link-text {
+  opacity: 0.85;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 0.2em;
+  transition: text-decoration-color 0.18s ease, opacity 0.18s ease;
+}
+
+@media (hover: hover) {
+  .section-heading__link:hover .material-icons {
+    transform: rotate(-90deg) translateY(2px);
+  }
+  .section-heading__link:hover .section-heading__link-text {
+    opacity: 1;
+    text-decoration-color: currentColor;
+  }
+}
 .jobs {
   position: relative;
   z-index: 2;
@@ -1143,6 +1161,17 @@ button.top-header__cta:focus, button.top-header__cta:focus-visible {
   border-radius: 0.5rem;
   overflow: hidden;
 }
+.job-card__figure::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: rgba(255, 255, 255, 0.25);
+  opacity: 0;
+  transition: opacity 0.18s ease;
+  pointer-events: none;
+  border-radius: inherit;
+}
 @media (max-width: 768px) {
   .job-card__figure {
     aspect-ratio: 400/160;
@@ -1163,6 +1192,7 @@ button.top-header__cta:focus, button.top-header__cta:focus-visible {
   justify-content: space-between;
   gap: 1.875rem;
   margin-top: 1.25rem;
+  padding-inline-end: 0.25rem;
 }
 
 .job-card__role-en {
@@ -1193,6 +1223,23 @@ button.top-header__cta:focus, button.top-header__cta:focus-visible {
   border: 1px solid var(--color-text);
   border-radius: 50%;
   font-size: 1.5rem;
+  transform: translateX(-0.25rem);
+}
+
+a.job-card__main .job-card__arrow {
+  transition: transform 0.18s ease;
+}
+
+@media (hover: hover) {
+  a.job-card__main:hover .job-card__figure::after {
+    opacity: 1;
+  }
+  a.job-card__main:hover .job-card__arrow {
+    transform: translateX(0);
+  }
+}
+a.job-card__main:active .job-card__arrow {
+  transform: translateX(-0.125rem);
 }
 
 .job-card__links {
@@ -1338,7 +1385,6 @@ button.top-header__cta:focus, button.top-header__cta:focus-visible {
   padding: var(--interview-slider-padding-block, 2.8125rem) calc((100% - var(--interview-card-width, 23.75rem)) / 2) 0;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
 }

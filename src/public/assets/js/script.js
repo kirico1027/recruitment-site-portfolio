@@ -59,8 +59,19 @@ function initInterviewSlider() {
   const MAX_CARD_WIDTH = 380; // Figma 1:431 — 1905px カンプ
   const NARROW_MAX_CARD_WIDTH = 200; // 1枚表示時の上限
   const CARD_GAP = 20;
+  const STORAGE_KEY = "interviews-active-index";
 
-  let activeIndex = Math.floor((cards.length - 1) / 2);
+  const clampIndex = (index) => Math.min(Math.max(0, index), cards.length - 1);
+
+  const savedIndex = sessionStorage.getItem(STORAGE_KEY);
+  let activeIndex =
+    savedIndex !== null && !Number.isNaN(Number.parseInt(savedIndex, 10))
+      ? clampIndex(Number.parseInt(savedIndex, 10))
+      : Math.floor((cards.length - 1) / 2);
+
+  const persistActiveIndex = () => {
+    sessionStorage.setItem(STORAGE_KEY, String(activeIndex));
+  };
 
   const computeLayout = (containerWidth) => {
     const isFluid = containerWidth <= FLUID_BREAKPOINT;
@@ -108,14 +119,22 @@ function initInterviewSlider() {
     slider.style.setProperty("--interview-visible-count", String(layout.visibleCount));
   };
 
-  const scrollToCard = (index, behavior = "auto") => {
+  const getScrollLeftForIndex = (index) => {
     const card = cards[index];
-    if (!card) return;
+    if (!card) return 0;
 
-    const cardCenter = card.offsetLeft + card.offsetWidth / 2;
-    const scrollLeft = cardCenter - track.clientWidth / 2;
+    return card.offsetLeft + card.offsetWidth / 2 - track.clientWidth / 2;
+  };
 
-    track.scrollTo({ left: scrollLeft, behavior });
+  const scrollToCard = (index, behavior = "auto") => {
+    const scrollLeft = getScrollLeftForIndex(index);
+
+    if (behavior === "smooth") {
+      track.scrollTo({ left: scrollLeft, behavior: "smooth" });
+      return;
+    }
+
+    track.scrollLeft = scrollLeft;
   };
 
   const updateSlider = (behavior = "auto") => {
@@ -128,13 +147,24 @@ function initInterviewSlider() {
   updateSlider();
 
   prev.addEventListener("click", () => {
-    activeIndex = Math.max(0, activeIndex - 1);
+    activeIndex = clampIndex(activeIndex - 1);
     scrollToCard(activeIndex, "smooth");
+    persistActiveIndex();
   });
 
   next.addEventListener("click", () => {
-    activeIndex = Math.min(cards.length - 1, activeIndex + 1);
+    activeIndex = clampIndex(activeIndex + 1);
     scrollToCard(activeIndex, "smooth");
+    persistActiveIndex();
+  });
+
+  window.addEventListener("pagehide", persistActiveIndex);
+
+  window.addEventListener("pageshow", (event) => {
+    if (!event.persisted) return;
+
+    applyLayout();
+    scrollToCard(activeIndex, "auto");
   });
 
   if ("ResizeObserver" in window) {
