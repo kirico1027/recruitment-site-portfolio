@@ -702,6 +702,16 @@ body.entry-modal-open .top-header {
   font-weight: 500;
   letter-spacing: 0.1em;
   line-height: 0;
+  transition: opacity 0.18s ease;
+}
+@media (hover: hover) {
+  .top-header__logo:hover {
+    opacity: 0.7;
+  }
+}
+
+.top-header__logo-label {
+  line-height: 1;
 }
 
 .top-header__logo img {
@@ -762,13 +772,47 @@ body.entry-modal-open .top-header {
   font-size: 0.875rem;
   font-weight: 500;
   letter-spacing: 0.1em;
+  opacity: 0.85;
+  transition: opacity 0.18s ease;
+}
+@media (hover: hover) {
+  .top-header__nav-link:hover {
+    opacity: 1;
+  }
+}
+
+.top-header__nav-label {
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-decoration-thickness: 0.09375rem;
+  text-underline-offset: 0.4em;
+  transition: text-decoration-color 0.18s ease;
+}
+
+@media (hover: hover) {
+  .top-header__nav-link:hover .top-header__nav-label {
+    text-decoration-color: currentColor;
+  }
+  .top-header__nav-link--current:hover .top-header__nav-label {
+    text-decoration-color: transparent;
+  }
+}
+.top-header__nav-link--current .top-header__nav-label {
+  text-decoration-color: transparent;
 }
 
 .top-header__nav-icon {
   font-size: 1.25rem;
   color: #333;
+  transition: transform 0.18s ease;
 }
 
+@media (min-width: 951px) and (hover: hover) {
+  .top-header__nav-item--has-dropdown:hover .top-header__nav-icon,
+  .top-header__nav-item--has-dropdown:focus-within .top-header__nav-icon {
+    transform: translateY(0.0625rem);
+  }
+}
 .top-header__dropdown {
   position: absolute;
   top: 100%;
@@ -808,6 +852,18 @@ body.entry-modal-open .top-header {
   white-space: nowrap;
 }
 
+.top-header__dropdown a {
+  transition: background-color 0.18s ease;
+}
+@media (hover: hover) {
+  .top-header__dropdown a:hover {
+    background: var(--color-bg-light);
+  }
+  .top-header__dropdown a:hover::before {
+    transform: translateX(0.125rem);
+  }
+}
+
 .top-header__dropdown span {
   cursor: default;
 }
@@ -825,7 +881,10 @@ body.entry-modal-open .top-header {
   font-size: 0.75rem;
 }
 
-.top-header__dropdown a:hover,
+.top-header__dropdown a::before {
+  transition: transform 0.18s ease;
+}
+
 .top-header__dropdown span:hover {
   background: var(--color-bg-light);
 }
