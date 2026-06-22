@@ -1730,6 +1730,27 @@ a.job-card__main:active .job-card__arrow {
   color: var(--color-text);
 }
 
+a.blog-card .blog-card__figure .figma-media__img {
+  transition: transform 0.18s ease;
+}
+
+a.blog-card .blog-card__title {
+  opacity: 0.85;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 0.2em;
+  transition: text-decoration-color 0.18s ease, opacity 0.18s ease;
+}
+
+@media (hover: hover) {
+  a.blog-card:hover .blog-card__figure .figma-media__img {
+    transform: scale(1.02);
+  }
+  a.blog-card:hover .blog-card__title {
+    opacity: 1;
+    text-decoration-color: currentColor;
+  }
+}
 .gallery__grid {
   display: flex;
   flex-wrap: wrap;
