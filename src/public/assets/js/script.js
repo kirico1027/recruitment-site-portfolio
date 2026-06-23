@@ -17,7 +17,15 @@ const SCROLL_REVEAL = {
   activeClass: "scroll-reveal-active",
 };
 
-document.addEventListener("DOMContentLoaded", () => {
+function onDocumentReady(callback) {
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", callback, { once: true });
+  } else {
+    callback();
+  }
+}
+
+onDocumentReady(() => {
   initTopHeader();
   initInterviewSlider();
   initFaqAccordion();
@@ -32,10 +40,14 @@ function bootScrollReveal() {
   if (scrollRevealBooted) return;
 
   scrollRevealBooted = true;
-  primeScrollRevealInView();
   document.documentElement.classList.add(SCROLL_REVEAL.activeClass);
-  initSectionHeadingScrollReveal();
-  initJobsScrollReveal();
+
+  requestAnimationFrame(() => {
+    primeScrollRevealInView();
+    initSectionHeadingScrollReveal();
+    initJobsScrollReveal();
+    initInterviewsScrollReveal();
+  });
 }
 
 window.addEventListener("pageshow", () => {
@@ -51,6 +63,12 @@ function prefersReducedMotion() {
   return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 }
 
+function runScrollRevealClassAdd(callback) {
+  requestAnimationFrame(() => {
+    requestAnimationFrame(callback);
+  });
+}
+
 /**
  * 要素が共通の発火位置に入ったら is-inview を付与する。
  * @param {Element[]} targets
@@ -64,7 +82,10 @@ function initScrollReveal(targets, beforeReveal) {
 
   const reveal = (element) => {
     beforeReveal?.(element);
-    element.classList.add(SCROLL_REVEAL.inviewClass);
+
+    runScrollRevealClassAdd(() => {
+      element.classList.add(SCROLL_REVEAL.inviewClass);
+    });
   };
 
   if (prefersReducedMotion() || !("IntersectionObserver" in window)) {
@@ -110,6 +131,7 @@ function primeScrollRevealInView() {
   if (prefersReducedMotion()) return;
 
   primeJobsSectionIfVisible();
+  primeInterviewsScrollRevealIfVisible();
 
   const targets = [
     ...document.querySelectorAll(".top-page .section-heading.js-scroll-reveal"),
@@ -128,13 +150,12 @@ function primeJobsSectionIfVisible() {
   const section = document.querySelector(".jobs.js-scroll-reveal");
   if (!section) return;
 
-  const rect = section.getBoundingClientRect();
-  const overlapsViewport = rect.bottom > 0 && rect.top < window.innerHeight;
-  if (!overlapsViewport) return;
-
   section
     .querySelectorAll(`.section-heading.js-scroll-reveal, ${JOB_CARD_REVEAL_SELECTOR}`)
     .forEach((element) => {
+      if (element.classList.contains(SCROLL_REVEAL.inviewClass)) return;
+      if (!isScrollRevealIntersecting(element)) return;
+
       element.classList.add(SCROLL_REVEAL.inviewClass, SCROLL_REVEAL.revealedClass);
     });
 }
@@ -177,6 +198,97 @@ function initJobsScrollReveal() {
 
     target.style.setProperty("--scroll-reveal-stagger-delay", `${staggerDelay}ms`);
   });
+}
+
+const INTERVIEW_TRACK_SELECTOR = ".interviews__track.js-scroll-reveal";
+const INTERVIEW_CONTROLS_SELECTOR = ".interviews__controls.js-scroll-reveal";
+
+function getInterviewSlider() {
+  return document.querySelector(".interviews__slider");
+}
+
+function getVisibleInterviewCardIndices(activeIndex, visibleCount, total) {
+  const half = Math.floor(visibleCount / 2);
+  let start = activeIndex - half;
+  let end = start + visibleCount - 1;
+
+  if (start < 0) {
+    end += -start;
+    start = 0;
+  }
+  if (end >= total) {
+    start -= end - (total - 1);
+    end = total - 1;
+  }
+  start = Math.max(0, start);
+
+  const indices = [];
+  for (let index = start; index <= end && indices.length < visibleCount; index += 1) {
+    indices.push(index);
+  }
+
+  return indices;
+}
+
+function prepareInterviewRevealTargets(slider) {
+  const api = slider.__interviewSlider;
+  if (!api) return;
+
+  const { cards, activeIndex, visibleCount } = api.getRevealState();
+  const indices = getVisibleInterviewCardIndices(activeIndex, visibleCount, cards.length);
+
+  indices.forEach((cardIndex) => {
+    cards[cardIndex].classList.add("is-reveal-target");
+  });
+}
+
+function primeInterviewScrollRevealTarget(target, { skipAnimation = false } = {}) {
+  if (!target || target.classList.contains(SCROLL_REVEAL.inviewClass)) return;
+  if (!isScrollRevealIntersecting(target)) return;
+
+  target.classList.add(SCROLL_REVEAL.inviewClass);
+  if (skipAnimation) {
+    target.classList.add(SCROLL_REVEAL.revealedClass);
+  }
+}
+
+function primeInterviewsScrollRevealIfVisible() {
+  const slider = getInterviewSlider();
+  if (!slider) return;
+
+  prepareInterviewRevealTargets(slider);
+
+  primeInterviewScrollRevealTarget(slider.querySelector(INTERVIEW_TRACK_SELECTOR), {
+    skipAnimation: true,
+  });
+  primeInterviewScrollRevealTarget(slider.querySelector(INTERVIEW_CONTROLS_SELECTOR), {
+    skipAnimation: true,
+  });
+}
+
+function initInterviewsScrollReveal() {
+  const slider = getInterviewSlider();
+  if (!slider) return;
+
+  const track = slider.querySelector(INTERVIEW_TRACK_SELECTOR);
+  const controls = slider.querySelector(INTERVIEW_CONTROLS_SELECTOR);
+  if (!track || !controls) return;
+
+  prepareInterviewRevealTargets(slider);
+
+  const targets = [track, controls].filter(
+    (target) => !target.classList.contains(SCROLL_REVEAL.inviewClass)
+  );
+  if (targets.length === 0) return;
+
+  if (prefersReducedMotion() || !("IntersectionObserver" in window)) {
+    targets.forEach((target) => {
+      target.classList.add(SCROLL_REVEAL.inviewClass, SCROLL_REVEAL.revealedClass);
+    });
+    return;
+  }
+
+  initScrollReveal(targets);
 }
 
 function initTopHeader() {
@@ -344,6 +456,17 @@ function initInterviewSlider() {
   }
 
   window.addEventListener("resize", () => updateSlider());
+
+  slider.__interviewSlider = {
+    getRevealState: () => {
+      const visibleCount = Number.parseInt(
+        slider.style.getPropertyValue("--interview-visible-count") || "3",
+        10
+      );
+
+      return { cards, activeIndex, visibleCount };
+    },
+  };
 }
 
 function initFaqAccordion() {

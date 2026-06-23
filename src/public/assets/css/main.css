@@ -1717,6 +1717,70 @@ a.job-card__main:active .job-card__arrow {
     animation: none;
   }
 }
+@keyframes interview-card-media-in {
+  from {
+    opacity: 0;
+    transform: translateY(1.5rem);
+    filter: blur(0.25rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+@keyframes interview-card-body-in {
+  from {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes interviews-controls-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  html.js.scroll-reveal-active .interviews__track.js-scroll-reveal:not(.is-inview) .interview-card.is-reveal-target .interview-card__media {
+    opacity: 0;
+    transform: translateY(1.5rem);
+    filter: blur(0.25rem);
+  }
+  html.js.scroll-reveal-active .interviews__track.js-scroll-reveal:not(.is-inview) .interview-card.is-reveal-target .interview-card__body {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+  html.js.scroll-reveal-active .interviews__track.js-scroll-reveal.is-inview:not(.is-revealed) .interview-card.is-reveal-target .interview-card__media {
+    animation: interview-card-media-in 750ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  html.js.scroll-reveal-active .interviews__track.js-scroll-reveal.is-inview:not(.is-revealed) .interview-card.is-reveal-target .interview-card__body {
+    animation: interview-card-body-in 750ms cubic-bezier(0.22, 1, 0.36, 1) 120ms both;
+  }
+  html.js.scroll-reveal-active .interviews__track.js-scroll-reveal.is-revealed .interview-card.is-reveal-target .interview-card__media,
+  html.js.scroll-reveal-active .interviews__track.js-scroll-reveal.is-revealed .interview-card.is-reveal-target .interview-card__body {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    animation: none;
+  }
+  html.js.scroll-reveal-active .interviews__controls.js-scroll-reveal:not(.is-inview) {
+    opacity: 0;
+  }
+  html.js.scroll-reveal-active .interviews__controls.js-scroll-reveal.is-inview:not(.is-revealed) {
+    animation: interviews-controls-in 600ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  html.js.scroll-reveal-active .interviews__controls.js-scroll-reveal.is-revealed {
+    opacity: 1;
+    animation: none;
+  }
+}
 .interviews {
   position: relative;
   z-index: 3;

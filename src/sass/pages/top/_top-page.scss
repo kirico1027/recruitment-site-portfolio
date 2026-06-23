@@ -1034,6 +1034,94 @@ a.job-card__main:active .job-card__arrow {
   }
 }
 
+@keyframes interview-card-media-in {
+  from {
+    opacity: 0;
+    transform: translateY(rem(24));
+    filter: blur(rem(4));
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes interview-card-body-in {
+  from {
+    opacity: 0;
+    transform: translateY(rem(16));
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes interviews-controls-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+$interview-reveal-easing: cubic-bezier(0.22, 1, 0.36, 1);
+
+@media (prefers-reduced-motion: no-preference) {
+  html.js.scroll-reveal-active {
+    .interviews__track.js-scroll-reveal:not(.is-inview) .interview-card.is-reveal-target {
+      .interview-card__media {
+        opacity: 0;
+        transform: translateY(rem(24));
+        filter: blur(rem(4));
+      }
+
+      .interview-card__body {
+        opacity: 0;
+        transform: translateY(rem(16));
+      }
+    }
+
+    .interviews__track.js-scroll-reveal.is-inview:not(.is-revealed) .interview-card.is-reveal-target {
+      .interview-card__media {
+        animation: interview-card-media-in 750ms $interview-reveal-easing both;
+      }
+
+      .interview-card__body {
+        animation: interview-card-body-in 750ms $interview-reveal-easing 120ms both;
+      }
+    }
+
+    .interviews__track.js-scroll-reveal.is-revealed .interview-card.is-reveal-target {
+      .interview-card__media,
+      .interview-card__body {
+        opacity: 1;
+        transform: none;
+        filter: none;
+        animation: none;
+      }
+    }
+
+    .interviews__controls.js-scroll-reveal:not(.is-inview) {
+      opacity: 0;
+    }
+
+    .interviews__controls.js-scroll-reveal.is-inview:not(.is-revealed) {
+      animation: interviews-controls-in 600ms $interview-reveal-easing both;
+    }
+
+    .interviews__controls.js-scroll-reveal.is-revealed {
+      opacity: 1;
+      animation: none;
+    }
+  }
+}
+
 // ---- Interviews ----
 .interviews {
   position: relative;
