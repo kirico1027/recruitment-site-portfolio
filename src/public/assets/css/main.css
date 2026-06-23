@@ -11,6 +11,11 @@ body {
   padding: 0;
 }
 
+@media (max-width: 768px) {
+  html {
+    min-height: calc(100% + 1px);
+  }
+}
 :root {
   --color-text: #242528;
   --color-text-muted: rgba(36, 37, 40, 0.7);
@@ -1401,6 +1406,93 @@ button.top-header__cta:focus, button.top-header__cta:focus-visible {
     text-decoration-color: currentColor;
   }
 }
+@keyframes section-heading-block-in {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 1.5rem, 0);
+    filter: blur(0.375rem);
+  }
+  55% {
+    opacity: 0.92;
+    filter: blur(0.0625rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    filter: blur(0);
+  }
+}
+@keyframes section-heading-subtitle-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes section-heading-link-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 0.75rem, 0);
+    filter: blur(0.25rem);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    filter: blur(0);
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  html.js.scroll-reveal-active .section-heading.js-scroll-reveal:not(.is-inview):not(.section-heading--row) {
+    opacity: 0;
+    transform: translate3d(0, 1.5rem, 0);
+    filter: blur(0.375rem);
+  }
+  html.js.scroll-reveal-active .section-heading.js-scroll-reveal:not(.is-inview).section-heading--row .section-heading__group {
+    opacity: 0;
+    transform: translate3d(0, 1.5rem, 0);
+    filter: blur(0.375rem);
+  }
+  html.js.scroll-reveal-active .section-heading.js-scroll-reveal:not(.is-inview) .section-heading__subtitle {
+    opacity: 0;
+  }
+  html.js.scroll-reveal-active .section-heading.js-scroll-reveal:not(.is-inview) .section-heading__link {
+    opacity: 0;
+    transform: translate3d(0, 0.75rem, 0);
+    filter: blur(0.25rem);
+  }
+  html.js.scroll-reveal-active .section-heading.js-scroll-reveal.is-inview:not(.is-revealed):not(.section-heading--row) {
+    animation: section-heading-block-in 850ms cubic-bezier(0.22, 1, 0.36, 1) both;
+    will-change: transform, opacity, filter;
+  }
+  html.js.scroll-reveal-active .section-heading.js-scroll-reveal.is-inview:not(.is-revealed).section-heading--row .section-heading__group {
+    animation: section-heading-block-in 850ms cubic-bezier(0.22, 1, 0.36, 1) both;
+    will-change: transform, opacity, filter;
+  }
+  html.js.scroll-reveal-active .section-heading.js-scroll-reveal.is-inview:not(.is-revealed) .section-heading__subtitle {
+    animation: section-heading-subtitle-fade-in 600ms cubic-bezier(0.22, 1, 0.36, 1) 220ms both;
+  }
+  html.js.scroll-reveal-active .section-heading.js-scroll-reveal.is-inview:not(.is-revealed) .section-heading__link {
+    animation: section-heading-link-in 700ms cubic-bezier(0.22, 1, 0.36, 1) 320ms both;
+  }
+  html.js.scroll-reveal-active .section-heading.js-scroll-reveal.is-revealed:not(.section-heading--row) {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+  html.js.scroll-reveal-active .section-heading.js-scroll-reveal.is-revealed.section-heading--row .section-heading__group {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+  html.js.scroll-reveal-active .section-heading.js-scroll-reveal.is-revealed .section-heading__subtitle,
+  html.js.scroll-reveal-active .section-heading.js-scroll-reveal.is-revealed .section-heading__link {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    animation: none;
+  }
+}
 .jobs {
   position: relative;
   z-index: 2;
@@ -1593,6 +1685,36 @@ a.job-card__main:active .job-card__arrow {
   }
   .job-card__links a:hover .material-icons {
     transform: rotate(-90deg) translateY(2px);
+  }
+}
+@keyframes jobs-card-in {
+  from {
+    opacity: 0;
+    transform: translateY(1.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  html.js.scroll-reveal-active .jobs.js-scroll-reveal .job-card__figure:not(.is-inview),
+  html.js.scroll-reveal-active .jobs.js-scroll-reveal .job-card__head:not(.is-inview),
+  html.js.scroll-reveal-active .jobs.js-scroll-reveal .job-card__links:not(.is-inview) {
+    opacity: 0;
+    transform: translateY(1.5rem);
+  }
+  html.js.scroll-reveal-active .jobs.js-scroll-reveal .job-card__figure.is-inview:not(.is-revealed),
+  html.js.scroll-reveal-active .jobs.js-scroll-reveal .job-card__head.is-inview:not(.is-revealed),
+  html.js.scroll-reveal-active .jobs.js-scroll-reveal .job-card__links.is-inview:not(.is-revealed) {
+    animation: jobs-card-in 750ms cubic-bezier(0.22, 1, 0.36, 1) var(--scroll-reveal-stagger-delay, 0ms) both;
+  }
+  html.js.scroll-reveal-active .jobs.js-scroll-reveal .job-card__figure.is-revealed,
+  html.js.scroll-reveal-active .jobs.js-scroll-reveal .job-card__head.is-revealed,
+  html.js.scroll-reveal-active .jobs.js-scroll-reveal .job-card__links.is-revealed {
+    opacity: 1;
+    transform: none;
+    animation: none;
   }
 }
 .interviews {

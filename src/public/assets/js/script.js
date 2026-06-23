@@ -1,12 +1,183 @@
 "use strict";
 
+/**
+ * スクロールアニメーション共通の発火位置（以降のセクションもこの値を使う）
+ *
+ * 発火ライン = 画面下端から SCROLL_REVEAL_OFFSET_BOTTOM_PX 手前の水平線。
+ * 要素の SCROLL_REVEAL_VISIBLE_RATIO 以上がそのラインより上に入ったら is-inview。
+ */
+const SCROLL_REVEAL_VISIBLE_RATIO = 0.1;
+const SCROLL_REVEAL_OFFSET_BOTTOM_PX = 80;
+
+const SCROLL_REVEAL = {
+  threshold: SCROLL_REVEAL_VISIBLE_RATIO,
+  rootMargin: `0px 0px -${SCROLL_REVEAL_OFFSET_BOTTOM_PX}px 0px`,
+  inviewClass: "is-inview",
+  revealedClass: "is-revealed",
+  activeClass: "scroll-reveal-active",
+};
+
 document.addEventListener("DOMContentLoaded", () => {
   initTopHeader();
   initInterviewSlider();
   initFaqAccordion();
   initEntryModal();
   initCasualModal();
+  bootScrollReveal();
 });
+
+let scrollRevealBooted = false;
+
+function bootScrollReveal() {
+  if (scrollRevealBooted) return;
+
+  scrollRevealBooted = true;
+  primeScrollRevealInView();
+  document.documentElement.classList.add(SCROLL_REVEAL.activeClass);
+  initSectionHeadingScrollReveal();
+  initJobsScrollReveal();
+}
+
+window.addEventListener("pageshow", () => {
+  if (!scrollRevealBooted) {
+    bootScrollReveal();
+    return;
+  }
+
+  primeScrollRevealInView();
+});
+
+function prefersReducedMotion() {
+  return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
+
+/**
+ * 要素が共通の発火位置に入ったら is-inview を付与する。
+ * @param {Element[]} targets
+ * @param {(element: Element) => void} [beforeReveal]
+ */
+function initScrollReveal(targets, beforeReveal) {
+  const elements = targets
+    .filter(Boolean)
+    .filter((element) => !element.classList.contains(SCROLL_REVEAL.inviewClass));
+  if (elements.length === 0) return;
+
+  const reveal = (element) => {
+    beforeReveal?.(element);
+    element.classList.add(SCROLL_REVEAL.inviewClass);
+  };
+
+  if (prefersReducedMotion() || !("IntersectionObserver" in window)) {
+    elements.forEach((element) => {
+      beforeReveal?.(element);
+      element.classList.add(SCROLL_REVEAL.inviewClass, SCROLL_REVEAL.revealedClass);
+    });
+    return;
+  }
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+
+        observer.unobserve(entry.target);
+        reveal(entry.target);
+      });
+    },
+    {
+      threshold: SCROLL_REVEAL.threshold,
+      rootMargin: SCROLL_REVEAL.rootMargin,
+    }
+  );
+
+  elements.forEach((element) => observer.observe(element));
+}
+
+function isScrollRevealIntersecting(target) {
+  const rect = target.getBoundingClientRect();
+  const rootBottom = window.innerHeight - SCROLL_REVEAL_OFFSET_BOTTOM_PX;
+
+  if (rect.bottom <= 0 || rect.top >= rootBottom) return false;
+
+  const visibleTop = Math.max(rect.top, 0);
+  const visibleBottom = Math.min(rect.bottom, rootBottom);
+  const visibleHeight = Math.max(0, visibleBottom - visibleTop);
+
+  return visibleHeight >= rect.height * SCROLL_REVEAL_VISIBLE_RATIO;
+}
+
+function primeScrollRevealInView() {
+  if (prefersReducedMotion()) return;
+
+  primeJobsSectionIfVisible();
+
+  const targets = [
+    ...document.querySelectorAll(".top-page .section-heading.js-scroll-reveal"),
+    ...document.querySelectorAll(`.jobs.js-scroll-reveal ${JOB_CARD_REVEAL_SELECTOR}`),
+  ];
+
+  targets.forEach((target) => {
+    if (target.classList.contains(SCROLL_REVEAL.inviewClass)) return;
+    if (!isScrollRevealIntersecting(target)) return;
+
+    target.classList.add(SCROLL_REVEAL.inviewClass, SCROLL_REVEAL.revealedClass);
+  });
+}
+
+function primeJobsSectionIfVisible() {
+  const section = document.querySelector(".jobs.js-scroll-reveal");
+  if (!section) return;
+
+  const rect = section.getBoundingClientRect();
+  const overlapsViewport = rect.bottom > 0 && rect.top < window.innerHeight;
+  if (!overlapsViewport) return;
+
+  section
+    .querySelectorAll(`.section-heading.js-scroll-reveal, ${JOB_CARD_REVEAL_SELECTOR}`)
+    .forEach((element) => {
+      element.classList.add(SCROLL_REVEAL.inviewClass, SCROLL_REVEAL.revealedClass);
+    });
+}
+
+function initSectionHeadingScrollReveal() {
+  const headings = [...document.querySelectorAll(".top-page .section-heading.js-scroll-reveal")].filter(
+    (heading) => !heading.closest(".jobs.js-scroll-reveal")
+  );
+  initScrollReveal(headings);
+}
+
+const JOB_CARD_REVEAL_SELECTOR =
+  ".job-card__figure, .job-card__head, .job-card__links";
+
+const JOBS_STAGGER_STEP_MS = 120;
+
+function getJobsGridColumns() {
+  if (window.matchMedia("(max-width: 768px)").matches) return 1;
+  if (window.matchMedia("(max-width: 1400px)").matches) return 2;
+  return 3;
+}
+
+function initJobsScrollReveal() {
+  const section = document.querySelector(".jobs.js-scroll-reveal");
+  if (!section) return;
+
+  const heading = section.querySelector(".section-heading.js-scroll-reveal");
+  const cards = [...section.querySelectorAll(".job-card")];
+  const parts = [...section.querySelectorAll(JOB_CARD_REVEAL_SELECTOR)];
+  const targets = heading ? [heading, ...parts] : parts;
+
+  initScrollReveal(targets, (target) => {
+    const card = target.closest(".job-card");
+    if (!card) return;
+
+    const index = cards.indexOf(card);
+    const columns = getJobsGridColumns();
+    const staggerDelay =
+      columns === 1 ? 0 : (index % columns) * JOBS_STAGGER_STEP_MS;
+
+    target.style.setProperty("--scroll-reveal-stagger-delay", `${staggerDelay}ms`);
+  });
+}
 
 function initTopHeader() {
   const header = document.querySelector(".top-header");

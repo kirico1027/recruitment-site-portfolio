@@ -2,7 +2,6 @@
 <html lang="ja">
   <head>
     <script>
-      document.documentElement.classList.add("js");
       try {
         if (sessionStorage.getItem("top-intro-seen") === "1") {
           document.documentElement.classList.add("top-intro-seen");
@@ -79,9 +78,9 @@
         </section>
       </div>
 
-      <section class="jobs section" id="jobs">
+      <section class="jobs section js-scroll-reveal" id="jobs">
         <div class="l-inset-comp-1920">
-          <header class="section-heading">
+          <header class="section-heading js-scroll-reveal">
             <h2 class="section-heading__title">募集職種</h2>
             <p class="section-heading__subtitle">Jobs</p>
           </header>
@@ -175,7 +174,7 @@
 
       <section class="interviews" id="interviews">
         <div class="interviews__header l-inset-comp-1920">
-          <header class="section-heading section-heading--row">
+          <header class="section-heading section-heading--row js-scroll-reveal">
             <div class="section-heading__group">
               <h2 class="section-heading__title">インタビュー</h2>
               <p class="section-heading__subtitle">Interviews</p>
@@ -205,7 +204,7 @@
 
       <section class="welfare section">
         <div class="l-inset-comp-1920">
-          <header class="section-heading">
+          <header class="section-heading js-scroll-reveal">
             <h2 class="section-heading__title">社員を支える福利厚生</h2>
             <p class="section-heading__subtitle">Welfare</p>
           </header>
@@ -224,7 +223,7 @@
 
       <section class="blog section" id="blog">
         <div class="l-inset-comp-1920">
-          <header class="section-heading section-heading--row">
+          <header class="section-heading section-heading--row js-scroll-reveal">
             <div class="section-heading__group">
               <h2 class="section-heading__title">社員ブログ</h2>
               <p class="section-heading__subtitle">Blog</p>
@@ -258,7 +257,7 @@
 
       <section class="faq">
         <div class="faq__inner l-inset-comp-1920">
-          <header class="section-heading">
+          <header class="section-heading js-scroll-reveal">
             <h2 class="section-heading__title">よくあるご質問</h2>
             <p class="section-heading__subtitle">FAQ</p>
           </header>
@@ -298,6 +297,6 @@
     @@include('partials/entry-modal.html')
     @@include('partials/casual-modal.html')
 
-    <script src="./public/assets/js/script.js?v=20250623b"></script>
+    <script src="./public/assets/js/script.js?v=20250623t"></script>
   </body>
 </html>

@@ -2,7 +2,6 @@
 <html lang="ja">
   <head>
     <script>
-      document.documentElement.classList.add("js");
       try {
         if (sessionStorage.getItem("top-intro-seen") === "1") {
           document.documentElement.classList.add("top-intro-seen");
@@ -27,7 +26,34 @@
     </style>
     <link rel="preload" as="image" href="./public/assets/img/recruit/hero-bg.png" />
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <script>
+      document.documentElement.classList.add("js");
+
+      (function () {
+        var mobileQuery = "(max-width: 768px)";
+
+        if ("scrollRestoration" in history) {
+          history.scrollRestoration = "manual";
+        }
+
+        function snapMobileBelowTop() {
+          if (!window.matchMedia(mobileQuery).matches) return;
+          if (window.scrollY < 1) {
+            window.scrollTo(0, 1);
+          }
+        }
+
+        snapMobileBelowTop();
+        document.addEventListener("DOMContentLoaded", snapMobileBelowTop);
+        window.addEventListener("pageshow", snapMobileBelowTop);
+        window.addEventListener("load", snapMobileBelowTop);
+
+        if (window.visualViewport) {
+          window.visualViewport.addEventListener("resize", snapMobileBelowTop);
+        }
+      })();
+    </script>
     <title>採用情報 | FRACTAL</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -35,7 +61,7 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Lato:wght@400;500;700&family=Material+Icons&family=Noto+Sans+JP:wght@400;500;700;900&display=swap"
     />
-    <link rel="stylesheet" href="./public/assets/css/main.css?v=20250622m" />
+    <link rel="stylesheet" href="./public/assets/css/main.css?v=20250623t" />
 
   </head>
   <body class="top-page">
@@ -114,9 +140,9 @@
         </section>
       </div>
 
-      <section class="jobs section" id="jobs">
+      <section class="jobs section js-scroll-reveal" id="jobs">
         <div class="l-inset-comp-1920">
-          <header class="section-heading">
+          <header class="section-heading js-scroll-reveal">
             <h2 class="section-heading__title">募集職種</h2>
             <p class="section-heading__subtitle">Jobs</p>
           </header>
@@ -210,7 +236,7 @@
 
       <section class="interviews" id="interviews">
         <div class="interviews__header l-inset-comp-1920">
-          <header class="section-heading section-heading--row">
+          <header class="section-heading section-heading--row js-scroll-reveal">
             <div class="section-heading__group">
               <h2 class="section-heading__title">インタビュー</h2>
               <p class="section-heading__subtitle">Interviews</p>
@@ -240,7 +266,7 @@
 
       <section class="welfare section">
         <div class="l-inset-comp-1920">
-          <header class="section-heading">
+          <header class="section-heading js-scroll-reveal">
             <h2 class="section-heading__title">社員を支える福利厚生</h2>
             <p class="section-heading__subtitle">Welfare</p>
           </header>
@@ -259,7 +285,7 @@
 
       <section class="blog section" id="blog">
         <div class="l-inset-comp-1920">
-          <header class="section-heading section-heading--row">
+          <header class="section-heading section-heading--row js-scroll-reveal">
             <div class="section-heading__group">
               <h2 class="section-heading__title">社員ブログ</h2>
               <p class="section-heading__subtitle">Blog</p>
@@ -293,7 +319,7 @@
 
       <section class="faq">
         <div class="faq__inner l-inset-comp-1920">
-          <header class="section-heading">
+          <header class="section-heading js-scroll-reveal">
             <h2 class="section-heading__title">よくあるご質問</h2>
             <p class="section-heading__subtitle">FAQ</p>
           </header>
@@ -494,6 +520,6 @@
     </div>
 
 
-    <script src="./public/assets/js/script.js?v=20250623b"></script>
+    <script src="./public/assets/js/script.js?v=20250623t"></script>
   </body>
 </html>

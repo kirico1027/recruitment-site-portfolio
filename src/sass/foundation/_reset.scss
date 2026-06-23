@@ -10,3 +10,10 @@ body {
   margin: 0;
   padding: 0;
 }
+
+@media (max-width: 768px) {
+  // scrollTo(0, 1) が効くよう、常に 1px だけ縦スクロール可能にする
+  html {
+    min-height: calc(100% + 1px);
+  }
+}

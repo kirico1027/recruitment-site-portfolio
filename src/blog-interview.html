@@ -2,7 +2,34 @@
 <html lang="ja">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <script>
+      document.documentElement.classList.add("js");
+
+      (function () {
+        var mobileQuery = "(max-width: 768px)";
+
+        if ("scrollRestoration" in history) {
+          history.scrollRestoration = "manual";
+        }
+
+        function snapMobileBelowTop() {
+          if (!window.matchMedia(mobileQuery).matches) return;
+          if (window.scrollY < 1) {
+            window.scrollTo(0, 1);
+          }
+        }
+
+        snapMobileBelowTop();
+        document.addEventListener("DOMContentLoaded", snapMobileBelowTop);
+        window.addEventListener("pageshow", snapMobileBelowTop);
+        window.addEventListener("load", snapMobileBelowTop);
+
+        if (window.visualViewport) {
+          window.visualViewport.addEventListener("resize", snapMobileBelowTop);
+        }
+      })();
+    </script>
     <title>インタビュー | FRACTAL 採用サイト</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -10,7 +37,7 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Lato:wght@400;500;700&family=Material+Icons&family=Noto+Sans+JP:wght@400;500;700;900&display=swap"
     />
-    <link rel="stylesheet" href="./public/assets/css/main.css?v=20250622m" />
+    <link rel="stylesheet" href="./public/assets/css/main.css?v=20250623t" />
 
   </head>
   <body class="blog-interview-page">
@@ -286,6 +313,6 @@
     </div>
 
 
-    <script src="./public/assets/js/script.js?v=20250617d"></script>
+    <script src="./public/assets/js/script.js?v=20250623t"></script>
   </body>
 </html>

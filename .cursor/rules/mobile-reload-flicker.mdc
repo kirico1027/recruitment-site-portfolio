@@ -1,0 +1,77 @@
+---
+description: モバイル scroll 0 リロード時のちらつき対策（全ページ共通・確定版）
+globs: src/partials/head.html,src/sass/foundation/_reset.scss,src/templates/**/*.html
+alwaysApply: false
+---
+
+# Mobile Reload Flicker（scroll 0 リロード時のちらつき）
+
+## 症状
+
+- **768px 以下**で **scroll 0 のままリロード**すると、画面下端に次セクション（jobs・記事一覧など）が一瞬ちらつく
+- 少しでもスクロールしてからリロードすると出ない
+- トップだけでなく blog / designer-ux など **全ページ**で起きうる
+
+## 原因
+
+モバイルブラウザのアドレスバー表示でビューポート高さが読み込み後に変わる。scroll 0 だと下端の別背景セクションが覗く。トップの scroll-reveal 非表示は悪化要因の一つだが、**主因はアドレスバーによる viewport 変動**。
+
+## 確定した対処（この組み合わせのみ維持）
+
+### 1. `src/partials/head.html`（全ページ共通）
+
+**必須順序**: `<meta viewport>` をスクリプトより **前** に置く。前に置くと `matchMedia("(max-width: 768px)")` が false になりスナップが動かない。
+
+```html
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<script>
+  document.documentElement.classList.add("js");
+  (function () {
+    var mobileQuery = "(max-width: 768px)";
+    if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+    function snapMobileBelowTop() {
+      if (!window.matchMedia(mobileQuery).matches) return;
+      if (window.scrollY < 1) window.scrollTo(0, 1);
+    }
+    snapMobileBelowTop();
+    document.addEventListener("DOMContentLoaded", snapMobileBelowTop);
+    window.addEventListener("pageshow", snapMobileBelowTop);
+    window.addEventListener("load", snapMobileBelowTop);
+    if (window.visualViewport) {
+      window.visualViewport.addEventListener("resize", snapMobileBelowTop);
+    }
+  })();
+</script>
+```
+
+- `scrollRestoration = "manual"` でブラウザが scroll 0 に戻すのを防ぐ
+- 実質 **scroll 1 から表示**（ユーザーにはほぼ気づかれない）
+- 実行は **head 内 1 箇所のみ**。body 直後や `script.js` への重複追加はジャンプの原因になるので避ける
+
+### 2. `src/sass/foundation/_reset.scss`
+
+```scss
+@media (max-width: 768px) {
+  html {
+    min-height: calc(100% + 1px);
+  }
+}
+```
+
+短いページでも `scrollTo(0, 1)` が必ず効くようにする。
+
+## やってはいけないこと
+
+- **480px だけ**を境界にした defer / `100svh` 床だけに頼る（モバイルレイアウト境界は **768px `mq`**）
+- `scroll` イベントだけで reveal 有効化（アドレスバーで誤発火）
+- `scrollTo` を複数箇所から呼ぶ（上下ジャンプ）
+- viewport メタより前にスナップ script を置く
+
+## トップの scroll-reveal
+
+`bootScrollReveal()` は通常どおり。スナップ後は `scrollY === 1` のためそのまま有効化してよい。モバイル専用の複雑な defer は不要。
+
+## 変更時のチェック
+
+768px 以下で scroll 0 リロード: `index.html`, `blog-news.html`, `blog-staff.html`, `blog-interview.html`, `designer-ux.html`
