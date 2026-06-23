@@ -1,6 +1,31 @@
 <!DOCTYPE html>
 <html lang="ja">
   <head>
+    <script>
+      document.documentElement.classList.add("js");
+      try {
+        if (sessionStorage.getItem("top-intro-seen") === "1") {
+          document.documentElement.classList.add("top-intro-seen");
+        } else {
+          sessionStorage.setItem("top-intro-seen", "1");
+        }
+      } catch (error) {
+        // sessionStorage が使えない環境では毎回アニメーション
+      }
+    </script>
+    <style>
+      @media (prefers-reduced-motion: no-preference) {
+        html:not(.top-intro-seen) .top-visual__bg .figma-media__img { opacity: 0; transform: scale(1.04); }
+        html:not(.top-intro-seen) .top-visual__bg .figma-media__overlay--hero-warm { opacity: 0; }
+        html:not(.top-intro-seen) .top-hero__title { opacity: 0; filter: blur(16px); }
+        html:not(.top-intro-seen) .top-page .top-header { opacity: 0; }
+        html:not(.top-intro-seen) .mission__label,
+        html:not(.top-intro-seen) .mission__lead { opacity: 0; transform: translateY(20px); }
+        html:not(.top-intro-seen) .mission__text { opacity: 0; transform: translateY(16px); }
+        html:not(.top-intro-seen) .mission__figure { opacity: 0; transform: scale(0.98); }
+      }
+    </style>
+    <link rel="preload" as="image" href="./public/assets/img/recruit/hero-bg.png" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>採用情報 | FRACTAL</title>
