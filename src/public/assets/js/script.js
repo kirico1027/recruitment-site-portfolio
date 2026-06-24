@@ -47,6 +47,11 @@ function bootScrollReveal() {
     initSectionHeadingScrollReveal();
     initJobsScrollReveal();
     initInterviewsScrollReveal();
+    initWelfareScrollReveal();
+    initBlogScrollReveal();
+    initGalleryScrollReveal();
+    initFaqScrollReveal();
+    initCtaScrollReveal();
   });
 }
 
@@ -132,10 +137,20 @@ function primeScrollRevealInView() {
 
   primeJobsSectionIfVisible();
   primeInterviewsScrollRevealIfVisible();
+  primeWelfareIfVisible();
+  primeBlogSectionIfVisible();
+  primeGalleryIfVisible();
+  primeFaqIfVisible();
+  primeCtaIfVisible();
 
   const targets = [
     ...document.querySelectorAll(".top-page .section-heading.js-scroll-reveal"),
     ...document.querySelectorAll(`.jobs.js-scroll-reveal ${JOB_CARD_REVEAL_SELECTOR}`),
+    ...document.querySelectorAll(".welfare-item.js-scroll-reveal"),
+    ...document.querySelectorAll(`.top-page .blog.js-scroll-reveal ${BLOG_CARD_REVEAL_SELECTOR}`),
+    ...document.querySelectorAll(GALLERY_ITEM_SELECTOR),
+    ...document.querySelectorAll(FAQ_ITEM_SELECTOR),
+    ...document.querySelectorAll(CTA_BLOCK_SELECTOR),
   ];
 
   targets.forEach((target) => {
@@ -197,6 +212,159 @@ function initJobsScrollReveal() {
       columns === 1 ? 0 : (index % columns) * JOBS_STAGGER_STEP_MS;
 
     target.style.setProperty("--scroll-reveal-stagger-delay", `${staggerDelay}ms`);
+  });
+}
+
+const WELFARE_ITEM_SELECTOR = ".welfare-item.js-scroll-reveal";
+const WELFARE_STAGGER_STEP_MS = 80;
+
+function getWelfareGridColumns() {
+  if (window.matchMedia("(max-width: 500px)").matches) return 1;
+  if (window.matchMedia("(max-width: 768px)").matches) return 2;
+  if (window.matchMedia("(max-width: 1400px)").matches) return 3;
+  return 4;
+}
+
+function initWelfareScrollReveal() {
+  const items = [...document.querySelectorAll(WELFARE_ITEM_SELECTOR)];
+  initScrollReveal(items, (target) => {
+    const index = items.indexOf(target);
+    const columns = getWelfareGridColumns();
+    const staggerDelay =
+      columns === 1 ? 0 : (index % columns) * WELFARE_STAGGER_STEP_MS;
+
+    target.style.setProperty("--scroll-reveal-stagger-delay", `${staggerDelay}ms`);
+  });
+}
+
+function primeWelfareIfVisible() {
+  document.querySelectorAll(WELFARE_ITEM_SELECTOR).forEach((element) => {
+    if (element.classList.contains(SCROLL_REVEAL.inviewClass)) return;
+    if (!isScrollRevealIntersecting(element)) return;
+
+    element.classList.add(SCROLL_REVEAL.inviewClass, SCROLL_REVEAL.revealedClass);
+  });
+}
+
+const BLOG_CARD_REVEAL_SELECTOR = ".blog-card__figure, .blog-card__body";
+const BLOG_STAGGER_STEP_MS = 120;
+
+function getBlogGridColumns() {
+  if (window.matchMedia("(max-width: 768px)").matches) return 1;
+  if (window.matchMedia("(max-width: 1400px)").matches) return 2;
+  return 3;
+}
+
+function initBlogScrollReveal() {
+  const section = document.querySelector(".top-page .blog.js-scroll-reveal");
+  if (!section) return;
+
+  const cards = [...section.querySelectorAll(".blog-card")];
+  const parts = [...section.querySelectorAll(BLOG_CARD_REVEAL_SELECTOR)];
+
+  initScrollReveal(parts, (target) => {
+    const card = target.closest(".blog-card");
+    if (!card) return;
+
+    const index = cards.indexOf(card);
+    const columns = getBlogGridColumns();
+    const staggerDelay =
+      columns === 1 ? 0 : (index % columns) * BLOG_STAGGER_STEP_MS;
+
+    target.style.setProperty("--scroll-reveal-stagger-delay", `${staggerDelay}ms`);
+  });
+}
+
+function primeBlogSectionIfVisible() {
+  const section = document.querySelector(".top-page .blog.js-scroll-reveal");
+  if (!section) return;
+
+  section.querySelectorAll(BLOG_CARD_REVEAL_SELECTOR).forEach((element) => {
+    if (element.classList.contains(SCROLL_REVEAL.inviewClass)) return;
+    if (!isScrollRevealIntersecting(element)) return;
+
+    element.classList.add(SCROLL_REVEAL.inviewClass, SCROLL_REVEAL.revealedClass);
+  });
+}
+
+const GALLERY_ITEM_SELECTOR = ".top-page .gallery__item.js-scroll-reveal";
+const GALLERY_ROW_STAGGER_MS = 80;
+const GALLERY_COL_STAGGER_MS = 40;
+
+function getGalleryGridColumns() {
+  if (window.matchMedia("(max-width: 768px)").matches) return 2;
+  return 3;
+}
+
+function getGalleryStaggerDelay(index, columns) {
+  const row = Math.floor(index / columns);
+  const col = index % columns;
+  return row * GALLERY_ROW_STAGGER_MS + col * GALLERY_COL_STAGGER_MS;
+}
+
+function initGalleryScrollReveal() {
+  const items = [...document.querySelectorAll(GALLERY_ITEM_SELECTOR)];
+  initScrollReveal(items, (target) => {
+    const index = items.indexOf(target);
+    const columns = getGalleryGridColumns();
+    const staggerDelay = getGalleryStaggerDelay(index, columns);
+
+    target.style.setProperty("--scroll-reveal-stagger-delay", `${staggerDelay}ms`);
+  });
+}
+
+function primeGalleryIfVisible() {
+  document.querySelectorAll(GALLERY_ITEM_SELECTOR).forEach((element) => {
+    if (element.classList.contains(SCROLL_REVEAL.inviewClass)) return;
+    if (!isScrollRevealIntersecting(element)) return;
+
+    element.classList.add(SCROLL_REVEAL.inviewClass, SCROLL_REVEAL.revealedClass);
+  });
+}
+
+const FAQ_ITEM_SELECTOR = ".top-page .faq-item.js-scroll-reveal";
+const FAQ_STAGGER_STEP_MS = 80;
+
+function initFaqScrollReveal() {
+  const items = [...document.querySelectorAll(FAQ_ITEM_SELECTOR)];
+  initScrollReveal(items, (target) => {
+    const index = items.indexOf(target);
+    target.style.setProperty(
+      "--scroll-reveal-stagger-delay",
+      `${index * FAQ_STAGGER_STEP_MS}ms`
+    );
+  });
+}
+
+function primeFaqIfVisible() {
+  document.querySelectorAll(FAQ_ITEM_SELECTOR).forEach((element) => {
+    if (element.classList.contains(SCROLL_REVEAL.inviewClass)) return;
+    if (!isScrollRevealIntersecting(element)) return;
+
+    element.classList.add(SCROLL_REVEAL.inviewClass, SCROLL_REVEAL.revealedClass);
+  });
+}
+
+const CTA_BLOCK_SELECTOR = ".top-page .top-cta__block.js-scroll-reveal";
+const CTA_STAGGER_STEP_MS = 120;
+
+function initCtaScrollReveal() {
+  const blocks = [...document.querySelectorAll(CTA_BLOCK_SELECTOR)];
+  initScrollReveal(blocks, (target) => {
+    const index = blocks.indexOf(target);
+    target.style.setProperty(
+      "--scroll-reveal-stagger-delay",
+      `${index * CTA_STAGGER_STEP_MS}ms`
+    );
+  });
+}
+
+function primeCtaIfVisible() {
+  document.querySelectorAll(CTA_BLOCK_SELECTOR).forEach((element) => {
+    if (element.classList.contains(SCROLL_REVEAL.inviewClass)) return;
+    if (!isScrollRevealIntersecting(element)) return;
+
+    element.classList.add(SCROLL_REVEAL.inviewClass, SCROLL_REVEAL.revealedClass);
   });
 }
 

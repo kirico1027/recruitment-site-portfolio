@@ -2150,6 +2150,30 @@ a.interview-card .interview-card__title {
   line-height: 1.75;
 }
 
+@keyframes welfare-item-in {
+  from {
+    opacity: 0;
+    transform: translateY(1.25rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  html.js.scroll-reveal-active .welfare-item.js-scroll-reveal:not(.is-inview) {
+    opacity: 0;
+    transform: translateY(1.25rem);
+  }
+  html.js.scroll-reveal-active .welfare-item.js-scroll-reveal.is-inview:not(.is-revealed) {
+    animation: welfare-item-in 700ms cubic-bezier(0.22, 1, 0.36, 1) var(--scroll-reveal-stagger-delay, 0ms) both;
+  }
+  html.js.scroll-reveal-active .welfare-item.js-scroll-reveal.is-revealed {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+}
 .blog {
   position: relative;
   z-index: 5;
@@ -2304,6 +2328,59 @@ a.blog-card .blog-card__title {
     text-decoration-color: currentColor;
   }
 }
+@keyframes blog-card-figure-in {
+  from {
+    opacity: 0;
+    transform: translateY(1.5rem);
+    filter: blur(0.25rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+@keyframes blog-card-body-in {
+  from {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  html.js.scroll-reveal-active .blog.js-scroll-reveal .blog-card__figure:not(.is-inview),
+  html.js.scroll-reveal-active .blog.js-scroll-reveal .blog-card__body:not(.is-inview) {
+    opacity: 0;
+    transform: translateY(1.5rem);
+  }
+  html.js.scroll-reveal-active .blog.js-scroll-reveal .blog-card__figure.is-inview:not(.is-revealed),
+  html.js.scroll-reveal-active .blog.js-scroll-reveal .blog-card__body.is-inview:not(.is-revealed) {
+    will-change: transform, opacity, filter;
+  }
+  html.js.scroll-reveal-active .blog.js-scroll-reveal .blog-card__figure.is-revealed,
+  html.js.scroll-reveal-active .blog.js-scroll-reveal .blog-card__body.is-revealed {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    animation: none;
+  }
+  html.js.scroll-reveal-active .blog.js-scroll-reveal .blog-card__figure:not(.is-inview) {
+    filter: blur(0.25rem);
+  }
+  html.js.scroll-reveal-active .blog.js-scroll-reveal .blog-card__figure.is-inview:not(.is-revealed) {
+    animation: blog-card-figure-in 750ms cubic-bezier(0.22, 1, 0.36, 1) var(--scroll-reveal-stagger-delay, 0ms) both;
+  }
+  html.js.scroll-reveal-active .blog.js-scroll-reveal .blog-card__body:not(.is-inview) {
+    transform: translateY(1rem);
+    filter: none;
+  }
+  html.js.scroll-reveal-active .blog.js-scroll-reveal .blog-card__body.is-inview:not(.is-revealed) {
+    animation: blog-card-body-in 700ms cubic-bezier(0.22, 1, 0.36, 1) calc(var(--scroll-reveal-stagger-delay, 0ms) + 120ms) both;
+  }
+}
 .gallery__grid {
   display: flex;
   flex-wrap: wrap;
@@ -2325,6 +2402,31 @@ a.blog-card .blog-card__title {
   height: 100%;
 }
 
+@keyframes gallery-item-in {
+  from {
+    opacity: 0;
+    transform: scale(1.04);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  html.js.scroll-reveal-active .gallery.js-scroll-reveal .gallery__item.js-scroll-reveal:not(.is-inview) {
+    opacity: 0;
+    transform: scale(1.04);
+  }
+  html.js.scroll-reveal-active .gallery.js-scroll-reveal .gallery__item.js-scroll-reveal.is-inview:not(.is-revealed) {
+    animation: gallery-item-in 600ms cubic-bezier(0.22, 1, 0.36, 1) var(--scroll-reveal-stagger-delay, 0ms) both;
+    will-change: transform, opacity;
+  }
+  html.js.scroll-reveal-active .gallery.js-scroll-reveal .gallery__item.js-scroll-reveal.is-revealed {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+}
 .faq {
   position: relative;
   z-index: 2;
@@ -2499,6 +2601,31 @@ a.blog-card .blog-card__title {
   color: var(--color-text-muted);
 }
 
+@keyframes faq-item-in {
+  from {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  html.js.scroll-reveal-active .top-page .faq-item.js-scroll-reveal:not(.is-inview) {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+  html.js.scroll-reveal-active .top-page .faq-item.js-scroll-reveal.is-inview:not(.is-revealed) {
+    animation: faq-item-in 700ms cubic-bezier(0.22, 1, 0.36, 1) var(--scroll-reveal-stagger-delay, 0ms) both;
+    will-change: transform, opacity;
+  }
+  html.js.scroll-reveal-active .top-page .faq-item.js-scroll-reveal.is-revealed {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+}
 .top-cta {
   position: relative;
   z-index: 6;
@@ -2687,6 +2814,31 @@ button.top-cta__btn:focus, button.top-cta__btn:focus-visible {
   color: var(--color-text);
 }
 
+@keyframes top-cta-block-in {
+  from {
+    opacity: 0;
+    transform: translateY(1.25rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  html.js.scroll-reveal-active .top-page .top-cta__block.js-scroll-reveal:not(.is-inview) {
+    opacity: 0;
+    transform: translateY(1.25rem);
+  }
+  html.js.scroll-reveal-active .top-page .top-cta__block.js-scroll-reveal.is-inview:not(.is-revealed) {
+    animation: top-cta-block-in 700ms cubic-bezier(0.22, 1, 0.36, 1) var(--scroll-reveal-stagger-delay, 0ms) both;
+    will-change: transform, opacity;
+  }
+  html.js.scroll-reveal-active .top-page .top-cta__block.js-scroll-reveal.is-revealed {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+}
 .top-footer {
   position: relative;
   z-index: 7;
