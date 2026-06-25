@@ -9,15 +9,22 @@
   @include fluid-padding-inline(rem(16), 4vw, rem(24));
 }
 
-// 採用サイト共通: コンテンツ最大幅 1200px。可変インセットは幅計算に反映（padding ではなく外側余白）
+// 採用サイト共通: コンテンツ最大幅 1200px + 可変インセット
+// Safari: min()/calc()/var() による幅計算は無効化されやすいため padding + content-box で代替
+// max-width はコンテンツ幅（1200px）、padding-inline が外側余白相当
 .l-inset-comp-1920 {
-  --inset-inline: clamp(
+  box-sizing: content-box;
+  max-width: rem(1200);
+  padding-left: clamp(
     #{rem(30)},
     #{layout-inset-comp-calc(360, 1920, 375, 0.195)},
     #{rem(360)}
   );
-
-  width: min(#{rem(1200)}, calc(100% - 2 * var(--inset-inline)));
-  margin-inline: auto;
-  box-sizing: border-box;
+  padding-right: clamp(
+    #{rem(30)},
+    #{layout-inset-comp-calc(360, 1920, 375, 0.195)},
+    #{rem(360)}
+  );
+  margin-left: auto;
+  margin-right: auto;
 }

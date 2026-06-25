@@ -1,0 +1,89 @@
+---
+description: Safari 向け横インセット・figma-media 画像レイアウトの既知不具合と確定修正
+globs: src/sass/layout/_container.scss,src/sass/components/figma-media/_figma-media.scss,src/public/assets/css/main.css
+alwaysApply: false
+---
+
+# Safari Layout Inset & Figma Media（確定版）
+
+Chrome 正常・Safari のみ崩れる場合の対処。横余白消失と画像比率崩れは別原因。
+
+## 症状
+
+- **横余白**: `.l-inset-comp-1920` 配下で左右 padding/inset が消える、または左だけ無い
+- **画像**: `aspect-ratio` 付き figure 内の画像が intrinsic サイズで横にはみ出し、比率が崩れる
+- Chrome では再現しない
+
+## 横インセット — `.l-inset-comp-1920`
+
+### やってはいけない（Safari で無効化・非対称化されやすい）
+
+```scss
+// ❌ var() + min() + calc() — 宣言ごと無効 → 余白ゼロ
+width: min(1200px, calc(100% - 2 * var(--inset-inline)));
+
+// ❌ width:100% + 横 margin — 左 margin だけ潰れ右だけ残る
+width: 100%;
+max-width: 1200px;
+margin-left: clamp(...);
+margin-right: clamp(...);
+
+// ❌ Sass が calc() を剥がす min() — Safari で同様に失敗しうる
+width: min(75rem, 100% - 2 * var(--inset-inline));
+```
+
+### 確定した修正（`src/sass/layout/_container.scss`）
+
+```scss
+.l-inset-comp-1920 {
+  box-sizing: content-box; // reset の border-box を上書き
+  max-width: rem(1200);      // コンテンツ幅 1200px
+  padding-left: clamp(#{rem(30)}, layout-inset-comp-calc(...), #{rem(360)});
+  padding-right: clamp(#{rem(30)}, layout-inset-comp-calc(...), #{rem(360)});
+  margin-left: auto;
+  margin-right: auto;
+}
+```
+
+- `min()` / `calc(100% - …)` / `var(--inset-inline)` は使わない
+- `padding-left/right` の物理プロパティ + `content-box` + `max-width` で外側余白相当を実現
+- 1920px: コンテンツ 1200px + 左右 padding 360px。狭幅: 100% − 左右 padding
+
+## 画像比率 — cover 系 `.figma-media`
+
+### 原因
+
+`aspect-ratio` 親 + `position: absolute` + `height: 100%` + `max-width: none` は Safari で高さが伝わらず intrinsic 表示になる。
+
+### 確定した修正（`src/sass/components/figma-media/_figma-media.scss`）
+
+`inset:0` cover 系モディファイアのみ grid 化（Figma オフセット指定の gallery / job 等は触らない）:
+
+- `.figma-media--blog-listing`
+- `.figma-media--blog-article-hero`
+- `.figma-media--blog-featured`
+- `.figma-media--company-message`
+
+```scss
+:is(.figma-media--blog-listing, ...) {
+  display: grid;
+  .figma-media__img {
+    position: relative;
+    grid-area: 1 / 1;
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    object-fit: cover;
+  }
+}
+```
+
+## 変更後
+
+`npm run build` で `main.css` を更新する。
+
+## 再発時の確認（Safari DevTools）
+
+1. `.l-inset-comp-1920` の computed `padding-left/right` が 0 でないか
+2. `width: min(...)` 等が invalid になっていないか
+3. `.figma-media__img` の `height` が親と一致しているか
