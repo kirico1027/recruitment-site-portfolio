@@ -1751,7 +1751,13 @@ a.blog-card .blog-card__title {
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  html.js.scroll-reveal-active .blog.js-scroll-reveal {
+  html.js.scroll-reveal-active .blog.js-scroll-reveal,
+  html.js.scroll-reveal-active .designer-detail.js-scroll-reveal,
+  html.js.scroll-reveal-active .blog-page .blog--listing.js-scroll-reveal,
+  html.js.scroll-reveal-active .blog-news-page .blog--news-listing.js-scroll-reveal,
+  html.js.scroll-reveal-active .blog-staff-page .blog--staff-listing.js-scroll-reveal,
+  html.js.scroll-reveal-active .blog-interview-page .blog--interview-listing.js-scroll-reveal,
+  html.js.scroll-reveal-active .blog-article-page .blog-article-related.js-scroll-reveal {
     .blog-card__figure,
     .blog-card__body {
       &:not(.is-inview) {
@@ -2093,6 +2099,16 @@ a.blog-card .blog-card__title {
   min-width: 0;
 }
 
+.top-cta__block-body {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: rem(30);
+  align-items: flex-start;
+  width: 100%;
+  min-width: 0;
+}
+
 .top-cta__block--casual {
   flex: 0 1 31.11%;
 }
@@ -2261,7 +2277,8 @@ button.top-cta__btn {
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  html.js.scroll-reveal-active .top-page .top-cta__block.js-scroll-reveal {
+  html.js.scroll-reveal-active .top-cta__block-body.js-scroll-reveal,
+  html.js.scroll-reveal-active .top-cta .top-cta__btn.js-scroll-reveal {
     &:not(.is-inview) {
       opacity: 0;
       transform: translateY(rem(20));

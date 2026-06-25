@@ -26,6 +26,103 @@
   letter-spacing: rem(2.4);
 }
 
+@keyframes designer-ux-intro-in {
+  from {
+    opacity: 0;
+    transform: translateY(rem(20));
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes designer-ux-reveal-in {
+  from {
+    opacity: 0;
+    transform: translateY(rem(20));
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes designer-ux-entry-in {
+  from {
+    opacity: 0;
+    transform: translateY(rem(24));
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html.js.scroll-reveal-active .designer-ux-page {
+    .designer-ux-intro__title.js-load-reveal {
+      &:not(.is-inview) {
+        opacity: 0;
+        transform: translateY(rem(20));
+      }
+
+      &.is-inview:not(.is-revealed) {
+        animation: designer-ux-intro-in 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+        will-change: transform, opacity;
+      }
+
+      &.is-revealed {
+        opacity: 1;
+        transform: none;
+        animation: none;
+      }
+    }
+
+    .designer-ux-detail.js-scroll-reveal {
+      .designer-ux-content__lead,
+      .designer-ux-content__block {
+        &:not(.is-inview) {
+          opacity: 0;
+          transform: translateY(rem(20));
+        }
+
+        &.is-inview:not(.is-revealed) {
+          animation: designer-ux-reveal-in 700ms cubic-bezier(0.22, 1, 0.36, 1) var(--scroll-reveal-stagger-delay, 0ms) both;
+          will-change: transform, opacity;
+        }
+
+        &.is-revealed {
+          opacity: 1;
+          transform: none;
+          animation: none;
+        }
+      }
+
+      .designer-ux-entry {
+        &:not(.is-inview) {
+          opacity: 0;
+          transform: translateY(rem(24));
+        }
+
+        &.is-inview:not(.is-revealed) {
+          animation: designer-ux-entry-in 750ms cubic-bezier(0.22, 1, 0.36, 1) var(--scroll-reveal-stagger-delay, 0ms) both;
+          will-change: transform, opacity;
+        }
+
+        &.is-revealed {
+          opacity: 1;
+          transform: none;
+          animation: none;
+        }
+      }
+    }
+  }
+}
+
 .designer-ux-body__inner {
   @include fluid-spacing(padding-bottom, rem(64), 5.21vw, rem(100));
 }
@@ -61,6 +158,14 @@
   width: 100%;
   font-size: rem(18);
   line-height: calc(27 / 18);
+}
+
+.designer-ux-content__block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: rem(16);
+  width: 100%;
 }
 
 // Figma 1:36, 1:51, 1:84 — h2 pt 24（区切り線後は 62）

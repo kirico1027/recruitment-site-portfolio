@@ -1,0 +1,32 @@
+---
+description: CTA スクロールアニメを全ページへ反映する手順（「反映させて」指示時）
+globs: src/partials/cta.html,src/sass/pages/top/_top-page.scss,src/public/assets/js/script.js,src/templates/**/*.html
+alwaysApply: false
+---
+
+# CTA スクロールアニメ — 全ページ反映
+
+ユーザーが CTA アニメーションの変更を **「反映させて」** と指示した場合、トップだけでなく **全ページの CTA** に同じ挙動が届くようにする。
+
+## 変更はこの3か所だけ（ページ個別の直書き禁止）
+
+| 層 | ファイル | 注意 |
+|----|----------|------|
+| HTML | `src/partials/cta.html` | 本文は `top-cta__block-body js-scroll-reveal`、ボタンは `top-cta__btn js-scroll-reveal` を個別付与 |
+| JS | `src/public/assets/js/script.js` | `CTA_BODY_SELECTOR` / `CTA_BTN_SELECTOR` を `initScrollRevealAnimateVisible` で個別監視 |
+| CSS | `src/sass/pages/top/_top-page.scss` | セレクタは `.top-cta__block-body.js-scroll-reveal` と `.top-cta .top-cta__btn.js-scroll-reveal` |
+
+各下層ページは `@@include('partials/cta.html')` のみ。CTA ブロックをテンプレートへ直書きしない。
+
+## 作業後は必ずビルド
+
+```bash
+npm run build
+```
+
+`htmlIncludes` で `src/*.html` が再生成される。ビルドせずに `templates/` だけ直しても公開 HTML は古いまま。
+
+## 確認
+
+- 下層ページ（例: `src/jobs.html`）の CTA に `js-scroll-reveal` があること
+- `initCtaScrollReveal` / `primeCtaIfVisible` が `CTA_BODY_SELECTOR` と `CTA_BTN_SELECTOR` を参照していること

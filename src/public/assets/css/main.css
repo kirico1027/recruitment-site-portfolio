@@ -2352,32 +2352,92 @@ a.blog-card .blog-card__title {
 }
 @media (prefers-reduced-motion: no-preference) {
   html.js.scroll-reveal-active .blog.js-scroll-reveal .blog-card__figure:not(.is-inview),
-  html.js.scroll-reveal-active .blog.js-scroll-reveal .blog-card__body:not(.is-inview) {
+  html.js.scroll-reveal-active .blog.js-scroll-reveal .blog-card__body:not(.is-inview),
+  html.js.scroll-reveal-active .designer-detail.js-scroll-reveal .blog-card__figure:not(.is-inview),
+  html.js.scroll-reveal-active .designer-detail.js-scroll-reveal .blog-card__body:not(.is-inview),
+  html.js.scroll-reveal-active .blog-page .blog--listing.js-scroll-reveal .blog-card__figure:not(.is-inview),
+  html.js.scroll-reveal-active .blog-page .blog--listing.js-scroll-reveal .blog-card__body:not(.is-inview),
+  html.js.scroll-reveal-active .blog-news-page .blog--news-listing.js-scroll-reveal .blog-card__figure:not(.is-inview),
+  html.js.scroll-reveal-active .blog-news-page .blog--news-listing.js-scroll-reveal .blog-card__body:not(.is-inview),
+  html.js.scroll-reveal-active .blog-staff-page .blog--staff-listing.js-scroll-reveal .blog-card__figure:not(.is-inview),
+  html.js.scroll-reveal-active .blog-staff-page .blog--staff-listing.js-scroll-reveal .blog-card__body:not(.is-inview),
+  html.js.scroll-reveal-active .blog-interview-page .blog--interview-listing.js-scroll-reveal .blog-card__figure:not(.is-inview),
+  html.js.scroll-reveal-active .blog-interview-page .blog--interview-listing.js-scroll-reveal .blog-card__body:not(.is-inview),
+  html.js.scroll-reveal-active .blog-article-page .blog-article-related.js-scroll-reveal .blog-card__figure:not(.is-inview),
+  html.js.scroll-reveal-active .blog-article-page .blog-article-related.js-scroll-reveal .blog-card__body:not(.is-inview) {
     opacity: 0;
     transform: translateY(1.5rem);
   }
   html.js.scroll-reveal-active .blog.js-scroll-reveal .blog-card__figure.is-inview:not(.is-revealed),
-  html.js.scroll-reveal-active .blog.js-scroll-reveal .blog-card__body.is-inview:not(.is-revealed) {
+  html.js.scroll-reveal-active .blog.js-scroll-reveal .blog-card__body.is-inview:not(.is-revealed),
+  html.js.scroll-reveal-active .designer-detail.js-scroll-reveal .blog-card__figure.is-inview:not(.is-revealed),
+  html.js.scroll-reveal-active .designer-detail.js-scroll-reveal .blog-card__body.is-inview:not(.is-revealed),
+  html.js.scroll-reveal-active .blog-page .blog--listing.js-scroll-reveal .blog-card__figure.is-inview:not(.is-revealed),
+  html.js.scroll-reveal-active .blog-page .blog--listing.js-scroll-reveal .blog-card__body.is-inview:not(.is-revealed),
+  html.js.scroll-reveal-active .blog-news-page .blog--news-listing.js-scroll-reveal .blog-card__figure.is-inview:not(.is-revealed),
+  html.js.scroll-reveal-active .blog-news-page .blog--news-listing.js-scroll-reveal .blog-card__body.is-inview:not(.is-revealed),
+  html.js.scroll-reveal-active .blog-staff-page .blog--staff-listing.js-scroll-reveal .blog-card__figure.is-inview:not(.is-revealed),
+  html.js.scroll-reveal-active .blog-staff-page .blog--staff-listing.js-scroll-reveal .blog-card__body.is-inview:not(.is-revealed),
+  html.js.scroll-reveal-active .blog-interview-page .blog--interview-listing.js-scroll-reveal .blog-card__figure.is-inview:not(.is-revealed),
+  html.js.scroll-reveal-active .blog-interview-page .blog--interview-listing.js-scroll-reveal .blog-card__body.is-inview:not(.is-revealed),
+  html.js.scroll-reveal-active .blog-article-page .blog-article-related.js-scroll-reveal .blog-card__figure.is-inview:not(.is-revealed),
+  html.js.scroll-reveal-active .blog-article-page .blog-article-related.js-scroll-reveal .blog-card__body.is-inview:not(.is-revealed) {
     will-change: transform, opacity, filter;
   }
   html.js.scroll-reveal-active .blog.js-scroll-reveal .blog-card__figure.is-revealed,
-  html.js.scroll-reveal-active .blog.js-scroll-reveal .blog-card__body.is-revealed {
+  html.js.scroll-reveal-active .blog.js-scroll-reveal .blog-card__body.is-revealed,
+  html.js.scroll-reveal-active .designer-detail.js-scroll-reveal .blog-card__figure.is-revealed,
+  html.js.scroll-reveal-active .designer-detail.js-scroll-reveal .blog-card__body.is-revealed,
+  html.js.scroll-reveal-active .blog-page .blog--listing.js-scroll-reveal .blog-card__figure.is-revealed,
+  html.js.scroll-reveal-active .blog-page .blog--listing.js-scroll-reveal .blog-card__body.is-revealed,
+  html.js.scroll-reveal-active .blog-news-page .blog--news-listing.js-scroll-reveal .blog-card__figure.is-revealed,
+  html.js.scroll-reveal-active .blog-news-page .blog--news-listing.js-scroll-reveal .blog-card__body.is-revealed,
+  html.js.scroll-reveal-active .blog-staff-page .blog--staff-listing.js-scroll-reveal .blog-card__figure.is-revealed,
+  html.js.scroll-reveal-active .blog-staff-page .blog--staff-listing.js-scroll-reveal .blog-card__body.is-revealed,
+  html.js.scroll-reveal-active .blog-interview-page .blog--interview-listing.js-scroll-reveal .blog-card__figure.is-revealed,
+  html.js.scroll-reveal-active .blog-interview-page .blog--interview-listing.js-scroll-reveal .blog-card__body.is-revealed,
+  html.js.scroll-reveal-active .blog-article-page .blog-article-related.js-scroll-reveal .blog-card__figure.is-revealed,
+  html.js.scroll-reveal-active .blog-article-page .blog-article-related.js-scroll-reveal .blog-card__body.is-revealed {
     opacity: 1;
     transform: none;
     filter: none;
     animation: none;
   }
-  html.js.scroll-reveal-active .blog.js-scroll-reveal .blog-card__figure:not(.is-inview) {
+  html.js.scroll-reveal-active .blog.js-scroll-reveal .blog-card__figure:not(.is-inview),
+  html.js.scroll-reveal-active .designer-detail.js-scroll-reveal .blog-card__figure:not(.is-inview),
+  html.js.scroll-reveal-active .blog-page .blog--listing.js-scroll-reveal .blog-card__figure:not(.is-inview),
+  html.js.scroll-reveal-active .blog-news-page .blog--news-listing.js-scroll-reveal .blog-card__figure:not(.is-inview),
+  html.js.scroll-reveal-active .blog-staff-page .blog--staff-listing.js-scroll-reveal .blog-card__figure:not(.is-inview),
+  html.js.scroll-reveal-active .blog-interview-page .blog--interview-listing.js-scroll-reveal .blog-card__figure:not(.is-inview),
+  html.js.scroll-reveal-active .blog-article-page .blog-article-related.js-scroll-reveal .blog-card__figure:not(.is-inview) {
     filter: blur(0.25rem);
   }
-  html.js.scroll-reveal-active .blog.js-scroll-reveal .blog-card__figure.is-inview:not(.is-revealed) {
+  html.js.scroll-reveal-active .blog.js-scroll-reveal .blog-card__figure.is-inview:not(.is-revealed),
+  html.js.scroll-reveal-active .designer-detail.js-scroll-reveal .blog-card__figure.is-inview:not(.is-revealed),
+  html.js.scroll-reveal-active .blog-page .blog--listing.js-scroll-reveal .blog-card__figure.is-inview:not(.is-revealed),
+  html.js.scroll-reveal-active .blog-news-page .blog--news-listing.js-scroll-reveal .blog-card__figure.is-inview:not(.is-revealed),
+  html.js.scroll-reveal-active .blog-staff-page .blog--staff-listing.js-scroll-reveal .blog-card__figure.is-inview:not(.is-revealed),
+  html.js.scroll-reveal-active .blog-interview-page .blog--interview-listing.js-scroll-reveal .blog-card__figure.is-inview:not(.is-revealed),
+  html.js.scroll-reveal-active .blog-article-page .blog-article-related.js-scroll-reveal .blog-card__figure.is-inview:not(.is-revealed) {
     animation: blog-card-figure-in 750ms cubic-bezier(0.22, 1, 0.36, 1) var(--scroll-reveal-stagger-delay, 0ms) both;
   }
-  html.js.scroll-reveal-active .blog.js-scroll-reveal .blog-card__body:not(.is-inview) {
+  html.js.scroll-reveal-active .blog.js-scroll-reveal .blog-card__body:not(.is-inview),
+  html.js.scroll-reveal-active .designer-detail.js-scroll-reveal .blog-card__body:not(.is-inview),
+  html.js.scroll-reveal-active .blog-page .blog--listing.js-scroll-reveal .blog-card__body:not(.is-inview),
+  html.js.scroll-reveal-active .blog-news-page .blog--news-listing.js-scroll-reveal .blog-card__body:not(.is-inview),
+  html.js.scroll-reveal-active .blog-staff-page .blog--staff-listing.js-scroll-reveal .blog-card__body:not(.is-inview),
+  html.js.scroll-reveal-active .blog-interview-page .blog--interview-listing.js-scroll-reveal .blog-card__body:not(.is-inview),
+  html.js.scroll-reveal-active .blog-article-page .blog-article-related.js-scroll-reveal .blog-card__body:not(.is-inview) {
     transform: translateY(1rem);
     filter: none;
   }
-  html.js.scroll-reveal-active .blog.js-scroll-reveal .blog-card__body.is-inview:not(.is-revealed) {
+  html.js.scroll-reveal-active .blog.js-scroll-reveal .blog-card__body.is-inview:not(.is-revealed),
+  html.js.scroll-reveal-active .designer-detail.js-scroll-reveal .blog-card__body.is-inview:not(.is-revealed),
+  html.js.scroll-reveal-active .blog-page .blog--listing.js-scroll-reveal .blog-card__body.is-inview:not(.is-revealed),
+  html.js.scroll-reveal-active .blog-news-page .blog--news-listing.js-scroll-reveal .blog-card__body.is-inview:not(.is-revealed),
+  html.js.scroll-reveal-active .blog-staff-page .blog--staff-listing.js-scroll-reveal .blog-card__body.is-inview:not(.is-revealed),
+  html.js.scroll-reveal-active .blog-interview-page .blog--interview-listing.js-scroll-reveal .blog-card__body.is-inview:not(.is-revealed),
+  html.js.scroll-reveal-active .blog-article-page .blog-article-related.js-scroll-reveal .blog-card__body.is-inview:not(.is-revealed) {
     animation: blog-card-body-in 700ms cubic-bezier(0.22, 1, 0.36, 1) calc(var(--scroll-reveal-stagger-delay, 0ms) + 120ms) both;
   }
 }
@@ -2666,6 +2726,16 @@ a.blog-card .blog-card__title {
   min-width: 0;
 }
 
+.top-cta__block-body {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 1.875rem;
+  align-items: flex-start;
+  width: 100%;
+  min-width: 0;
+}
+
 .top-cta__block--casual {
   flex: 0 1 31.11%;
 }
@@ -2825,15 +2895,18 @@ button.top-cta__btn:focus, button.top-cta__btn:focus-visible {
   }
 }
 @media (prefers-reduced-motion: no-preference) {
-  html.js.scroll-reveal-active .top-page .top-cta__block.js-scroll-reveal:not(.is-inview) {
+  html.js.scroll-reveal-active .top-cta__block-body.js-scroll-reveal:not(.is-inview),
+  html.js.scroll-reveal-active .top-cta .top-cta__btn.js-scroll-reveal:not(.is-inview) {
     opacity: 0;
     transform: translateY(1.25rem);
   }
-  html.js.scroll-reveal-active .top-page .top-cta__block.js-scroll-reveal.is-inview:not(.is-revealed) {
+  html.js.scroll-reveal-active .top-cta__block-body.js-scroll-reveal.is-inview:not(.is-revealed),
+  html.js.scroll-reveal-active .top-cta .top-cta__btn.js-scroll-reveal.is-inview:not(.is-revealed) {
     animation: top-cta-block-in 700ms cubic-bezier(0.22, 1, 0.36, 1) var(--scroll-reveal-stagger-delay, 0ms) both;
     will-change: transform, opacity;
   }
-  html.js.scroll-reveal-active .top-page .top-cta__block.js-scroll-reveal.is-revealed {
+  html.js.scroll-reveal-active .top-cta__block-body.js-scroll-reveal.is-revealed,
+  html.js.scroll-reveal-active .top-cta .top-cta__btn.js-scroll-reveal.is-revealed {
     opacity: 1;
     transform: none;
     animation: none;
@@ -3411,6 +3484,106 @@ button.top-cta__btn:focus, button.top-cta__btn:focus-visible {
   letter-spacing: 0.05625rem;
 }
 
+@keyframes designer-intro-in {
+  from {
+    opacity: 0;
+    transform: translateY(1.25rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes designer-hero-in {
+  from {
+    opacity: 0;
+    transform: translateY(1.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes designer-skill-in {
+  from {
+    opacity: 0;
+    transform: translateY(1.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes designer-text-in {
+  from {
+    opacity: 0;
+    transform: translateY(1.25rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  html.js.scroll-reveal-active .designer-page .designer-intro__title.js-load-reveal:not(.is-inview),
+  html.js.scroll-reveal-active .designer-page .designer-intro__text.js-load-reveal:not(.is-inview) {
+    opacity: 0;
+    transform: translateY(1.25rem);
+  }
+  html.js.scroll-reveal-active .designer-page .designer-intro__title.js-load-reveal.is-inview:not(.is-revealed),
+  html.js.scroll-reveal-active .designer-page .designer-intro__text.js-load-reveal.is-inview:not(.is-revealed) {
+    animation: designer-intro-in 700ms cubic-bezier(0.22, 1, 0.36, 1) var(--scroll-reveal-stagger-delay, 0ms) both;
+    will-change: transform, opacity;
+  }
+  html.js.scroll-reveal-active .designer-page .designer-intro__title.js-load-reveal.is-revealed,
+  html.js.scroll-reveal-active .designer-page .designer-intro__text.js-load-reveal.is-revealed {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+  html.js.scroll-reveal-active .designer-page .designer-detail.js-scroll-reveal .designer-hero__figure:not(.is-inview) {
+    opacity: 0;
+    transform: translateY(1.5rem);
+  }
+  html.js.scroll-reveal-active .designer-page .designer-detail.js-scroll-reveal .designer-hero__figure.is-inview:not(.is-revealed) {
+    animation: designer-hero-in 750ms cubic-bezier(0.22, 1, 0.36, 1) both;
+    will-change: transform, opacity;
+  }
+  html.js.scroll-reveal-active .designer-page .designer-detail.js-scroll-reveal .designer-hero__figure.is-revealed {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+  html.js.scroll-reveal-active .designer-page .designer-detail.js-scroll-reveal .designer-skill:not(.is-inview) {
+    opacity: 0;
+    transform: translateY(1.5rem);
+  }
+  html.js.scroll-reveal-active .designer-page .designer-detail.js-scroll-reveal .designer-skill.is-inview:not(.is-revealed) {
+    animation: designer-skill-in 750ms cubic-bezier(0.22, 1, 0.36, 1) var(--scroll-reveal-stagger-delay, 0ms) both;
+    will-change: transform, opacity;
+  }
+  html.js.scroll-reveal-active .designer-page .designer-detail.js-scroll-reveal .designer-skill.is-revealed {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+  html.js.scroll-reveal-active .designer-page .designer-detail.js-scroll-reveal .designer-description__text:not(.is-inview),
+  html.js.scroll-reveal-active .designer-page .designer-detail.js-scroll-reveal .designer-positions__item:not(.is-inview) {
+    opacity: 0;
+    transform: translateY(1.25rem);
+  }
+  html.js.scroll-reveal-active .designer-page .designer-detail.js-scroll-reveal .designer-description__text.is-inview:not(.is-revealed),
+  html.js.scroll-reveal-active .designer-page .designer-detail.js-scroll-reveal .designer-positions__item.is-inview:not(.is-revealed) {
+    animation: designer-text-in 700ms cubic-bezier(0.22, 1, 0.36, 1) var(--scroll-reveal-stagger-delay, 0ms) both;
+    will-change: transform, opacity;
+  }
+  html.js.scroll-reveal-active .designer-page .designer-detail.js-scroll-reveal .designer-description__text.is-revealed,
+  html.js.scroll-reveal-active .designer-page .designer-detail.js-scroll-reveal .designer-positions__item.is-revealed {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+}
 .designer-hero__outer {
   padding-left: clamp(1rem, calc(2.6875vw + 3.5625vw * (100vw - 375px) / 1545px), 7.5rem);
   padding-right: clamp(1rem, calc(2.6875vw + 3.5625vw * (100vw - 375px) / 1545px), 7.5rem);
@@ -3770,6 +3943,80 @@ a.designer-positions__link:active .designer-positions__icon-wrap {
   letter-spacing: 0.15rem;
 }
 
+@keyframes designer-ux-intro-in {
+  from {
+    opacity: 0;
+    transform: translateY(1.25rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes designer-ux-reveal-in {
+  from {
+    opacity: 0;
+    transform: translateY(1.25rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes designer-ux-entry-in {
+  from {
+    opacity: 0;
+    transform: translateY(1.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  html.js.scroll-reveal-active .designer-ux-page .designer-ux-intro__title.js-load-reveal:not(.is-inview) {
+    opacity: 0;
+    transform: translateY(1.25rem);
+  }
+  html.js.scroll-reveal-active .designer-ux-page .designer-ux-intro__title.js-load-reveal.is-inview:not(.is-revealed) {
+    animation: designer-ux-intro-in 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+    will-change: transform, opacity;
+  }
+  html.js.scroll-reveal-active .designer-ux-page .designer-ux-intro__title.js-load-reveal.is-revealed {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+  html.js.scroll-reveal-active .designer-ux-page .designer-ux-detail.js-scroll-reveal .designer-ux-content__lead:not(.is-inview),
+  html.js.scroll-reveal-active .designer-ux-page .designer-ux-detail.js-scroll-reveal .designer-ux-content__block:not(.is-inview) {
+    opacity: 0;
+    transform: translateY(1.25rem);
+  }
+  html.js.scroll-reveal-active .designer-ux-page .designer-ux-detail.js-scroll-reveal .designer-ux-content__lead.is-inview:not(.is-revealed),
+  html.js.scroll-reveal-active .designer-ux-page .designer-ux-detail.js-scroll-reveal .designer-ux-content__block.is-inview:not(.is-revealed) {
+    animation: designer-ux-reveal-in 700ms cubic-bezier(0.22, 1, 0.36, 1) var(--scroll-reveal-stagger-delay, 0ms) both;
+    will-change: transform, opacity;
+  }
+  html.js.scroll-reveal-active .designer-ux-page .designer-ux-detail.js-scroll-reveal .designer-ux-content__lead.is-revealed,
+  html.js.scroll-reveal-active .designer-ux-page .designer-ux-detail.js-scroll-reveal .designer-ux-content__block.is-revealed {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+  html.js.scroll-reveal-active .designer-ux-page .designer-ux-detail.js-scroll-reveal .designer-ux-entry:not(.is-inview) {
+    opacity: 0;
+    transform: translateY(1.5rem);
+  }
+  html.js.scroll-reveal-active .designer-ux-page .designer-ux-detail.js-scroll-reveal .designer-ux-entry.is-inview:not(.is-revealed) {
+    animation: designer-ux-entry-in 750ms cubic-bezier(0.22, 1, 0.36, 1) var(--scroll-reveal-stagger-delay, 0ms) both;
+    will-change: transform, opacity;
+  }
+  html.js.scroll-reveal-active .designer-ux-page .designer-ux-detail.js-scroll-reveal .designer-ux-entry.is-revealed {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+}
 .designer-ux-body__inner {
   padding-bottom: clamp(4rem, 5.21vw, 6.25rem);
 }
@@ -3801,6 +4048,14 @@ a.designer-positions__link:active .designer-positions__icon-wrap {
   width: 100%;
   font-size: 1.125rem;
   line-height: 1.5;
+}
+
+.designer-ux-content__block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+  width: 100%;
 }
 
 .designer-ux-content__section-title {
@@ -4401,6 +4656,198 @@ a.designer-positions__link:active .designer-positions__icon-wrap {
     content: "";
   }
 }
+@keyframes company-intro-in {
+  from {
+    opacity: 0;
+    transform: translateY(1.25rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes company-statement-label-in {
+  from {
+    opacity: 0;
+    transform: translateY(1.25rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes company-statement-copy-in {
+  from {
+    opacity: 0;
+    transform: translateY(1.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes company-statement-desc-in {
+  from {
+    opacity: 0;
+    transform: translateY(1.25rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes company-message-in {
+  from {
+    opacity: 0;
+    transform: translateY(1.25rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes company-message-figure-in {
+  from {
+    opacity: 0;
+    transform: translateY(1.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes company-about-map-in {
+  from {
+    opacity: 0;
+    transform: translateY(1.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes company-about-row-in {
+  from {
+    opacity: 0;
+    transform: translateY(1.25rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  html.js.scroll-reveal-active .company-page .company-intro__title.js-load-reveal:not(.is-inview),
+  html.js.scroll-reveal-active .company-page .company-intro__text.js-load-reveal:not(.is-inview) {
+    opacity: 0;
+    transform: translateY(1.25rem);
+  }
+  html.js.scroll-reveal-active .company-page .company-intro__title.js-load-reveal.is-inview:not(.is-revealed),
+  html.js.scroll-reveal-active .company-page .company-intro__text.js-load-reveal.is-inview:not(.is-revealed) {
+    animation: company-intro-in 700ms cubic-bezier(0.22, 1, 0.36, 1) var(--scroll-reveal-stagger-delay, 0ms) both;
+    will-change: transform, opacity;
+  }
+  html.js.scroll-reveal-active .company-page .company-intro__title.js-load-reveal.is-revealed,
+  html.js.scroll-reveal-active .company-page .company-intro__text.js-load-reveal.is-revealed {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+  html.js.scroll-reveal-active .company-page .company-statements.js-scroll-reveal .company-statement__label:not(.is-inview) {
+    opacity: 0;
+    transform: translateY(1.25rem);
+  }
+  html.js.scroll-reveal-active .company-page .company-statements.js-scroll-reveal .company-statement__label.is-inview:not(.is-revealed) {
+    animation: company-statement-label-in 700ms cubic-bezier(0.22, 1, 0.36, 1) var(--scroll-reveal-stagger-delay, 0ms) both;
+    will-change: transform, opacity;
+  }
+  html.js.scroll-reveal-active .company-page .company-statements.js-scroll-reveal .company-statement__label.is-revealed {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+  html.js.scroll-reveal-active .company-page .company-statements.js-scroll-reveal .company-statement__copy:not(.is-inview) {
+    opacity: 0;
+    transform: translateY(1.5rem);
+  }
+  html.js.scroll-reveal-active .company-page .company-statements.js-scroll-reveal .company-statement__copy.is-inview:not(.is-revealed) {
+    animation: company-statement-copy-in 750ms cubic-bezier(0.22, 1, 0.36, 1) var(--scroll-reveal-stagger-delay, 0ms) both;
+    will-change: transform, opacity;
+  }
+  html.js.scroll-reveal-active .company-page .company-statements.js-scroll-reveal .company-statement__copy.is-revealed {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+  html.js.scroll-reveal-active .company-page .company-statements.js-scroll-reveal .company-statement__desc:not(.is-inview) {
+    opacity: 0;
+    transform: translateY(1.25rem);
+  }
+  html.js.scroll-reveal-active .company-page .company-statements.js-scroll-reveal .company-statement__desc.is-inview:not(.is-revealed) {
+    animation: company-statement-desc-in 700ms cubic-bezier(0.22, 1, 0.36, 1) var(--scroll-reveal-stagger-delay, 0ms) both;
+    will-change: transform, opacity;
+  }
+  html.js.scroll-reveal-active .company-page .company-statements.js-scroll-reveal .company-statement__desc.is-revealed {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+  html.js.scroll-reveal-active .company-page .company-message.js-scroll-reveal .company-message__quote:not(.is-inview),
+  html.js.scroll-reveal-active .company-page .company-message.js-scroll-reveal .company-message__text:not(.is-inview) {
+    opacity: 0;
+    transform: translateY(1.25rem);
+  }
+  html.js.scroll-reveal-active .company-page .company-message.js-scroll-reveal .company-message__quote.is-inview:not(.is-revealed),
+  html.js.scroll-reveal-active .company-page .company-message.js-scroll-reveal .company-message__text.is-inview:not(.is-revealed) {
+    animation: company-message-in 700ms cubic-bezier(0.22, 1, 0.36, 1) var(--scroll-reveal-stagger-delay, 0ms) both;
+    will-change: transform, opacity;
+  }
+  html.js.scroll-reveal-active .company-page .company-message.js-scroll-reveal .company-message__quote.is-revealed,
+  html.js.scroll-reveal-active .company-page .company-message.js-scroll-reveal .company-message__text.is-revealed {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+  html.js.scroll-reveal-active .company-page .company-message.js-scroll-reveal .company-message__figure:not(.is-inview) {
+    opacity: 0;
+    transform: translateY(1.5rem);
+  }
+  html.js.scroll-reveal-active .company-page .company-message.js-scroll-reveal .company-message__figure.is-inview:not(.is-revealed) {
+    animation: company-message-figure-in 750ms cubic-bezier(0.22, 1, 0.36, 1) var(--scroll-reveal-stagger-delay, 0ms) both;
+    will-change: transform, opacity;
+  }
+  html.js.scroll-reveal-active .company-page .company-message.js-scroll-reveal .company-message__figure.is-revealed {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+  html.js.scroll-reveal-active .company-page .company-about.js-scroll-reveal .company-about__map:not(.is-inview) {
+    opacity: 0;
+    transform: translateY(1.5rem);
+  }
+  html.js.scroll-reveal-active .company-page .company-about.js-scroll-reveal .company-about__map.is-inview:not(.is-revealed) {
+    animation: company-about-map-in 750ms cubic-bezier(0.22, 1, 0.36, 1) both;
+    will-change: transform, opacity;
+  }
+  html.js.scroll-reveal-active .company-page .company-about.js-scroll-reveal .company-about__map.is-revealed {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+  html.js.scroll-reveal-active .company-page .company-about.js-scroll-reveal .company-about__row:not(.is-inview) {
+    opacity: 0;
+    transform: translateY(1.25rem);
+  }
+  html.js.scroll-reveal-active .company-page .company-about.js-scroll-reveal .company-about__row.is-inview:not(.is-revealed) {
+    animation: company-about-row-in 700ms cubic-bezier(0.22, 1, 0.36, 1) var(--scroll-reveal-stagger-delay, 0ms) both;
+    will-change: transform, opacity;
+  }
+  html.js.scroll-reveal-active .company-page .company-about.js-scroll-reveal .company-about__row.is-revealed {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+}
 .blog-page {
   font-family: var(--font-body);
   color: var(--color-text);
@@ -4677,6 +5124,151 @@ a.designer-positions__link:active .designer-positions__icon-wrap {
 @media (max-width: 1023px) {
   .blog-intro__layout {
     flex-direction: column;
+  }
+}
+@keyframes blog-category-intro-in {
+  from {
+    opacity: 0;
+    transform: translateY(1.25rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes blog-intro-in {
+  from {
+    opacity: 0;
+    transform: translateY(1.25rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes blog-filters-item-in {
+  from {
+    opacity: 0;
+    transform: translateY(1.25rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  html.js.scroll-reveal-active .blog-page .blog-news-intro__title.js-load-reveal:not(.is-inview),
+  html.js.scroll-reveal-active .blog-page .blog-staff-intro__title.js-load-reveal:not(.is-inview),
+  html.js.scroll-reveal-active .blog-page .blog-interview-intro__title.js-load-reveal:not(.is-inview),
+  html.js.scroll-reveal-active .blog-news-page .blog-news-intro__title.js-load-reveal:not(.is-inview),
+  html.js.scroll-reveal-active .blog-news-page .blog-staff-intro__title.js-load-reveal:not(.is-inview),
+  html.js.scroll-reveal-active .blog-news-page .blog-interview-intro__title.js-load-reveal:not(.is-inview),
+  html.js.scroll-reveal-active .blog-staff-page .blog-news-intro__title.js-load-reveal:not(.is-inview),
+  html.js.scroll-reveal-active .blog-staff-page .blog-staff-intro__title.js-load-reveal:not(.is-inview),
+  html.js.scroll-reveal-active .blog-staff-page .blog-interview-intro__title.js-load-reveal:not(.is-inview),
+  html.js.scroll-reveal-active .blog-interview-page .blog-news-intro__title.js-load-reveal:not(.is-inview),
+  html.js.scroll-reveal-active .blog-interview-page .blog-staff-intro__title.js-load-reveal:not(.is-inview),
+  html.js.scroll-reveal-active .blog-interview-page .blog-interview-intro__title.js-load-reveal:not(.is-inview) {
+    opacity: 0;
+    transform: translateY(1.25rem);
+  }
+  html.js.scroll-reveal-active .blog-page .blog-news-intro__title.js-load-reveal.is-inview:not(.is-revealed),
+  html.js.scroll-reveal-active .blog-page .blog-staff-intro__title.js-load-reveal.is-inview:not(.is-revealed),
+  html.js.scroll-reveal-active .blog-page .blog-interview-intro__title.js-load-reveal.is-inview:not(.is-revealed),
+  html.js.scroll-reveal-active .blog-news-page .blog-news-intro__title.js-load-reveal.is-inview:not(.is-revealed),
+  html.js.scroll-reveal-active .blog-news-page .blog-staff-intro__title.js-load-reveal.is-inview:not(.is-revealed),
+  html.js.scroll-reveal-active .blog-news-page .blog-interview-intro__title.js-load-reveal.is-inview:not(.is-revealed),
+  html.js.scroll-reveal-active .blog-staff-page .blog-news-intro__title.js-load-reveal.is-inview:not(.is-revealed),
+  html.js.scroll-reveal-active .blog-staff-page .blog-staff-intro__title.js-load-reveal.is-inview:not(.is-revealed),
+  html.js.scroll-reveal-active .blog-staff-page .blog-interview-intro__title.js-load-reveal.is-inview:not(.is-revealed),
+  html.js.scroll-reveal-active .blog-interview-page .blog-news-intro__title.js-load-reveal.is-inview:not(.is-revealed),
+  html.js.scroll-reveal-active .blog-interview-page .blog-staff-intro__title.js-load-reveal.is-inview:not(.is-revealed),
+  html.js.scroll-reveal-active .blog-interview-page .blog-interview-intro__title.js-load-reveal.is-inview:not(.is-revealed) {
+    animation: blog-category-intro-in 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+    will-change: transform, opacity;
+  }
+  html.js.scroll-reveal-active .blog-page .blog-news-intro__title.js-load-reveal.is-revealed,
+  html.js.scroll-reveal-active .blog-page .blog-staff-intro__title.js-load-reveal.is-revealed,
+  html.js.scroll-reveal-active .blog-page .blog-interview-intro__title.js-load-reveal.is-revealed,
+  html.js.scroll-reveal-active .blog-news-page .blog-news-intro__title.js-load-reveal.is-revealed,
+  html.js.scroll-reveal-active .blog-news-page .blog-staff-intro__title.js-load-reveal.is-revealed,
+  html.js.scroll-reveal-active .blog-news-page .blog-interview-intro__title.js-load-reveal.is-revealed,
+  html.js.scroll-reveal-active .blog-staff-page .blog-news-intro__title.js-load-reveal.is-revealed,
+  html.js.scroll-reveal-active .blog-staff-page .blog-staff-intro__title.js-load-reveal.is-revealed,
+  html.js.scroll-reveal-active .blog-staff-page .blog-interview-intro__title.js-load-reveal.is-revealed,
+  html.js.scroll-reveal-active .blog-interview-page .blog-news-intro__title.js-load-reveal.is-revealed,
+  html.js.scroll-reveal-active .blog-interview-page .blog-staff-intro__title.js-load-reveal.is-revealed,
+  html.js.scroll-reveal-active .blog-interview-page .blog-interview-intro__title.js-load-reveal.is-revealed {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+  html.js.scroll-reveal-active .blog-page .blog-filters.js-scroll-reveal .blog-filters__item:not(.is-inview),
+  html.js.scroll-reveal-active .blog-news-page .blog-filters.js-scroll-reveal .blog-filters__item:not(.is-inview),
+  html.js.scroll-reveal-active .blog-staff-page .blog-filters.js-scroll-reveal .blog-filters__item:not(.is-inview),
+  html.js.scroll-reveal-active .blog-interview-page .blog-filters.js-scroll-reveal .blog-filters__item:not(.is-inview) {
+    opacity: 0;
+    transform: translateY(1.25rem);
+  }
+  html.js.scroll-reveal-active .blog-page .blog-filters.js-scroll-reveal .blog-filters__item.is-inview:not(.is-revealed),
+  html.js.scroll-reveal-active .blog-news-page .blog-filters.js-scroll-reveal .blog-filters__item.is-inview:not(.is-revealed),
+  html.js.scroll-reveal-active .blog-staff-page .blog-filters.js-scroll-reveal .blog-filters__item.is-inview:not(.is-revealed),
+  html.js.scroll-reveal-active .blog-interview-page .blog-filters.js-scroll-reveal .blog-filters__item.is-inview:not(.is-revealed) {
+    animation: blog-filters-item-in 700ms cubic-bezier(0.22, 1, 0.36, 1) var(--scroll-reveal-stagger-delay, 0ms) both;
+    will-change: transform, opacity;
+  }
+  html.js.scroll-reveal-active .blog-page .blog-filters.js-scroll-reveal .blog-filters__item.is-revealed,
+  html.js.scroll-reveal-active .blog-news-page .blog-filters.js-scroll-reveal .blog-filters__item.is-revealed,
+  html.js.scroll-reveal-active .blog-staff-page .blog-filters.js-scroll-reveal .blog-filters__item.is-revealed,
+  html.js.scroll-reveal-active .blog-interview-page .blog-filters.js-scroll-reveal .blog-filters__item.is-revealed {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+  html.js.scroll-reveal-active .blog-page .blog-intro__title.js-load-reveal:not(.is-inview),
+  html.js.scroll-reveal-active .blog-page .blog-intro__text.js-load-reveal:not(.is-inview) {
+    opacity: 0;
+    transform: translateY(1.25rem);
+  }
+  html.js.scroll-reveal-active .blog-page .blog-intro__title.js-load-reveal.is-inview:not(.is-revealed),
+  html.js.scroll-reveal-active .blog-page .blog-intro__text.js-load-reveal.is-inview:not(.is-revealed) {
+    animation: blog-intro-in 700ms cubic-bezier(0.22, 1, 0.36, 1) var(--scroll-reveal-stagger-delay, 0ms) both;
+    will-change: transform, opacity;
+  }
+  html.js.scroll-reveal-active .blog-page .blog-intro__title.js-load-reveal.is-revealed,
+  html.js.scroll-reveal-active .blog-page .blog-intro__text.js-load-reveal.is-revealed {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+  html.js.scroll-reveal-active .blog-page .blog-featured.js-scroll-reveal .blog-featured__figure:not(.is-inview),
+  html.js.scroll-reveal-active .blog-page .blog-featured.js-scroll-reveal .blog-featured__body:not(.is-inview) {
+    opacity: 0;
+    transform: translateY(1.5rem);
+  }
+  html.js.scroll-reveal-active .blog-page .blog-featured.js-scroll-reveal .blog-featured__figure.is-inview:not(.is-revealed),
+  html.js.scroll-reveal-active .blog-page .blog-featured.js-scroll-reveal .blog-featured__body.is-inview:not(.is-revealed) {
+    will-change: transform, opacity, filter;
+  }
+  html.js.scroll-reveal-active .blog-page .blog-featured.js-scroll-reveal .blog-featured__figure.is-revealed,
+  html.js.scroll-reveal-active .blog-page .blog-featured.js-scroll-reveal .blog-featured__body.is-revealed {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    animation: none;
+  }
+  html.js.scroll-reveal-active .blog-page .blog-featured.js-scroll-reveal .blog-featured__figure:not(.is-inview) {
+    filter: blur(0.25rem);
+  }
+  html.js.scroll-reveal-active .blog-page .blog-featured.js-scroll-reveal .blog-featured__figure.is-inview:not(.is-revealed) {
+    animation: blog-card-figure-in 750ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  html.js.scroll-reveal-active .blog-page .blog-featured.js-scroll-reveal .blog-featured__body:not(.is-inview) {
+    transform: translateY(1rem);
+    filter: none;
+  }
+  html.js.scroll-reveal-active .blog-page .blog-featured.js-scroll-reveal .blog-featured__body.is-inview:not(.is-revealed) {
+    animation: blog-card-body-in 700ms cubic-bezier(0.22, 1, 0.36, 1) var(--scroll-reveal-stagger-delay, 0ms) both;
   }
 }
 .blog-news-page {
@@ -4958,6 +5550,9 @@ a.designer-positions__link:active .designer-positions__icon-wrap {
   align-items: center;
   gap: 0.625rem;
   min-height: 3rem;
+  padding: 0 0.75rem;
+  border-radius: 8rem;
+  background: rgba(255, 255, 255, 0.7);
 }
 
 .blog-article-share__label {
@@ -5160,7 +5755,8 @@ a.designer-positions__link:active .designer-positions__icon-wrap {
   line-height: 2;
 }
 
-.blog-article-content > .blog-article-content__section-title:last-of-type + .blog-article-content__text {
+.blog-article-content > .blog-article-content__section-title:last-of-type + .blog-article-content__text,
+.blog-article-content__block:last-child .blog-article-content__section-title + .blog-article-content__text {
   margin: 0;
   padding-block: 0.625rem;
 }
@@ -5263,5 +5859,77 @@ a.designer-positions__link:active .designer-positions__icon-wrap {
   .blog-article-related__head {
     flex-direction: column;
     align-items: flex-start;
+  }
+}
+@keyframes blog-article-content-in {
+  from {
+    opacity: 0;
+    transform: translateY(1.25rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes blog-article-meta-actions-in {
+  from {
+    opacity: 0;
+    transform: translateY(1.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  html.js.scroll-reveal-active .blog-article-page .blog-article-hero.js-scroll-reveal .blog-article-hero__figure:not(.is-inview) {
+    opacity: 0;
+    transform: translateY(1.5rem);
+    filter: blur(0.25rem);
+  }
+  html.js.scroll-reveal-active .blog-article-page .blog-article-hero.js-scroll-reveal .blog-article-hero__figure.is-inview:not(.is-revealed) {
+    animation: blog-card-figure-in 750ms cubic-bezier(0.22, 1, 0.36, 1) both;
+    will-change: transform, opacity, filter;
+  }
+  html.js.scroll-reveal-active .blog-article-page .blog-article-hero.js-scroll-reveal .blog-article-hero__figure.is-revealed {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    animation: none;
+  }
+  html.js.scroll-reveal-active .blog-article-page .blog-article-body.js-scroll-reveal .blog-article-meta__date:not(.is-inview),
+  html.js.scroll-reveal-active .blog-article-page .blog-article-body.js-scroll-reveal .blog-article-meta__heading:not(.is-inview),
+  html.js.scroll-reveal-active .blog-article-page .blog-article-body.js-scroll-reveal .blog-article-content__lead:not(.is-inview),
+  html.js.scroll-reveal-active .blog-article-page .blog-article-body.js-scroll-reveal .blog-article-content__block:not(.is-inview) {
+    opacity: 0;
+    transform: translateY(1.25rem);
+  }
+  html.js.scroll-reveal-active .blog-article-page .blog-article-body.js-scroll-reveal .blog-article-meta__date.is-inview:not(.is-revealed),
+  html.js.scroll-reveal-active .blog-article-page .blog-article-body.js-scroll-reveal .blog-article-meta__heading.is-inview:not(.is-revealed),
+  html.js.scroll-reveal-active .blog-article-page .blog-article-body.js-scroll-reveal .blog-article-content__lead.is-inview:not(.is-revealed),
+  html.js.scroll-reveal-active .blog-article-page .blog-article-body.js-scroll-reveal .blog-article-content__block.is-inview:not(.is-revealed) {
+    animation: blog-article-content-in 700ms cubic-bezier(0.22, 1, 0.36, 1) var(--scroll-reveal-stagger-delay, 0ms) both;
+    will-change: transform, opacity;
+  }
+  html.js.scroll-reveal-active .blog-article-page .blog-article-body.js-scroll-reveal .blog-article-meta__date.is-revealed,
+  html.js.scroll-reveal-active .blog-article-page .blog-article-body.js-scroll-reveal .blog-article-meta__heading.is-revealed,
+  html.js.scroll-reveal-active .blog-article-page .blog-article-body.js-scroll-reveal .blog-article-content__lead.is-revealed,
+  html.js.scroll-reveal-active .blog-article-page .blog-article-body.js-scroll-reveal .blog-article-content__block.is-revealed {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+  html.js.scroll-reveal-active .blog-article-page .blog-article-body.js-scroll-reveal .blog-article-meta__actions:not(.is-inview) {
+    opacity: 0;
+    transform: translateY(1.5rem);
+  }
+  html.js.scroll-reveal-active .blog-article-page .blog-article-body.js-scroll-reveal .blog-article-meta__actions.is-inview:not(.is-revealed) {
+    animation: blog-article-meta-actions-in 750ms cubic-bezier(0.22, 1, 0.36, 1) var(--scroll-reveal-stagger-delay, 0ms) both;
+    will-change: transform, opacity;
+  }
+  html.js.scroll-reveal-active .blog-article-page .blog-article-body.js-scroll-reveal .blog-article-meta__actions.is-revealed {
+    opacity: 1;
+    transform: none;
+    animation: none;
   }
 }/*# sourceMappingURL=main.css.map */

@@ -1,0 +1,97 @@
+---
+description: 下層ページ scroll-reveal / load-reveal の実装パターン（リロード時の画面内要素もアニメ再生）
+globs: src/templates/**/*.html,src/sass/pages/**/*.scss,src/public/assets/js/script.js
+alwaysApply: false
+---
+
+# 下層ページ scroll-reveal 実装
+
+jobs / designer / designer-ux / company と同型で実装する。リロード時にスクロール位置が復元され、画面上に既にある要素もアニメーションを再生する。
+
+## 2種類の reveal
+
+| 種類 | クラス | 用途 | JS |
+|------|--------|------|-----|
+| ロード reveal | `js-load-reveal` | ページ上部イントロ（h1 + リード文） | `initLoadReveal` |
+| スクロール reveal | `js-scroll-reveal` | それ以降のセクション | `initScrollRevealAnimateVisible` |
+
+## リロード時に画面内の要素をアニメさせる（必須）
+
+IntersectionObserver は「スクロールで入ってきた」要素にしか発火しない。**初期表示・リロード時に既に画面内にある要素**は `initScrollRevealAnimateVisible` で処理する。
+
+```javascript
+// 画面内 → is-inview のみ付与（CSS アニメ再生）
+// 画面外 → initScrollReveal（Observer 待ち）
+initScrollRevealAnimateVisible(parts, setStagger);
+```
+
+### やってはいけないこと
+
+- 下層ページの reveal 対象を `primeScrollRevealInView()` に含めない  
+  → 起動前に `is-inview` + `is-revealed` が付き、アニメがスキップされる
+- 下層ページの scroll reveal に `initScrollReveal` だけ使わない  
+  → リロード時に画面内の要素が動かない
+- `initSectionHeadingScrollReveal` に下層ページ見出しを混ぜない  
+  → 見出しも各ページの `init*ScrollReveal` 内で `initScrollRevealAnimateVisible` に含める
+
+### bfcache（戻る）時
+
+`pageshow` イベントでのみ `prime*IfVisible` を呼ぶ。`is-inview` + `is-revealed` を即付与し、戻る操作時の再アニメを防ぐ。
+
+```javascript
+window.addEventListener("pageshow", () => {
+  // ...
+  primeCompanyIntroIfVisible();
+  primeCompanyScrollRevealIfVisible();
+});
+```
+
+## 新規下層ページの追加手順
+
+### 1. HTML（`src/templates/*.html`）
+
+- イントロ: `js-load-reveal` を h1 / リード文に付与
+- 各セクション: 親または子要素に `js-scroll-reveal`
+- section-heading がある場合: `section-heading js-scroll-reveal`
+
+### 2. SCSS（`src/sass/pages/<page>/_<page>-page.scss`）
+
+```scss
+@media (prefers-reduced-motion: no-preference) {
+  html.js.scroll-reveal-active .<page>-page {
+    .<target> {
+      &:not(.is-inview) { opacity: 0; transform: translateY(...); }
+      &.is-inview:not(.is-revealed) {
+        animation: ... var(--scroll-reveal-stagger-delay, 0ms) both;
+      }
+      &.is-revealed { opacity: 1; transform: none; animation: none; }
+    }
+  }
+}
+```
+
+### 3. JS（`src/public/assets/js/script.js`）
+
+1. セレクタ定数を定義
+2. `init<Page>IntroReveal()` — `initLoadReveal` + テキスト遅延（80ms）
+3. `init<Page>ScrollReveal()` — `initScrollRevealAnimateVisible` + stagger 設定
+4. `prime<Page>IntroIfVisible()` / `prime<Page>ScrollRevealIfVisible()` — **pageshow のみ**
+5. `bootScrollReveal()` に init 2 関数を追加
+6. `pageshow` に prime 2 関数を追加
+7. **`primeScrollRevealInView()` には追加しない**
+
+### 4. ビルド
+
+```bash
+npm run build
+```
+
+## 参照実装
+
+- jobs 一覧: `initJobsScrollReveal` + `initJobsListingIntroReveal`
+- designer: `initDesignerScrollReveal` + `initDesignerIntroReveal`
+- designer-ux: `initDesignerUxScrollReveal` + `initDesignerUxIntroReveal`
+- company: `initCompanyScrollReveal` + `initCompanyIntroReveal`
+- blog 一覧: `initBlogPageScrollReveal` + `initBlogPageIntroReveal`
+- blog カテゴリ（news / staff / interview）: `initBlogCategoryScrollReveal` + `initBlogCategoryIntroReveal`
+- blog 記事詳細: `initBlogArticleScrollReveal`

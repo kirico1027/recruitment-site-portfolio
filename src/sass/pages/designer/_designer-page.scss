@@ -52,6 +52,134 @@
   letter-spacing: rem(0.9);
 }
 
+@keyframes designer-intro-in {
+  from {
+    opacity: 0;
+    transform: translateY(rem(20));
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes designer-hero-in {
+  from {
+    opacity: 0;
+    transform: translateY(rem(24));
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes designer-skill-in {
+  from {
+    opacity: 0;
+    transform: translateY(rem(24));
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes designer-text-in {
+  from {
+    opacity: 0;
+    transform: translateY(rem(20));
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html.js.scroll-reveal-active .designer-page {
+    .designer-intro__title.js-load-reveal,
+    .designer-intro__text.js-load-reveal {
+      &:not(.is-inview) {
+        opacity: 0;
+        transform: translateY(rem(20));
+      }
+
+      &.is-inview:not(.is-revealed) {
+        animation: designer-intro-in 700ms cubic-bezier(0.22, 1, 0.36, 1) var(--scroll-reveal-stagger-delay, 0ms) both;
+        will-change: transform, opacity;
+      }
+
+      &.is-revealed {
+        opacity: 1;
+        transform: none;
+        animation: none;
+      }
+    }
+
+    .designer-detail.js-scroll-reveal {
+      .designer-hero__figure {
+        &:not(.is-inview) {
+          opacity: 0;
+          transform: translateY(rem(24));
+        }
+
+        &.is-inview:not(.is-revealed) {
+          animation: designer-hero-in 750ms cubic-bezier(0.22, 1, 0.36, 1) both;
+          will-change: transform, opacity;
+        }
+
+        &.is-revealed {
+          opacity: 1;
+          transform: none;
+          animation: none;
+        }
+      }
+
+      .designer-skill {
+        &:not(.is-inview) {
+          opacity: 0;
+          transform: translateY(rem(24));
+        }
+
+        &.is-inview:not(.is-revealed) {
+          animation: designer-skill-in 750ms cubic-bezier(0.22, 1, 0.36, 1) var(--scroll-reveal-stagger-delay, 0ms) both;
+          will-change: transform, opacity;
+        }
+
+        &.is-revealed {
+          opacity: 1;
+          transform: none;
+          animation: none;
+        }
+      }
+
+      .designer-description__text,
+      .designer-positions__item {
+        &:not(.is-inview) {
+          opacity: 0;
+          transform: translateY(rem(20));
+        }
+
+        &.is-inview:not(.is-revealed) {
+          animation: designer-text-in 700ms cubic-bezier(0.22, 1, 0.36, 1) var(--scroll-reveal-stagger-delay, 0ms) both;
+          will-change: transform, opacity;
+        }
+
+        &.is-revealed {
+          opacity: 1;
+          transform: none;
+          animation: none;
+        }
+      }
+    }
+  }
+}
+
 // Figma 1:321 — 外側 120px / 内側 max 1680 + 40px / 画像 1600×400
 .designer-hero__outer {
   @include fluid-padding-inline(rem(16), layout-inset-comp-calc(120, 1920, 375, 0.43), rem(120));

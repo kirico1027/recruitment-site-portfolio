@@ -391,3 +391,256 @@
     content: "";
   }
 }
+
+// ---- Scroll reveal ----
+@keyframes company-intro-in {
+  from {
+    opacity: 0;
+    transform: translateY(rem(20));
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes company-statement-label-in {
+  from {
+    opacity: 0;
+    transform: translateY(rem(20));
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes company-statement-copy-in {
+  from {
+    opacity: 0;
+    transform: translateY(rem(24));
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes company-statement-desc-in {
+  from {
+    opacity: 0;
+    transform: translateY(rem(20));
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes company-message-in {
+  from {
+    opacity: 0;
+    transform: translateY(rem(20));
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes company-message-figure-in {
+  from {
+    opacity: 0;
+    transform: translateY(rem(24));
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes company-about-map-in {
+  from {
+    opacity: 0;
+    transform: translateY(rem(24));
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes company-about-row-in {
+  from {
+    opacity: 0;
+    transform: translateY(rem(20));
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html.js.scroll-reveal-active .company-page {
+    .company-intro__title.js-load-reveal,
+    .company-intro__text.js-load-reveal {
+      &:not(.is-inview) {
+        opacity: 0;
+        transform: translateY(rem(20));
+      }
+
+      &.is-inview:not(.is-revealed) {
+        animation: company-intro-in 700ms cubic-bezier(0.22, 1, 0.36, 1) var(--scroll-reveal-stagger-delay, 0ms) both;
+        will-change: transform, opacity;
+      }
+
+      &.is-revealed {
+        opacity: 1;
+        transform: none;
+        animation: none;
+      }
+    }
+
+    .company-statements.js-scroll-reveal {
+      .company-statement__label {
+        &:not(.is-inview) {
+          opacity: 0;
+          transform: translateY(rem(20));
+        }
+
+        &.is-inview:not(.is-revealed) {
+          animation: company-statement-label-in 700ms cubic-bezier(0.22, 1, 0.36, 1) var(--scroll-reveal-stagger-delay, 0ms) both;
+          will-change: transform, opacity;
+        }
+
+        &.is-revealed {
+          opacity: 1;
+          transform: none;
+          animation: none;
+        }
+      }
+
+      .company-statement__copy {
+        &:not(.is-inview) {
+          opacity: 0;
+          transform: translateY(rem(24));
+        }
+
+        &.is-inview:not(.is-revealed) {
+          animation: company-statement-copy-in 750ms cubic-bezier(0.22, 1, 0.36, 1) var(--scroll-reveal-stagger-delay, 0ms) both;
+          will-change: transform, opacity;
+        }
+
+        &.is-revealed {
+          opacity: 1;
+          transform: none;
+          animation: none;
+        }
+      }
+
+      .company-statement__desc {
+        &:not(.is-inview) {
+          opacity: 0;
+          transform: translateY(rem(20));
+        }
+
+        &.is-inview:not(.is-revealed) {
+          animation: company-statement-desc-in 700ms cubic-bezier(0.22, 1, 0.36, 1) var(--scroll-reveal-stagger-delay, 0ms) both;
+          will-change: transform, opacity;
+        }
+
+        &.is-revealed {
+          opacity: 1;
+          transform: none;
+          animation: none;
+        }
+      }
+    }
+
+    .company-message.js-scroll-reveal {
+      .company-message__quote,
+      .company-message__text {
+        &:not(.is-inview) {
+          opacity: 0;
+          transform: translateY(rem(20));
+        }
+
+        &.is-inview:not(.is-revealed) {
+          animation: company-message-in 700ms cubic-bezier(0.22, 1, 0.36, 1) var(--scroll-reveal-stagger-delay, 0ms) both;
+          will-change: transform, opacity;
+        }
+
+        &.is-revealed {
+          opacity: 1;
+          transform: none;
+          animation: none;
+        }
+      }
+
+      .company-message__figure {
+        &:not(.is-inview) {
+          opacity: 0;
+          transform: translateY(rem(24));
+        }
+
+        &.is-inview:not(.is-revealed) {
+          animation: company-message-figure-in 750ms cubic-bezier(0.22, 1, 0.36, 1) var(--scroll-reveal-stagger-delay, 0ms) both;
+          will-change: transform, opacity;
+        }
+
+        &.is-revealed {
+          opacity: 1;
+          transform: none;
+          animation: none;
+        }
+      }
+    }
+
+    .company-about.js-scroll-reveal {
+      .company-about__map {
+        &:not(.is-inview) {
+          opacity: 0;
+          transform: translateY(rem(24));
+        }
+
+        &.is-inview:not(.is-revealed) {
+          animation: company-about-map-in 750ms cubic-bezier(0.22, 1, 0.36, 1) both;
+          will-change: transform, opacity;
+        }
+
+        &.is-revealed {
+          opacity: 1;
+          transform: none;
+          animation: none;
+        }
+      }
+
+      .company-about__row {
+        &:not(.is-inview) {
+          opacity: 0;
+          transform: translateY(rem(20));
+        }
+
+        &.is-inview:not(.is-revealed) {
+          animation: company-about-row-in 700ms cubic-bezier(0.22, 1, 0.36, 1) var(--scroll-reveal-stagger-delay, 0ms) both;
+          will-change: transform, opacity;
+        }
+
+        &.is-revealed {
+          opacity: 1;
+          transform: none;
+          animation: none;
+        }
+      }
+    }
+  }
+}
